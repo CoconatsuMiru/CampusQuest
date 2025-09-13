@@ -1,0 +1,47 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# User-specific settings
+*.user
+*.suo
+*.userprefs
+
+# Unity cache / build folders
+/Library/
+/Temp/
+/Obj/
+/Build/
+/Builds/
+/Logs/
+/UserSettings/
+/MemoryCaptures/
+/Assets/AssetStoreTools*
+
+# Unity auto-generated files
+ExportedObj/
+.vs/
+.gradle/
+.idea/
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Android / iOS specific
+*.apk
+*.aab
+*.ipa
+*.keystore
+
+# Gradle cache
+.gradle/
+
+# Crash reports
+sysinfo.txt
+
+# Packed Addressables
+/ServerData/

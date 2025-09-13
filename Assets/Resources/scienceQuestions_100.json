@@ -1,0 +1,874 @@
+{
+  "questions": [
+    {
+      "question": "What is the chemical symbol for gold?",
+      "answers": [
+        "Au",
+        "Ag",
+        "Fe"
+      ],
+      "correctAnswer": "Au",
+      "enabled": 1
+    },
+    {
+      "question": "What part of the plant conducts photosynthesis?",
+      "answers": [
+        "Roots",
+        "Stem",
+        "Leaves"
+      ],
+      "correctAnswer": "Leaves",
+      "enabled": 1
+    },
+    {
+      "question": "Which gas is essential for human respiration?",
+      "answers": [
+        "Oxygen",
+        "Carbon Dioxide",
+        "Hydrogen"
+      ],
+      "correctAnswer": "Oxygen",
+      "enabled": 1
+    },
+    {
+      "question": "What is the largest planet in our solar system?",
+      "answers": [
+        "Earth",
+        "Jupiter",
+        "Saturn"
+      ],
+      "correctAnswer": "Jupiter",
+      "enabled": 1
+    },
+    {
+      "question": "Which blood cells help our bodies fight infection?",
+      "answers": [
+        "Red",
+        "White",
+        "Platelets"
+      ],
+      "correctAnswer": "White",
+      "enabled": 1
+    },
+    {
+      "question": "What is the basic unit of life?",
+      "answers": [
+        "Cell",
+        "Tissue",
+        "Organ"
+      ],
+      "correctAnswer": "Cell",
+      "enabled": 1
+    },
+    {
+      "question": "What is the powerhouse of the cell?",
+      "answers": [
+        "Mitochondria",
+        "Nucleus",
+        "Ribosome"
+      ],
+      "correctAnswer": "Mitochondria",
+      "enabled": 1
+    },
+    {
+      "question": "Which organ filters blood in the human body?",
+      "answers": [
+        "Liver",
+        "Kidneys",
+        "Lungs"
+      ],
+      "correctAnswer": "Kidneys",
+      "enabled": 1
+    },
+    {
+      "question": "What type of energy does a moving object have?",
+      "answers": [
+        "Kinetic",
+        "Potential",
+        "Chemical"
+      ],
+      "correctAnswer": "Kinetic",
+      "enabled": 1
+    },
+    {
+      "question": "Which vitamin is produced when skin is exposed to sunlight?",
+      "answers": [
+        "Vitamin D",
+        "Vitamin C",
+        "Vitamin B12"
+      ],
+      "correctAnswer": "Vitamin D",
+      "enabled": 1
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "answers": [
+        "Mars",
+        "Venus",
+        "Jupiter"
+      ],
+      "correctAnswer": "Mars",
+      "enabled": 1
+    },
+    {
+      "question": "What is the symbol for the element oxygen?",
+      "answers": [
+        "O",
+        "Ox",
+        "O2"
+      ],
+      "correctAnswer": "O",
+      "enabled": 1
+    },
+    {
+      "question": "What do bees collect from flowers?",
+      "answers": [
+        "Nectar",
+        "Pollen",
+        "Sap"
+      ],
+      "correctAnswer": "Nectar",
+      "enabled": 1
+    },
+    {
+      "question": "What kind of celestial body is the Sun?",
+      "answers": [
+        "Star",
+        "Planet",
+        "Comet"
+      ],
+      "correctAnswer": "Star",
+      "enabled": 1
+    },
+    {
+      "question": "What is the hardest natural substance?",
+      "answers": [
+        "Diamond",
+        "Gold",
+        "Iron"
+      ],
+      "correctAnswer": "Diamond",
+      "enabled": 1
+    },
+    {
+      "question": "What is the boiling point of water in Celsius?",
+      "answers": [
+        "100\u00b0C",
+        "90\u00b0C",
+        "80\u00b0C"
+      ],
+      "correctAnswer": "100\u00b0C",
+      "enabled": 1
+    },
+    {
+      "question": "Which force pulls objects toward the Earth?",
+      "answers": [
+        "Gravity",
+        "Magnetism",
+        "Friction"
+      ],
+      "correctAnswer": "Gravity",
+      "enabled": 1
+    },
+    {
+      "question": "What part of the brain controls balance?",
+      "answers": [
+        "Cerebellum",
+        "Cerebrum",
+        "Brainstem"
+      ],
+      "correctAnswer": "Cerebellum",
+      "enabled": 1
+    },
+    {
+      "question": "Which gas is most abundant in Earth's atmosphere?",
+      "answers": [
+        "Nitrogen",
+        "Oxygen",
+        "Carbon Dioxide"
+      ],
+      "correctAnswer": "Nitrogen",
+      "enabled": 1
+    },
+    {
+      "question": "Which part of the cell contains genetic material?",
+      "answers": [
+        "Nucleus",
+        "Cytoplasm",
+        "Membrane"
+      ],
+      "correctAnswer": "Nucleus",
+      "enabled": 1
+    },
+    {
+      "question": "What is the main function of red blood cells?",
+      "answers": [
+        "Transport oxygen",
+        "Fight disease",
+        "Clot blood"
+      ],
+      "correctAnswer": "Transport oxygen",
+      "enabled": 1
+    },
+    {
+      "question": "What state of matter is lightning?",
+      "answers": [
+        "Plasma",
+        "Gas",
+        "Liquid"
+      ],
+      "correctAnswer": "Plasma",
+      "enabled": 1
+    },
+    {
+      "question": "Which bones are found in the ear?",
+      "answers": [
+        "Stapes",
+        "Femur",
+        "Humerus"
+      ],
+      "correctAnswer": "Stapes",
+      "enabled": 1
+    },
+    {
+      "question": "What is the chemical formula of water?",
+      "answers": [
+        "H2O",
+        "CO2",
+        "O2"
+      ],
+      "correctAnswer": "H2O",
+      "enabled": 1
+    },
+    {
+      "question": "How many legs do insects have?",
+      "answers": [
+        "6",
+        "8",
+        "4"
+      ],
+      "correctAnswer": "6",
+      "enabled": 1
+    },
+    {
+      "question": "Which organ controls the body's metabolism?",
+      "answers": [
+        "Thyroid",
+        "Liver",
+        "Pancreas"
+      ],
+      "correctAnswer": "Thyroid",
+      "enabled": 1
+    },
+    {
+      "question": "Which element has the atomic number 1?",
+      "answers": [
+        "Hydrogen",
+        "Helium",
+        "Oxygen"
+      ],
+      "correctAnswer": "Hydrogen",
+      "enabled": 1
+    },
+    {
+      "question": "What is the main function of the heart?",
+      "answers": [
+        "Pump blood",
+        "Digest food",
+        "Filter toxins"
+      ],
+      "correctAnswer": "Pump blood",
+      "enabled": 1
+    },
+    {
+      "question": "What part of the eye detects light?",
+      "answers": [
+        "Retina",
+        "Cornea",
+        "Iris"
+      ],
+      "correctAnswer": "Retina",
+      "enabled": 1
+    },
+    {
+      "question": "What is the smallest particle of an element?",
+      "answers": [
+        "Atom",
+        "Molecule",
+        "Electron"
+      ],
+      "correctAnswer": "Atom",
+      "enabled": 1
+    },
+    {
+      "question": "What part of the body produces insulin?",
+      "answers": [
+        "Pancreas",
+        "Liver",
+        "Stomach"
+      ],
+      "correctAnswer": "Pancreas",
+      "enabled": 1
+    },
+    {
+      "question": "Which part of the electromagnetic spectrum can humans see?",
+      "answers": [
+        "Visible light",
+        "Ultraviolet",
+        "Infrared"
+      ],
+      "correctAnswer": "Visible light",
+      "enabled": 1
+    },
+    {
+      "question": "What causes tides on Earth?",
+      "answers": [
+        "Moon",
+        "Sun",
+        "Earthquake"
+      ],
+      "correctAnswer": "Moon",
+      "enabled": 1
+    },
+    {
+      "question": "What is the unit of electrical resistance?",
+      "answers": [
+        "Ohm",
+        "Watt",
+        "Volt"
+      ],
+      "correctAnswer": "Ohm",
+      "enabled": 1
+    },
+    {
+      "question": "What is the process by which water turns to vapor?",
+      "answers": [
+        "Evaporation",
+        "Condensation",
+        "Precipitation"
+      ],
+      "correctAnswer": "Evaporation",
+      "enabled": 1
+    },
+    {
+      "question": "Which metal is liquid at room temperature?",
+      "answers": [
+        "Mercury",
+        "Iron",
+        "Aluminum"
+      ],
+      "correctAnswer": "Mercury",
+      "enabled": 1
+    },
+    {
+      "question": "Which part of a plant absorbs water?",
+      "answers": [
+        "Roots",
+        "Leaves",
+        "Flowers"
+      ],
+      "correctAnswer": "Roots",
+      "enabled": 1
+    },
+    {
+      "question": "What type of rock is formed from magma?",
+      "answers": [
+        "Igneous",
+        "Sedimentary",
+        "Metamorphic"
+      ],
+      "correctAnswer": "Igneous",
+      "enabled": 1
+    },
+    {
+      "question": "What gas do plants release during photosynthesis?",
+      "answers": [
+        "Oxygen",
+        "Carbon Dioxide",
+        "Hydrogen"
+      ],
+      "correctAnswer": "Oxygen",
+      "enabled": 1
+    },
+    {
+      "question": "What is the most abundant element in the universe?",
+      "answers": [
+        "Hydrogen",
+        "Oxygen",
+        "Helium"
+      ],
+      "correctAnswer": "Hydrogen",
+      "enabled": 1
+    },
+    {
+      "question": "Which planet has the most moons?",
+      "answers": [
+        "Saturn",
+        "Mars",
+        "Earth"
+      ],
+      "correctAnswer": "Saturn",
+      "enabled": 1
+    },
+    {
+      "question": "What part of the atom has a positive charge?",
+      "answers": [
+        "Proton",
+        "Electron",
+        "Neutron"
+      ],
+      "correctAnswer": "Proton",
+      "enabled": 1
+    },
+    {
+      "question": "What is Newton\u2019s third law?",
+      "answers": [
+        "Action-reaction",
+        "Inertia",
+        "F=ma"
+      ],
+      "correctAnswer": "Action-reaction",
+      "enabled": 1
+    },
+    {
+      "question": "What is the process of cell division called?",
+      "answers": [
+        "Mitosis",
+        "Meiosis",
+        "Fusion"
+      ],
+      "correctAnswer": "Mitosis",
+      "enabled": 1
+    },
+    {
+      "question": "Which blood type is a universal donor?",
+      "answers": [
+        "O negative",
+        "AB positive",
+        "A positive"
+      ],
+      "correctAnswer": "O negative",
+      "enabled": 1
+    },
+    {
+      "question": "What is the Earth's only natural satellite?",
+      "answers": [
+        "Moon",
+        "Mars",
+        "Venus"
+      ],
+      "correctAnswer": "Moon",
+      "enabled": 1
+    },
+    {
+      "question": "What is the lightest element?",
+      "answers": [
+        "Hydrogen",
+        "Helium",
+        "Lithium"
+      ],
+      "correctAnswer": "Hydrogen",
+      "enabled": 1
+    },
+    {
+      "question": "Which scientist proposed the theory of evolution?",
+      "answers": [
+        "Charles Darwin",
+        "Newton",
+        "Einstein"
+      ],
+      "correctAnswer": "Charles Darwin",
+      "enabled": 1
+    },
+    {
+      "question": "What is the center of an atom called?",
+      "answers": [
+        "Nucleus",
+        "Proton",
+        "Electron"
+      ],
+      "correctAnswer": "Nucleus",
+      "enabled": 1
+    },
+    {
+      "question": "Which vitamin helps in blood clotting?",
+      "answers": [
+        "Vitamin K",
+        "Vitamin D",
+        "Vitamin C"
+      ],
+      "correctAnswer": "Vitamin K",
+      "enabled": 1
+    },
+    {
+      "question": "What do carnivores eat?",
+      "answers": [
+        "Meat",
+        "Plants",
+        "Both"
+      ],
+      "correctAnswer": "Meat",
+      "enabled": 1
+    },
+    {
+      "question": "Which part of the flower makes seeds?",
+      "answers": [
+        "Ovary",
+        "Petal",
+        "Stamen"
+      ],
+      "correctAnswer": "Ovary",
+      "enabled": 1
+    },
+    {
+      "question": "What do we call animals that eat both plants and animals?",
+      "answers": [
+        "Omnivores",
+        "Herbivores",
+        "Carnivores"
+      ],
+      "correctAnswer": "Omnivores",
+      "enabled": 1
+    },
+    {
+      "question": "What is the primary source of energy for Earth?",
+      "answers": [
+        "Sun",
+        "Moon",
+        "Stars"
+      ],
+      "correctAnswer": "Sun",
+      "enabled": 1
+    },
+    {
+      "question": "Which gas is responsible for global warming?",
+      "answers": [
+        "Carbon Dioxide",
+        "Oxygen",
+        "Nitrogen"
+      ],
+      "correctAnswer": "Carbon Dioxide",
+      "enabled": 1
+    },
+    {
+      "question": "Which bone protects the brain?",
+      "answers": [
+        "Skull",
+        "Spine",
+        "Rib"
+      ],
+      "correctAnswer": "Skull",
+      "enabled": 1
+    },
+    {
+      "question": "How many chromosomes do humans have?",
+      "answers": [
+        "46",
+        "23",
+        "44"
+      ],
+      "correctAnswer": "46",
+      "enabled": 1
+    },
+    {
+      "question": "Which organ controls breathing?",
+      "answers": [
+        "Brain",
+        "Lungs",
+        "Heart"
+      ],
+      "correctAnswer": "Brain",
+      "enabled": 1
+    },
+    {
+      "question": "What is the speed of light?",
+      "answers": [
+        "300,000 km/s",
+        "150,000 km/s",
+        "100,000 km/s"
+      ],
+      "correctAnswer": "300,000 km/s",
+      "enabled": 1
+    },
+    {
+      "question": "Which blood cells carry oxygen?",
+      "answers": [
+        "Red",
+        "White",
+        "Platelets"
+      ],
+      "correctAnswer": "Red",
+      "enabled": 1
+    },
+    {
+      "question": "What is an earthquake measured with?",
+      "answers": [
+        "Seismograph",
+        "Thermometer",
+        "Barometer"
+      ],
+      "correctAnswer": "Seismograph",
+      "enabled": 1
+    },
+    {
+      "question": "Which vitamin is found in citrus fruits?",
+      "answers": [
+        "Vitamin C",
+        "Vitamin A",
+        "Vitamin B12"
+      ],
+      "correctAnswer": "Vitamin C",
+      "enabled": 1
+    },
+    {
+      "question": "What is the chemical symbol for iron?",
+      "answers": [
+        "Fe",
+        "Ir",
+        "I"
+      ],
+      "correctAnswer": "Fe",
+      "enabled": 1
+    },
+    {
+      "question": "Which state of matter has no fixed shape but fixed volume?",
+      "answers": [
+        "Liquid",
+        "Gas",
+        "Solid"
+      ],
+      "correctAnswer": "Liquid",
+      "enabled": 1
+    },
+    {
+      "question": "What is the study of rocks called?",
+      "answers": [
+        "Geology",
+        "Biology",
+        "Zoology"
+      ],
+      "correctAnswer": "Geology",
+      "enabled": 1
+    },
+    {
+      "question": "What is the largest internal organ?",
+      "answers": [
+        "Liver",
+        "Lungs",
+        "Stomach"
+      ],
+      "correctAnswer": "Liver",
+      "enabled": 1
+    },
+    {
+      "question": "How many pairs of chromosomes are in the human body?",
+      "answers": [
+        "23",
+        "22",
+        "24"
+      ],
+      "correctAnswer": "23",
+      "enabled": 1
+    },
+    {
+      "question": "What is the outermost layer of the Earth?",
+      "answers": [
+        "Crust",
+        "Mantle",
+        "Core"
+      ],
+      "correctAnswer": "Crust",
+      "enabled": 1
+    },
+    {
+      "question": "Which scientist formulated the laws of motion?",
+      "answers": [
+        "Isaac Newton",
+        "Galileo",
+        "Einstein"
+      ],
+      "correctAnswer": "Isaac Newton",
+      "enabled": 1
+    },
+    {
+      "question": "What organ pumps blood?",
+      "answers": [
+        "Heart",
+        "Lungs",
+        "Liver"
+      ],
+      "correctAnswer": "Heart",
+      "enabled": 1
+    },
+    {
+      "question": "What kind of energy is stored in food?",
+      "answers": [
+        "Chemical",
+        "Kinetic",
+        "Thermal"
+      ],
+      "correctAnswer": "Chemical",
+      "enabled": 1
+    },
+    {
+      "question": "What is the main function of chlorophyll?",
+      "answers": [
+        "Photosynthesis",
+        "Digestion",
+        "Reproduction"
+      ],
+      "correctAnswer": "Photosynthesis",
+      "enabled": 1
+    },
+    {
+      "question": "What is the smallest bone in the body?",
+      "answers": [
+        "Stapes",
+        "Femur",
+        "Humerus"
+      ],
+      "correctAnswer": "Stapes",
+      "enabled": 1
+    },
+    {
+      "question": "What is the chemical formula for table salt?",
+      "answers": [
+        "NaCl",
+        "KCl",
+        "NaOH"
+      ],
+      "correctAnswer": "NaCl",
+      "enabled": 1
+    },
+    {
+      "question": "Which planet is known as Earth\u2019s twin?",
+      "answers": [
+        "Venus",
+        "Mars",
+        "Mercury"
+      ],
+      "correctAnswer": "Venus",
+      "enabled": 1
+    },
+    {
+      "question": "What is the largest type of blood vessel?",
+      "answers": [
+        "Artery",
+        "Vein",
+        "Capillary"
+      ],
+      "correctAnswer": "Artery",
+      "enabled": 1
+    },
+    {
+      "question": "What is the freezing point of water in Fahrenheit?",
+      "answers": [
+        "32\u00b0F",
+        "0\u00b0F",
+        "100\u00b0F"
+      ],
+      "correctAnswer": "32\u00b0F",
+      "enabled": 1
+    },
+    {
+      "question": "What is the function of the large intestine?",
+      "answers": [
+        "Absorb water",
+        "Absorb nutrients",
+        "Pump blood"
+      ],
+      "correctAnswer": "Absorb water",
+      "enabled": 1
+    },
+    {
+      "question": "Which part of the body helps in hearing?",
+      "answers": [
+        "Ear",
+        "Eye",
+        "Nose"
+      ],
+      "correctAnswer": "Ear",
+      "enabled": 1
+    },
+    {
+      "question": "What is the study of weather called?",
+      "answers": [
+        "Meteorology",
+        "Astronomy",
+        "Geology"
+      ],
+      "correctAnswer": "Meteorology",
+      "enabled": 1
+    },
+    {
+      "question": "What part of the body is affected by asthma?",
+      "answers": [
+        "Lungs",
+        "Liver",
+        "Heart"
+      ],
+      "correctAnswer": "Lungs",
+      "enabled": 1
+    },
+    {
+      "question": "What is the unit of power?",
+      "answers": [
+        "Watt",
+        "Joule",
+        "Volt"
+      ],
+      "correctAnswer": "Watt",
+      "enabled": 1
+    },
+    {
+      "question": "Which organ helps in digestion of fat?",
+      "answers": [
+        "Liver",
+        "Kidney",
+        "Heart"
+      ],
+      "correctAnswer": "Liver",
+      "enabled": 1
+    },
+    {
+      "question": "What is DNA short for?",
+      "answers": [
+        "Deoxyribonucleic Acid",
+        "Dinucleic Acid",
+        "Double Helix Acid"
+      ],
+      "correctAnswer": "Deoxyribonucleic Acid",
+      "enabled": 1
+    },
+    {
+      "question": "Which organ system includes the bones?",
+      "answers": [
+        "Skeletal",
+        "Muscular",
+        "Digestive"
+      ],
+      "correctAnswer": "Skeletal",
+      "enabled": 1
+    },
+    {
+      "question": "What type of energy does a battery produce?",
+      "answers": [
+        "Chemical",
+        "Thermal",
+        "Nuclear"
+      ],
+      "correctAnswer": "Chemical",
+      "enabled": 1
+    },
+    {
+      "question": "Which gas is used for breathing by deep-sea divers?",
+      "answers": [
+        "Helium",
+        "Carbon Dioxide",
+        "Ozone"
+      ],
+      "correctAnswer": "Helium",
+      "enabled": 1
+    }
+  ]
+}

@@ -1,0 +1,1394 @@
+{
+  "questions": [
+    {
+      "question": "Who painted 'The Starry Night'?",
+      "answers": [
+        "Vincent van Gogh",
+        "Pablo Picasso",
+        "Claude Monet"
+      ],
+      "correctAnswer": "Vincent van Gogh",
+      "enabled": 1
+    },
+    {
+      "question": "Which museum houses Leonardo da Vinci's 'Mona Lisa'?",
+      "answers": [
+        "The Louvre",
+        "The Met",
+        "Uffizi Gallery"
+      ],
+      "correctAnswer": "The Louvre",
+      "enabled": 1
+    },
+    {
+      "question": "What art style is characterized by fragmented geometric forms?",
+      "answers": [
+        "Impressionism",
+        "Cubism",
+        "Baroque"
+      ],
+      "correctAnswer": "Cubism",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist created 'The Persistence of Memory' with melting clocks?",
+      "answers": [
+        "Salvador Dal\u00ed",
+        "Frida Kahlo",
+        "Andy Warhol"
+      ],
+      "correctAnswer": "Salvador Dal\u00ed",
+      "enabled": 1
+    },
+    {
+      "question": "What is the name of Edvard Munch's iconic painting of a screaming figure?",
+      "answers": [
+        "The Scream",
+        "The Shout",
+        "The Howl"
+      ],
+      "correctAnswer": "The Scream",
+      "enabled": 1
+    },
+    {
+      "question": "Which painter is known for water lilies and Japanese bridge motifs?",
+      "answers": [
+        "Claude Monet",
+        "Pierre-Auguste Renoir",
+        "\u00c9douard Manet"
+      ],
+      "correctAnswer": "Claude Monet",
+      "enabled": 1
+    },
+    {
+      "question": "What material did Michelangelo use to sculpt 'David'?",
+      "answers": [
+        "Bronze",
+        "Marble",
+        "Clay"
+      ],
+      "correctAnswer": "Marble",
+      "enabled": 1
+    },
+    {
+      "question": "Which art movement did Jackson Pollock represent?",
+      "answers": [
+        "Abstract Expressionism",
+        "Pop Art",
+        "Minimalism"
+      ],
+      "correctAnswer": "Abstract Expressionism",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'Girl with a Pearl Earring'?",
+      "answers": [
+        "Vermeer",
+        "Rembrandt",
+        "Rubens"
+      ],
+      "correctAnswer": "Vermeer",
+      "enabled": 1
+    },
+    {
+      "question": "What is the main subject of Grant Wood's 'American Gothic'?",
+      "answers": [
+        "A farmer and his daughter",
+        "A cowboy",
+        "A soldier"
+      ],
+      "correctAnswer": "A farmer and his daughter",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist cut off part of his own ear?",
+      "answers": [
+        "Pablo Picasso",
+        "Vincent van Gogh",
+        "Henri Matisse"
+      ],
+      "correctAnswer": "Vincent van Gogh",
+      "enabled": 1
+    },
+    {
+      "question": "What is the dominant color in Picasso's 'Blue Period'?",
+      "answers": [
+        "Red",
+        "Blue",
+        "Green"
+      ],
+      "correctAnswer": "Blue",
+      "enabled": 1
+    },
+    {
+      "question": "Who designed the Guggenheim Museum in New York?",
+      "answers": [
+        "Frank Lloyd Wright",
+        "Zaha Hadid",
+        "I.M. Pei"
+      ],
+      "correctAnswer": "Frank Lloyd Wright",
+      "enabled": 1
+    },
+    {
+      "question": "Which painting depicts a scene from the Book of Genesis on the Sistine Chapel ceiling?",
+      "answers": [
+        "The Last Supper",
+        "The Creation of Adam",
+        "The Last Judgment"
+      ],
+      "correctAnswer": "The Creation of Adam",
+      "enabled": 1
+    },
+    {
+      "question": "What nationality was Frida Kahlo?",
+      "answers": [
+        "Spanish",
+        "Mexican",
+        "Brazilian"
+      ],
+      "correctAnswer": "Mexican",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for Campbell's Soup Cans artworks?",
+      "answers": [
+        "Roy Lichtenstein",
+        "Andy Warhol",
+        "Keith Haring"
+      ],
+      "correctAnswer": "Andy Warhol",
+      "enabled": 1
+    },
+    {
+      "question": "What technique uses small dots of color to create an image?",
+      "answers": [
+        "Impasto",
+        "Pointillism",
+        "Fresco"
+      ],
+      "correctAnswer": "Pointillism",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Thinker'?",
+      "answers": [
+        "Auguste Rodin",
+        "Donatello",
+        "Gian Lorenzo Bernini"
+      ],
+      "correctAnswer": "Auguste Rodin",
+      "enabled": 1
+    },
+    {
+      "question": "Which art movement emphasized dreams and the unconscious mind?",
+      "answers": [
+        "Surrealism",
+        "Realism",
+        "Dadaism"
+      ],
+      "correctAnswer": "Surrealism",
+      "enabled": 1
+    },
+    {
+      "question": "What is the oldest known cave painting site?",
+      "answers": [
+        "Lascaux",
+        "Altamira",
+        "Chauvet"
+      ],
+      "correctAnswer": "Chauvet",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Birth of Venus'?",
+      "answers": [
+        "Botticelli",
+        "Raphael",
+        "Titian"
+      ],
+      "correctAnswer": "Botticelli",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist famously used a 'drip painting' technique?",
+      "answers": [
+        "Mark Rothko",
+        "Jackson Pollock",
+        "Willem de Kooning"
+      ],
+      "correctAnswer": "Jackson Pollock",
+      "enabled": 1
+    },
+    {
+      "question": "What Renaissance artist painted 'The School of Athens'?",
+      "answers": [
+        "Michelangelo",
+        "Raphael",
+        "Leonardo da Vinci"
+      ],
+      "correctAnswer": "Raphael",
+      "enabled": 1
+    },
+    {
+      "question": "Which color is NOT part of the traditional primary colors in painting?",
+      "answers": [
+        "Red",
+        "Blue",
+        "Green"
+      ],
+      "correctAnswer": "Green",
+      "enabled": 1
+    },
+    {
+      "question": "Who created the modern art installation 'The Gates' in Central Park?",
+      "answers": [
+        "Christo and Jeanne-Claude",
+        "Yayoi Kusama",
+        "Damien Hirst"
+      ],
+      "correctAnswer": "Christo and Jeanne-Claude",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting made on wet plaster?",
+      "answers": [
+        "Fresco",
+        "Tempera",
+        "Gouache"
+      ],
+      "correctAnswer": "Fresco",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist painted 'The Night Watch'?",
+      "answers": [
+        "Rembrandt",
+        "Vermeer",
+        "Rubens"
+      ],
+      "correctAnswer": "Rembrandt",
+      "enabled": 1
+    },
+    {
+      "question": "What is the name of the Japanese art of woodblock printing?",
+      "answers": [
+        "Origami",
+        "Ukiyo-e",
+        "Ikebana"
+      ],
+      "correctAnswer": "Ukiyo-e",
+      "enabled": 1
+    },
+    {
+      "question": "Who designed the glass pyramid at the Louvre?",
+      "answers": [
+        "I.M. Pei",
+        "Frank Gehry",
+        "Norman Foster"
+      ],
+      "correctAnswer": "I.M. Pei",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is associated with the phrase 'Everything is art'?",
+      "answers": [
+        "Joseph Beuys",
+        "Marcel Duchamp",
+        "Yoko Ono"
+      ],
+      "correctAnswer": "Joseph Beuys",
+      "enabled": 1
+    },
+    {
+      "question": "What is the main theme of Hieronymus Bosch's 'The Garden of Earthly Delights'?",
+      "answers": [
+        "Heaven and Hell",
+        "Biblical Creation",
+        "Medieval Feasts"
+      ],
+      "correctAnswer": "Heaven and Hell",
+      "enabled": 1
+    },
+    {
+      "question": "Which sculptor created 'The Kiss'?",
+      "answers": [
+        "Auguste Rodin",
+        "Constantin Br\u00e2ncu\u0219i",
+        "Alberto Giacometti"
+      ],
+      "correctAnswer": "Auguste Rodin",
+      "enabled": 1
+    },
+    {
+      "question": "What art movement is Yayoi Kusama associated with?",
+      "answers": [
+        "Pop Art",
+        "Minimalism",
+        "Contemporary Art"
+      ],
+      "correctAnswer": "Contemporary Art",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'Whistler's Mother'?",
+      "answers": [
+        "James McNeill Whistler",
+        "John Singer Sargent",
+        "Thomas Eakins"
+      ],
+      "correctAnswer": "James McNeill Whistler",
+      "enabled": 1
+    },
+    {
+      "question": "Which city is home to the Prado Museum?",
+      "answers": [
+        "Barcelona",
+        "Madrid",
+        "Florence"
+      ],
+      "correctAnswer": "Madrid",
+      "enabled": 1
+    },
+    {
+      "question": "What is the technique of shading using fine parallel lines called?",
+      "answers": [
+        "Chiaroscuro",
+        "Hatching",
+        "Sfumato"
+      ],
+      "correctAnswer": "Hatching",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Luncheon of the Boating Party'?",
+      "answers": [
+        "\u00c9douard Manet",
+        "Pierre-Auguste Renoir",
+        "Claude Monet"
+      ],
+      "correctAnswer": "Pierre-Auguste Renoir",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'Balloon Dog' sculptures?",
+      "answers": [
+        "Jeff Koons",
+        "Damien Hirst",
+        "Anish Kapoor"
+      ],
+      "correctAnswer": "Jeff Koons",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that doesn't represent recognizable objects?",
+      "answers": [
+        "Abstract",
+        "Impressionist",
+        "Expressionist"
+      ],
+      "correctAnswer": "Abstract",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Hay Wain'?",
+      "answers": [
+        "J.M.W. Turner",
+        "John Constable",
+        "Thomas Gainsborough"
+      ],
+      "correctAnswer": "John Constable",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist famously said 'Art is a lie that makes us realize truth'?",
+      "answers": [
+        "Pablo Picasso",
+        "Salvador Dal\u00ed",
+        "Henri Matisse"
+      ],
+      "correctAnswer": "Pablo Picasso",
+      "enabled": 1
+    },
+    {
+      "question": "What is the name of the art movement that rejected traditional aesthetics after WWI?",
+      "answers": [
+        "Dada",
+        "Bauhaus",
+        "De Stijl"
+      ],
+      "correctAnswer": "Dada",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Son of Man' featuring a man with an apple obscuring his face?",
+      "answers": [
+        "Magritte",
+        "Dal\u00ed",
+        "Mir\u00f3"
+      ],
+      "correctAnswer": "Magritte",
+      "enabled": 1
+    },
+    {
+      "question": "Which ancient civilization built the Parthenon?",
+      "answers": [
+        "Romans",
+        "Egyptians",
+        "Greeks"
+      ],
+      "correctAnswer": "Greeks",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a preliminary drawing?",
+      "answers": [
+        "Study",
+        "Sketch",
+        "Cartoon"
+      ],
+      "correctAnswer": "Sketch",
+      "enabled": 1
+    },
+    {
+      "question": "Who created the 'Marilyn Monroe' silkscreen prints?",
+      "answers": [
+        "Roy Lichtenstein",
+        "Andy Warhol",
+        "Robert Rauschenberg"
+      ],
+      "correctAnswer": "Andy Warhol",
+      "enabled": 1
+    },
+    {
+      "question": "Which art movement was led by Kazimir Malevich?",
+      "answers": [
+        "Constructivism",
+        "Suprematism",
+        "Futurism"
+      ],
+      "correctAnswer": "Suprematism",
+      "enabled": 1
+    },
+    {
+      "question": "What is the name of the art style that exaggerates for emotional effect?",
+      "answers": [
+        "Expressionism",
+        "Impressionism",
+        "Realism"
+      ],
+      "correctAnswer": "Expressionism",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'Nighthawks'?",
+      "answers": [
+        "Edward Hopper",
+        "Norman Rockwell",
+        "Grant Wood"
+      ],
+      "correctAnswer": "Edward Hopper",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'cut-out' paper compositions?",
+      "answers": [
+        "Henri Matisse",
+        "Piet Mondrian",
+        "Wassily Kandinsky"
+      ],
+      "correctAnswer": "Henri Matisse",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of inanimate objects?",
+      "answers": [
+        "Portrait",
+        "Landscape",
+        "Still Life"
+      ],
+      "correctAnswer": "Still Life",
+      "enabled": 1
+    },
+    {
+      "question": "Who designed the 'Chicago Bean' sculpture?",
+      "answers": [
+        "Anish Kapoor",
+        "Richard Serra",
+        "Jeff Koons"
+      ],
+      "correctAnswer": "Anish Kapoor",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist painted 'The Swing'?",
+      "answers": [
+        "Jean-Honor\u00e9 Fragonard",
+        "Fran\u00e7ois Boucher",
+        "Jacques-Louis David"
+      ],
+      "correctAnswer": "Jean-Honor\u00e9 Fragonard",
+      "enabled": 1
+    },
+    {
+      "question": "What is the art technique of using light and shadow for dramatic effect?",
+      "answers": [
+        "Sfumato",
+        "Chiaroscuro",
+        "Impasto"
+      ],
+      "correctAnswer": "Chiaroscuro",
+      "enabled": 1
+    },
+    {
+      "question": "Who created the 'Fountain' readymade (a urinal)?",
+      "answers": [
+        "Marcel Duchamp",
+        "Salvador Dal\u00ed",
+        "Man Ray"
+      ],
+      "correctAnswer": "Marcel Duchamp",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Kiss' painting with gold leaf?",
+      "answers": [
+        "Gustav Klimt",
+        "Egon Schiele",
+        "Oskar Kokoschka"
+      ],
+      "correctAnswer": "Gustav Klimt",
+      "enabled": 1
+    },
+    {
+      "question": "What is the name of the art movement that glorified technology and speed?",
+      "answers": [
+        "Futurism",
+        "Cubism",
+        "Vorticism"
+      ],
+      "correctAnswer": "Futurism",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Third of May 1808'?",
+      "answers": [
+        "Francisco Goya",
+        "Diego Vel\u00e1zquez",
+        "El Greco"
+      ],
+      "correctAnswer": "Francisco Goya",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is associated with 'action painting'?",
+      "answers": [
+        "Mark Rothko",
+        "Jackson Pollock",
+        "Willem de Kooning"
+      ],
+      "correctAnswer": "Jackson Pollock",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that uses optical illusions?",
+      "answers": [
+        "Op Art",
+        "Pop Art",
+        "Kinetic Art"
+      ],
+      "correctAnswer": "Op Art",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Arnolfini Portrait'?",
+      "answers": [
+        "Jan van Eyck",
+        "Hieronymus Bosch",
+        "Pieter Bruegel"
+      ],
+      "correctAnswer": "Jan van Eyck",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'Infinity Mirror Rooms'?",
+      "answers": [
+        "Yayoi Kusama",
+        "Marina Abramovi\u0107",
+        "Louise Bourgeois"
+      ],
+      "correctAnswer": "Yayoi Kusama",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a large wall painting?",
+      "answers": [
+        "Mosaic",
+        "Fresco",
+        "Mural"
+      ],
+      "correctAnswer": "Mural",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Winged Victory of Samothrace'?",
+      "answers": [
+        "Unknown",
+        "Phidias",
+        "Praxiteles"
+      ],
+      "correctAnswer": "Unknown",
+      "enabled": 1
+    },
+    {
+      "question": "Which art movement was founded by Walter Gropius?",
+      "answers": [
+        "Bauhaus",
+        "De Stijl",
+        "Art Deco"
+      ],
+      "correctAnswer": "Bauhaus",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Raft of the Medusa'?",
+      "answers": [
+        "Eug\u00e8ne Delacroix",
+        "Th\u00e9odore G\u00e9ricault",
+        "Jacques-Louis David"
+      ],
+      "correctAnswer": "Th\u00e9odore G\u00e9ricault",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for Japanese woodblock prints?",
+      "answers": [
+        "Sumi-e",
+        "Ukiyo-e",
+        "Origami"
+      ],
+      "correctAnswer": "Ukiyo-e",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Birth of Venus'?",
+      "answers": [
+        "Sandro Botticelli",
+        "Raphael",
+        "Titian"
+      ],
+      "correctAnswer": "Sandro Botticelli",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Treachery of Images' (This is not a pipe)?",
+      "answers": [
+        "Ren\u00e9 Magritte",
+        "Salvador Dal\u00ed",
+        "Max Ernst"
+      ],
+      "correctAnswer": "Ren\u00e9 Magritte",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting technique using wax?",
+      "answers": [
+        "Fresco",
+        "Encaustic",
+        "Tempera"
+      ],
+      "correctAnswer": "Encaustic",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Garden of Earthly Delights'?",
+      "answers": [
+        "Hieronymus Bosch",
+        "Pieter Bruegel",
+        "Albrecht D\u00fcrer"
+      ],
+      "correctAnswer": "Hieronymus Bosch",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Physical Impossibility of Death in the Mind of Someone Living' (shark in formaldehyde)?",
+      "answers": [
+        "Damien Hirst",
+        "Tracey Emin",
+        "Marc Quinn"
+      ],
+      "correctAnswer": "Damien Hirst",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art made from everyday objects?",
+      "answers": [
+        "Readymade",
+        "Assemblage",
+        "Collage"
+      ],
+      "correctAnswer": "Readymade",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Last Supper'?",
+      "answers": [
+        "Michelangelo",
+        "Leonardo da Vinci",
+        "Raphael"
+      ],
+      "correctAnswer": "Leonardo da Vinci",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Dinner Party' installation?",
+      "answers": [
+        "Judy Chicago",
+        "Yoko Ono",
+        "Marina Abramovi\u0107"
+      ],
+      "correctAnswer": "Judy Chicago",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that is site-specific?",
+      "answers": [
+        "Installation",
+        "Performance",
+        "Land Art"
+      ],
+      "correctAnswer": "Installation",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Death of Marat'?",
+      "answers": [
+        "Jacques-Louis David",
+        "Eug\u00e8ne Delacroix",
+        "Jean-Auguste-Dominique Ingres"
+      ],
+      "correctAnswer": "Jacques-Louis David",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'Number 1A, 1948' (drip painting)?",
+      "answers": [
+        "Mark Rothko",
+        "Jackson Pollock",
+        "Willem de Kooning"
+      ],
+      "correctAnswer": "Jackson Pollock",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a preparatory drawing for a fresco?",
+      "answers": [
+        "Cartoon",
+        "Sketch",
+        "Study"
+      ],
+      "correctAnswer": "Cartoon",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Sleeping Gypsy'?",
+      "answers": [
+        "Henri Rousseau",
+        "Paul Gauguin",
+        "Vincent van Gogh"
+      ],
+      "correctAnswer": "Henri Rousseau",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'Self-Portrait with Thorn Necklace and Hummingbird'?",
+      "answers": [
+        "Frida Kahlo",
+        "Diego Rivera",
+        "Rufino Tamayo"
+      ],
+      "correctAnswer": "Frida Kahlo",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of a person?",
+      "answers": [
+        "Landscape",
+        "Portrait",
+        "Still Life"
+      ],
+      "correctAnswer": "Portrait",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Burghers of Calais'?",
+      "answers": [
+        "Auguste Rodin",
+        "Camille Claudel",
+        "Antoine Bourdelle"
+      ],
+      "correctAnswer": "Auguste Rodin",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'Composition with Red, Blue, and Yellow'?",
+      "answers": [
+        "Piet Mondrian",
+        "Kazimir Malevich",
+        "Wassily Kandinsky"
+      ],
+      "correctAnswer": "Piet Mondrian",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for the study of beauty in art?",
+      "answers": [
+        "Aesthetics",
+        "Iconography",
+        "Art History"
+      ],
+      "correctAnswer": "Aesthetics",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Fighting Temeraire'?",
+      "answers": [
+        "J.M.W. Turner",
+        "John Constable",
+        "Thomas Gainsborough"
+      ],
+      "correctAnswer": "J.M.W. Turner",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Two Fridas'?",
+      "answers": [
+        "Frida Kahlo",
+        "Diego Rivera",
+        "Remedios Varo"
+      ],
+      "correctAnswer": "Frida Kahlo",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that is deliberately shocking?",
+      "answers": [
+        "Dada",
+        "Surrealism",
+        "Shock Art"
+      ],
+      "correctAnswer": "Shock Art",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Card Players'?",
+      "answers": [
+        "Paul C\u00e9zanne",
+        "Vincent van Gogh",
+        "\u00c9douard Manet"
+      ],
+      "correctAnswer": "Paul C\u00e9zanne",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Dance' mural?",
+      "answers": [
+        "Henri Matisse",
+        "Raoul Dufy",
+        "Andr\u00e9 Derain"
+      ],
+      "correctAnswer": "Henri Matisse",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of the sea?",
+      "answers": [
+        "Seascape",
+        "Landscape",
+        "Cityscape"
+      ],
+      "correctAnswer": "Seascape",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Ecstasy of Saint Teresa'?",
+      "answers": [
+        "Gian Lorenzo Bernini",
+        "Michelangelo",
+        "Donatello"
+      ],
+      "correctAnswer": "Gian Lorenzo Bernini",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'Black Square'?",
+      "answers": [
+        "Kazimir Malevich",
+        "Wassily Kandinsky",
+        "El Lissitzky"
+      ],
+      "correctAnswer": "Kazimir Malevich",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that uses text as a primary element?",
+      "answers": [
+        "Typography",
+        "Calligraphy",
+        "Word Art"
+      ],
+      "correctAnswer": "Word Art",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Boating Party'?",
+      "answers": [
+        "Mary Cassatt",
+        "Berthe Morisot",
+        "Pierre-Auguste Renoir"
+      ],
+      "correctAnswer": "Mary Cassatt",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Broken Column'?",
+      "answers": [
+        "Frida Kahlo",
+        "Diego Rivera",
+        "Remedios Varo"
+      ],
+      "correctAnswer": "Frida Kahlo",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art made by assembling different materials?",
+      "answers": [
+        "Collage",
+        "Assemblage",
+        "Montage"
+      ],
+      "correctAnswer": "Assemblage",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Gleaners'?",
+      "answers": [
+        "Jean-Fran\u00e7ois Millet",
+        "Gustave Courbet",
+        "Honor\u00e9 Daumier"
+      ],
+      "correctAnswer": "Jean-Fran\u00e7ois Millet",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Bride Stripped Bare by Her Bachelors, Even' (The Large Glass)?",
+      "answers": [
+        "Marcel Duchamp",
+        "Man Ray",
+        "Francis Picabia"
+      ],
+      "correctAnswer": "Marcel Duchamp",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of a city view?",
+      "answers": [
+        "Cityscape",
+        "Landscape",
+        "Seascape"
+      ],
+      "correctAnswer": "Cityscape",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Gates of Hell'?",
+      "answers": [
+        "Auguste Rodin",
+        "Camille Claudel",
+        "Antoine Bourdelle"
+      ],
+      "correctAnswer": "Auguste Rodin",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'Composition VIII'?",
+      "answers": [
+        "Wassily Kandinsky",
+        "Piet Mondrian",
+        "Kazimir Malevich"
+      ],
+      "correctAnswer": "Wassily Kandinsky",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that is created to be temporary?",
+      "answers": [
+        "Ephemeral Art",
+        "Performance Art",
+        "Conceptual Art"
+      ],
+      "correctAnswer": "Ephemeral Art",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Horse Fair'?",
+      "answers": [
+        "Rosa Bonheur",
+        "Mary Cassatt",
+        "Berthe Morisot"
+      ],
+      "correctAnswer": "Rosa Bonheur",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The City Rises'?",
+      "answers": [
+        "Umberto Boccioni",
+        "Giacomo Balla",
+        "Carlo Carr\u00e0"
+      ],
+      "correctAnswer": "Umberto Boccioni",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of a mythological scene?",
+      "answers": [
+        "History Painting",
+        "Genre Painting",
+        "Allegory"
+      ],
+      "correctAnswer": "History Painting",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Veiled Virgin'?",
+      "answers": [
+        "Giovanni Strazza",
+        "Antonio Canova",
+        "Bertel Thorvaldsen"
+      ],
+      "correctAnswer": "Giovanni Strazza",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Yellow Christ'?",
+      "answers": [
+        "Paul Gauguin",
+        "Vincent van Gogh",
+        "\u00c9mile Bernard"
+      ],
+      "correctAnswer": "Paul Gauguin",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that uses light as a medium?",
+      "answers": [
+        "Light Art",
+        "Op Art",
+        "Kinetic Art"
+      ],
+      "correctAnswer": "Light Art",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Stone Breakers'?",
+      "answers": [
+        "Gustave Courbet",
+        "Jean-Fran\u00e7ois Millet",
+        "Honor\u00e9 Daumier"
+      ],
+      "correctAnswer": "Gustave Courbet",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Lovers'?",
+      "answers": [
+        "Ren\u00e9 Magritte",
+        "Salvador Dal\u00ed",
+        "Max Ernst"
+      ],
+      "correctAnswer": "Ren\u00e9 Magritte",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of a rural scene?",
+      "answers": [
+        "Landscape",
+        "Pastoral",
+        "Genre Painting"
+      ],
+      "correctAnswer": "Pastoral",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Age of Bronze'?",
+      "answers": [
+        "Auguste Rodin",
+        "Camille Claudel",
+        "Antoine Bourdelle"
+      ],
+      "correctAnswer": "Auguste Rodin",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'Black Iris'?",
+      "answers": [
+        "Georgia O'Keeffe",
+        "Frida Kahlo",
+        "Tamara de Lempicka"
+      ],
+      "correctAnswer": "Georgia O'Keeffe",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that is created outdoors?",
+      "answers": [
+        "Plein Air",
+        "Land Art",
+        "Environmental Art"
+      ],
+      "correctAnswer": "Plein Air",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Banjo Lesson'?",
+      "answers": [
+        "Henry Ossawa Tanner",
+        "Jacob Lawrence",
+        "Romare Bearden"
+      ],
+      "correctAnswer": "Henry Ossawa Tanner",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Treachery of Images'?",
+      "answers": [
+        "Ren\u00e9 Magritte",
+        "Salvador Dal\u00ed",
+        "Max Ernst"
+      ],
+      "correctAnswer": "Ren\u00e9 Magritte",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of a battle?",
+      "answers": [
+        "History Painting",
+        "Battle Piece",
+        "War Art"
+      ],
+      "correctAnswer": "Battle Piece",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Dying Gaul'?",
+      "answers": [
+        "Epigonus",
+        "Lysippos",
+        "Praxiteles"
+      ],
+      "correctAnswer": "Epigonus",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Basket of Apples'?",
+      "answers": [
+        "Paul C\u00e9zanne",
+        "Vincent van Gogh",
+        "\u00c9douard Manet"
+      ],
+      "correctAnswer": "Paul C\u00e9zanne",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that is created by the artist's body?",
+      "answers": [
+        "Performance Art",
+        "Body Art",
+        "Happenings"
+      ],
+      "correctAnswer": "Body Art",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Gross Clinic'?",
+      "answers": [
+        "Thomas Eakins",
+        "Winslow Homer",
+        "John Singer Sargent"
+      ],
+      "correctAnswer": "Thomas Eakins",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Circus' series?",
+      "answers": [
+        "Georges Seurat",
+        "Paul Signac",
+        "Henri de Toulouse-Lautrec"
+      ],
+      "correctAnswer": "Georges Seurat",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of flowers?",
+      "answers": [
+        "Still Life",
+        "Floral Painting",
+        "Botanical Art"
+      ],
+      "correctAnswer": "Still Life",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Discus Thrower'?",
+      "answers": [
+        "Myron",
+        "Polykleitos",
+        "Phidias"
+      ],
+      "correctAnswer": "Myron",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Red Studio'?",
+      "answers": [
+        "Henri Matisse",
+        "Pablo Picasso",
+        "Andr\u00e9 Derain"
+      ],
+      "correctAnswer": "Henri Matisse",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that is created for a specific place?",
+      "answers": [
+        "Installation Art",
+        "Site-Specific Art",
+        "Environmental Art"
+      ],
+      "correctAnswer": "Site-Specific Art",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Anatomy Lesson of Dr. Nicolaes Tulp'?",
+      "answers": [
+        "Rembrandt",
+        "Frans Hals",
+        "Johannes Vermeer"
+      ],
+      "correctAnswer": "Rembrandt",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Sleeping Gypsy'?",
+      "answers": [
+        "Henri Rousseau",
+        "Paul Gauguin",
+        "Vincent van Gogh"
+      ],
+      "correctAnswer": "Henri Rousseau",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of a group of people?",
+      "answers": [
+        "Portrait",
+        "Genre Painting",
+        "Conversation Piece"
+      ],
+      "correctAnswer": "Conversation Piece",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Piet\u00e0' in St. Peter's Basilica?",
+      "answers": [
+        "Michelangelo",
+        "Gian Lorenzo Bernini",
+        "Donatello"
+      ],
+      "correctAnswer": "Michelangelo",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Dance Class'?",
+      "answers": [
+        "Edgar Degas",
+        "Pierre-Auguste Renoir",
+        "\u00c9douard Manet"
+      ],
+      "correctAnswer": "Edgar Degas",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that is created by cutting and pasting?",
+      "answers": [
+        "Collage",
+        "Assemblage",
+        "Decoupage"
+      ],
+      "correctAnswer": "Collage",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted 'The Wanderer Above the Sea of Fog'?",
+      "answers": [
+        "Caspar David Friedrich",
+        "J.M.W. Turner",
+        "John Constable"
+      ],
+      "correctAnswer": "Caspar David Friedrich",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Guitarist'?",
+      "answers": [
+        "Pablo Picasso",
+        "Georges Braque",
+        "Juan Gris"
+      ],
+      "correctAnswer": "Pablo Picasso",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a painting of a mythological or allegorical figure?",
+      "answers": [
+        "History Painting",
+        "Allegory",
+        "Mythological Painting"
+      ],
+      "correctAnswer": "Allegory",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted 'The Laoco\u00f6n Group'?",
+      "answers": [
+        "Agesander, Athenodoros, and Polydorus",
+        "Praxiteles",
+        "Lysippos"
+      ],
+      "correctAnswer": "Agesander, Athenodoros, and Polydorus",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist is known for 'The Snail' collage?",
+      "answers": [
+        "Henri Matisse",
+        "Pablo Picasso",
+        "Georges Braque"
+      ],
+      "correctAnswer": "Henri Matisse",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for art that is created by the viewer's movement?",
+      "answers": [
+        "Kinetic Art",
+        "Op Art",
+        "Interactive Art"
+      ],
+      "correctAnswer": "Kinetic Art",
+      "enabled": 1
+    }
+  ]
+}
