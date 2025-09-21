@@ -7,17 +7,28 @@ public class MainGameUI : MonoBehaviour
     public TMP_Text levelText;
     public TMP_Text xpText;
 
+    private PlayerStats playerStats;
+
     void Start()
     {
-        UpdateXPUI();
+        playerStats = GameManager.Instance.PlayerStats;
+
+        if (playerStats != null)
+        {
+            playerStats.OnStatsChanged += UpdateXPUI;
+            UpdateXPUI(); // show correct stats immediately
+        }
     }
 
-    public void UpdateXPUI()
+    void OnDestroy()
     {
-        if (GameManager.Instance != null)
-        {
-            levelText.text = $"Level: {GameManager.Instance.PlayerLevel}";
-            xpText.text = $"XP: {GameManager.Instance.CurrentXP}/{GameManager.Instance.XpToNextLevel}";
-        }
+        if (playerStats != null)
+            playerStats.OnStatsChanged -= UpdateXPUI;
+    }
+
+    private void UpdateXPUI()
+    {
+        levelText.text = $"Level: {playerStats.level}";
+        xpText.text = $"XP: {playerStats.currentXP}/{playerStats.xpToNextLevel}";
     }
 }

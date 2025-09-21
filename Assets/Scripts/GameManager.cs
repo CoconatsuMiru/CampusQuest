@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    
+    public PlayerStats PlayerStats;
 
     public int CurrentXP { get; private set; }
     public int PlayerLevel { get; private set; }
