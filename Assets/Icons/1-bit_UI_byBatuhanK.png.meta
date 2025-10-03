@@ -100,10 +100,10 @@ TextureImporter:
       name: 1-bit_UI_byBatuhanK_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 148
-        width: 71
-        height: 103
+        x: 15
+        y: 176
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,10 +122,10 @@ TextureImporter:
       name: 1-bit_UI_byBatuhanK_1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 202
-        width: 26
-        height: 34
+        x: 86
+        y: 155
+        width: 116
+        height: 99
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,10 +144,10 @@ TextureImporter:
       name: 1-bit_UI_byBatuhanK_2
       rect:
         serializedVersion: 2
-        x: 210
-        y: 153
-        width: 253
-        height: 100
+        x: 245
+        y: 230
+        width: 14
+        height: 19
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -254,10 +254,10 @@ TextureImporter:
       name: 1-bit_UI_byBatuhanK_7
       rect:
         serializedVersion: 2
-        x: 86
-        y: 35
-        width: 116
-        height: 69
+        x: 90
+        y: 92
+        width: 106
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -276,10 +276,10 @@ TextureImporter:
       name: 1-bit_UI_byBatuhanK_8
       rect:
         serializedVersion: 2
-        x: 86
-        y: 8
-        width: 116
-        height: 22
+        x: 90
+        y: 80
+        width: 106
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

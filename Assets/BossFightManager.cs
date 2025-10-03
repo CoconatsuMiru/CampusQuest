@@ -13,7 +13,10 @@ public class BossFightManager : MonoBehaviour
     [Header("UI")]
     public Button fightButton;
     public Button runButton;
+    public TextMeshProUGUI hpText;
     public TextMeshProUGUI timerText;
+    public Slider hpSlider;
+    public Slider timerSlider;
 
     [Header("Scene Settings")]
     public string mainSceneName = "MainScene";
@@ -30,27 +33,53 @@ public class BossFightManager : MonoBehaviour
         runButton.onClick.AddListener(OnRun);
 
         timer = fightTimeLimit;
+
+        if (hpSlider != null){
+        hpSlider.maxValue = monsterHP;
+        hpSlider.value = monsterHP;
+        }
+
+        if (timerSlider != null){
+        timerSlider.maxValue = fightTimeLimit;
+        timerSlider.value = fightTimeLimit;
+        }
+
+        if (hpText != null)
+        hpText.text =" HP: " + monsterHP;
     }
 
     void Update()
     {
-        if (timer > 0f)
-        {
-            timer -= Time.deltaTime;
-            if (timerText != null)
-                timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
-        }
-        else
-        {
-            Debug.Log("Time’s up! You failed to defeat " + monsterName);
-            ReturnToMainScene(false);
-        }
+
+    if (timer > 0f)
+    {
+        timer -= Time.deltaTime;
+
+        if (timerText != null)
+            timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
+
+        if (timerSlider != null)
+            timerSlider.value = timer;
+    }
+
+    else
+    {
+        Debug.Log("Time’s up! You failed to defeat " + monsterName);
+        ReturnToMainScene(false);
+    }
     }
 
     void OnFight()
     {
         monsterHP--;
-        Debug.Log("You hit " + monsterName + "! HP left: " + monsterHP);
+        Debug.Log("You hit " + monsterName + "! HP left: " + monsterHP); 
+        
+        
+        if (hpSlider != null)
+        hpSlider.value = monsterHP;
+        
+        if (hpText != null)
+        hpText.text = " HP: " + monsterHP;
 
         if (monsterHP <= 0)
         {
