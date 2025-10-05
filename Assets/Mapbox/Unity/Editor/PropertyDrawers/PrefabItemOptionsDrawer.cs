@@ -120,7 +120,70 @@ namespace Mapbox.Editor
 			//Category drop down
 			EditorGUI.BeginChangeCheck();
 			var categoryProp = property.FindPropertyRelative("categories");
-			categoryProp.intValue = (int)(LocationPrefabCategories)(EditorGUILayout.EnumFlagsField(categoriesDropDown, (LocationPrefabCategories)categoryProp.intValue));
+
+			// Safe draw: first try Unity's EnumFlagsField. If it throws (IndexOutOfRange), fallback to manual drawing.
+			try
+			{
+				LocationPrefabCategories current = (LocationPrefabCategories)categoryProp.intValue;
+				var newValue = (LocationPrefabCategories)EditorGUILayout.EnumFlagsField(categoriesDropDown, current);
+				if ((int)newValue != categoryProp.intValue)
+				{
+					categoryProp.intValue = (int)newValue;
+				}
+			}
+			catch (IndexOutOfRangeException ex)
+			{
+				// Fallback: build our own multi-toggle from enum names and values
+				// This avoids Unity's internal MaskField logic which can fail when serialized enum data is mismatched.
+				string[] names = Enum.GetNames(typeof(LocationPrefabCategories));
+				Array values = Enum.GetValues(typeof(LocationPrefabCategories));
+
+				int mask = 0;
+				// Current mask we have stored
+				int currentMask = categoryProp.intValue;
+
+				EditorGUILayout.LabelField(categoriesDropDown);
+				EditorGUI.indentLevel++;
+				for (int i = 0; i < names.Length; i++)
+				{
+					int enumVal = Convert.ToInt32(values.GetValue(i));
+					bool isOn = (currentMask & enumVal) == enumVal && enumVal != 0;
+					// Special-case when enumVal == 0 (usually 'None'): treat as exact match
+					if (enumVal == 0)
+					{
+						isOn = currentMask == 0;
+					}
+
+					bool newOn = EditorGUILayout.ToggleLeft(names[i], isOn);
+					if (newOn)
+					{
+						// If enumVal == 0, set mask to 0
+						if (enumVal == 0)
+						{
+							mask = 0;
+						}
+						else
+						{
+							mask |= enumVal;
+						}
+					}
+				}
+				EditorGUI.indentLevel--;
+
+				// If None was selected alone, mask will be 0 (handled above). Otherwise combine.
+				// If user didn't toggle anything and there was already a value, keep previous.
+				if (mask != 0 || (mask == 0 && currentMask == 0))
+				{
+					categoryProp.intValue = mask;
+				}
+			}
+			catch (Exception e)
+			{
+				// Generic safety fallback: if anything else goes wrong, log and show an int field so the editor doesn't break.
+				Debug.LogWarning("PrefabItemOptionsDrawer: EnumFlagsField failed, falling back to int field. " + e);
+				categoryProp.intValue = EditorGUILayout.IntField(categoriesDropDown, categoryProp.intValue);
+			}
+
 			if (EditorGUI.EndChangeCheck())
 			{
 				EditorHelper.CheckForModifiedProperty(property);
