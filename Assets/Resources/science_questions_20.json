@@ -1,0 +1,204 @@
+{
+  "questions": [
+    {
+      "question": "What planet is known as the Red Planet?",
+      "answers": [
+        "Venus",
+        "Jupiter",
+        "Mars"
+      ],
+      "correctAnswer": "Mars",
+      "enabled": 1
+    },
+    {
+      "question": "What is the chemical symbol for water?",
+      "answers": [
+        "H2O",
+        "CO2",
+        "O2"
+      ],
+      "correctAnswer": "H2O",
+      "enabled": 1
+    },
+    {
+      "question": "What gas do plants release during photosynthesis?",
+      "answers": [
+        "Oxygen",
+        "Nitrogen",
+        "Carbon dioxide"
+      ],
+      "correctAnswer": "Oxygen",
+      "enabled": 1
+    },
+    {
+      "question": "What is the center of an atom called?",
+      "answers": [
+        "Nucleus",
+        "Electron",
+        "Proton"
+      ],
+      "correctAnswer": "Nucleus",
+      "enabled": 1
+    },
+    {
+      "question": "What force pulls objects toward Earth?",
+      "answers": [
+        "Inertia",
+        "Magnetism",
+        "Gravity"
+      ],
+      "correctAnswer": "Gravity",
+      "enabled": 1
+    },
+    {
+      "question": "What part of the cell contains DNA?",
+      "answers": [
+        "Cytoplasm",
+        "Nucleus",
+        "Membrane"
+      ],
+      "correctAnswer": "Nucleus",
+      "enabled": 1
+    },
+    {
+      "question": "What planet has rings?",
+      "answers": [
+        "Saturn",
+        "Neptune",
+        "Mars"
+      ],
+      "correctAnswer": "Saturn",
+      "enabled": 1
+    },
+    {
+      "question": "What do bees collect from flowers?",
+      "answers": [
+        "Nectar",
+        "Sap",
+        "Water"
+      ],
+      "correctAnswer": "Nectar",
+      "enabled": 1
+    },
+    {
+      "question": "What is the largest organ in the human body?",
+      "answers": [
+        "Skin",
+        "Heart",
+        "Liver"
+      ],
+      "correctAnswer": "Skin",
+      "enabled": 1
+    },
+    {
+      "question": "What is the process of a liquid turning into gas?",
+      "answers": [
+        "Evaporation",
+        "Freezing",
+        "Condensation"
+      ],
+      "correctAnswer": "Evaporation",
+      "enabled": 1
+    },
+    {
+      "question": "Which gas do humans exhale?",
+      "answers": [
+        "Oxygen",
+        "Nitrogen",
+        "Carbon dioxide"
+      ],
+      "correctAnswer": "Carbon dioxide",
+      "enabled": 1
+    },
+    {
+      "question": "What part of the plant absorbs water?",
+      "answers": [
+        "Stem",
+        "Leaves",
+        "Roots"
+      ],
+      "correctAnswer": "Roots",
+      "enabled": 1
+    },
+    {
+      "question": "What is Earth's natural satellite?",
+      "answers": [
+        "Star",
+        "Moon",
+        "Sun"
+      ],
+      "correctAnswer": "Moon",
+      "enabled": 1
+    },
+    {
+      "question": "What is the hardest natural substance?",
+      "answers": [
+        "Iron",
+        "Diamond",
+        "Quartz"
+      ],
+      "correctAnswer": "Diamond",
+      "enabled": 1
+    },
+    {
+      "question": "What is the boiling point of water in Celsius?",
+      "answers": [
+        "90",
+        "120",
+        "100"
+      ],
+      "correctAnswer": "100",
+      "enabled": 1
+    },
+    {
+      "question": "What is the study of the human mind called?",
+      "answers": [
+        "Psychology",
+        "Sociology",
+        "Biology"
+      ],
+      "correctAnswer": "Psychology",
+      "enabled": 1
+    },
+    {
+      "question": "What type of energy comes from the sun?",
+      "answers": [
+        "Thermal",
+        "Nuclear",
+        "Solar"
+      ],
+      "correctAnswer": "Solar",
+      "enabled": 1
+    },
+    {
+      "question": "What is a baby frog called?",
+      "answers": [
+        "Tadpole",
+        "Larva",
+        "Spawn"
+      ],
+      "correctAnswer": "Tadpole",
+      "enabled": 1
+    },
+    {
+      "question": "What is used to measure temperature?",
+      "answers": [
+        "Compass",
+        "Barometer",
+        "Thermometer"
+      ],
+      "correctAnswer": "Thermometer",
+      "enabled": 1
+    },
+    {
+      "question": "What planet is closest to the Sun?",
+      "answers": [
+        "Mercury",
+        "Earth",
+        "Venus"
+      ],
+      "correctAnswer": "Mercury",
+      "enabled": 1
+    }
+  ]
+}

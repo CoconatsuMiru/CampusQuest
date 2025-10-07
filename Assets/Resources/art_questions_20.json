@@ -1,0 +1,204 @@
+{
+  "questions": [
+    {
+      "question": "Who painted the Mona Lisa?",
+      "answers": [
+        "Leonardo da Vinci",
+        "Vincent van Gogh",
+        "Michelangelo"
+      ],
+      "correctAnswer": "Leonardo da Vinci",
+      "enabled": 1
+    },
+    {
+      "question": "What art movement is Claude Monet associated with?",
+      "answers": [
+        "Cubism",
+        "Impressionism",
+        "Surrealism"
+      ],
+      "correctAnswer": "Impressionism",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist cut off part of his ear?",
+      "answers": [
+        "Picasso",
+        "Rembrandt",
+        "Van Gogh"
+      ],
+      "correctAnswer": "Van Gogh",
+      "enabled": 1
+    },
+    {
+      "question": "What type of paint is water-based?",
+      "answers": [
+        "Oil",
+        "Acrylic",
+        "Ink"
+      ],
+      "correctAnswer": "Acrylic",
+      "enabled": 1
+    },
+    {
+      "question": "What is the main color opposite of red on the color wheel?",
+      "answers": [
+        "Green",
+        "Yellow",
+        "Blue"
+      ],
+      "correctAnswer": "Green",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted The Starry Night?",
+      "answers": [
+        "Dali",
+        "Monet",
+        "Van Gogh"
+      ],
+      "correctAnswer": "Van Gogh",
+      "enabled": 1
+    },
+    {
+      "question": "Which art form uses small pieces of tile or glass?",
+      "answers": [
+        "Collage",
+        "Mosaic",
+        "Fresco"
+      ],
+      "correctAnswer": "Mosaic",
+      "enabled": 1
+    },
+    {
+      "question": "What does a sculptor mainly work with?",
+      "answers": [
+        "Paper",
+        "Clay",
+        "Fabric"
+      ],
+      "correctAnswer": "Clay",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for a quick sketch?",
+      "answers": [
+        "Thumbnail",
+        "Portrait",
+        "Blueprint"
+      ],
+      "correctAnswer": "Thumbnail",
+      "enabled": 1
+    },
+    {
+      "question": "Which art technique creates depth using light and shadow?",
+      "answers": [
+        "Impasto",
+        "Cubism",
+        "Chiaroscuro"
+      ],
+      "correctAnswer": "Chiaroscuro",
+      "enabled": 1
+    },
+    {
+      "question": "Who painted The Persistence of Memory?",
+      "answers": [
+        "Pablo Picasso",
+        "Salvador Dal\u00ed",
+        "Claude Monet"
+      ],
+      "correctAnswer": "Salvador Dal\u00ed",
+      "enabled": 1
+    },
+    {
+      "question": "What is the opposite of warm colors?",
+      "answers": [
+        "Pastel colors",
+        "Neutral colors",
+        "Cool colors"
+      ],
+      "correctAnswer": "Cool colors",
+      "enabled": 1
+    },
+    {
+      "question": "Which country is famous for origami?",
+      "answers": [
+        "Korea",
+        "China",
+        "Japan"
+      ],
+      "correctAnswer": "Japan",
+      "enabled": 1
+    },
+    {
+      "question": "What material is traditionally used for watercolor painting?",
+      "answers": [
+        "Wood",
+        "Canvas",
+        "Paper"
+      ],
+      "correctAnswer": "Paper",
+      "enabled": 1
+    },
+    {
+      "question": "Who sculpted David?",
+      "answers": [
+        "Donatello",
+        "Bernini",
+        "Michelangelo"
+      ],
+      "correctAnswer": "Michelangelo",
+      "enabled": 1
+    },
+    {
+      "question": "What is a primary color?",
+      "answers": [
+        "Green",
+        "Purple",
+        "Red"
+      ],
+      "correctAnswer": "Red",
+      "enabled": 1
+    },
+    {
+      "question": "Which artist painted 'The Last Supper'?",
+      "answers": [
+        "Michelangelo",
+        "Raphael",
+        "Leonardo da Vinci"
+      ],
+      "correctAnswer": "Leonardo da Vinci",
+      "enabled": 1
+    },
+    {
+      "question": "What is used to mix colors?",
+      "answers": [
+        "Brush",
+        "Canvas",
+        "Palette"
+      ],
+      "correctAnswer": "Palette",
+      "enabled": 1
+    },
+    {
+      "question": "What style uses dots to create images?",
+      "answers": [
+        "Pointillism",
+        "Expressionism",
+        "Cubism"
+      ],
+      "correctAnswer": "Pointillism",
+      "enabled": 1
+    },
+    {
+      "question": "What do you call art made from found objects?",
+      "answers": [
+        "Mosaic",
+        "Collage",
+        "Assemblage"
+      ],
+      "correctAnswer": "Assemblage",
+      "enabled": 1
+    }
+  ]
+}

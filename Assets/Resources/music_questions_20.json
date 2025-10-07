@@ -1,0 +1,204 @@
+{
+  "questions": [
+    {
+      "question": "Who is known as the King of Pop?",
+      "answers": [
+        "Prince",
+        "Elvis Presley",
+        "Michael Jackson"
+      ],
+      "correctAnswer": "Michael Jackson",
+      "enabled": 1
+    },
+    {
+      "question": "What is the symbol used to denote pitch in written music?",
+      "answers": [
+        "Staff",
+        "Clef",
+        "Note"
+      ],
+      "correctAnswer": "Clef",
+      "enabled": 1
+    },
+    {
+      "question": "Which composer became deaf later in life?",
+      "answers": [
+        "Beethoven",
+        "Mozart",
+        "Bach"
+      ],
+      "correctAnswer": "Beethoven",
+      "enabled": 1
+    },
+    {
+      "question": "How many strings does a standard guitar have?",
+      "answers": [
+        "6",
+        "5",
+        "7"
+      ],
+      "correctAnswer": "6",
+      "enabled": 1
+    },
+    {
+      "question": "Which instrument has keys, pedals, and strings?",
+      "answers": [
+        "Violin",
+        "Harp",
+        "Piano"
+      ],
+      "correctAnswer": "Piano",
+      "enabled": 1
+    },
+    {
+      "question": "What family of instruments does the trumpet belong to?",
+      "answers": [
+        "Woodwind",
+        "Brass",
+        "Percussion"
+      ],
+      "correctAnswer": "Brass",
+      "enabled": 1
+    },
+    {
+      "question": "Who composed The Four Seasons?",
+      "answers": [
+        "Mozart",
+        "Vivaldi",
+        "Beethoven"
+      ],
+      "correctAnswer": "Vivaldi",
+      "enabled": 1
+    },
+    {
+      "question": "Which symbol increases a note by a half step?",
+      "answers": [
+        "Flat",
+        "Natural",
+        "Sharp"
+      ],
+      "correctAnswer": "Sharp",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for speed in music?",
+      "answers": [
+        "Pitch",
+        "Rhythm",
+        "Tempo"
+      ],
+      "correctAnswer": "Tempo",
+      "enabled": 1
+    },
+    {
+      "question": "Which instrument has black and white keys?",
+      "answers": [
+        "Accordion",
+        "Flute",
+        "Piano"
+      ],
+      "correctAnswer": "Piano",
+      "enabled": 1
+    },
+    {
+      "question": "Who composed the song 'Imagine'?",
+      "answers": [
+        "Freddie Mercury",
+        "John Lennon",
+        "Paul McCartney"
+      ],
+      "correctAnswer": "John Lennon",
+      "enabled": 1
+    },
+    {
+      "question": "Which voice type is the highest for females?",
+      "answers": [
+        "Alto",
+        "Soprano",
+        "Tenor"
+      ],
+      "correctAnswer": "Soprano",
+      "enabled": 1
+    },
+    {
+      "question": "What do you call a group of singers?",
+      "answers": [
+        "Orchestra",
+        "Choir",
+        "Band"
+      ],
+      "correctAnswer": "Choir",
+      "enabled": 1
+    },
+    {
+      "question": "Who composed the 'Fur Elise'?",
+      "answers": [
+        "Chopin",
+        "Bach",
+        "Beethoven"
+      ],
+      "correctAnswer": "Beethoven",
+      "enabled": 1
+    },
+    {
+      "question": "What is the symbol that lowers a note by a half step?",
+      "answers": [
+        "Sharp",
+        "Flat",
+        "Natural"
+      ],
+      "correctAnswer": "Flat",
+      "enabled": 1
+    },
+    {
+      "question": "What is a person who writes music called?",
+      "answers": [
+        "Performer",
+        "Composer",
+        "Conductor"
+      ],
+      "correctAnswer": "Composer",
+      "enabled": 1
+    },
+    {
+      "question": "Which country did reggae music originate from?",
+      "answers": [
+        "Brazil",
+        "Jamaica",
+        "USA"
+      ],
+      "correctAnswer": "Jamaica",
+      "enabled": 1
+    },
+    {
+      "question": "What is the term for loud in music?",
+      "answers": [
+        "Piano",
+        "Forte",
+        "Allegro"
+      ],
+      "correctAnswer": "Forte",
+      "enabled": 1
+    },
+    {
+      "question": "What is the lowest male voice type?",
+      "answers": [
+        "Baritone",
+        "Tenor",
+        "Bass"
+      ],
+      "correctAnswer": "Bass",
+      "enabled": 1
+    },
+    {
+      "question": "Which instrument is played by blowing across a hole?",
+      "answers": [
+        "Oboe",
+        "Flute",
+        "Clarinet"
+      ],
+      "correctAnswer": "Flute",
+      "enabled": 1
+    }
+  ]
+}

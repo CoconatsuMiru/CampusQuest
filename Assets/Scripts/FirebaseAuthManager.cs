@@ -1,10 +1,11 @@
 using UnityEngine;
 using Firebase;
 using Firebase.Auth;
+using Firebase.Database;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 public class FirebaseAuthManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class FirebaseAuthManager : MonoBehaviour
     public DependencyStatus dependencyStatus;
     public FirebaseAuth auth;
     public FirebaseUser user;
+    private DatabaseReference dbReference;
+
+    // 🔹 Static so other scripts/scenes can easily access
+    public static string LoggedInUserId;
+    public static string LoggedInUserName;
 
     [Space]
     [Header("Login")]
@@ -25,6 +31,23 @@ public class FirebaseAuthManager : MonoBehaviour
     public TMP_InputField passwordRegistrationField;
     public TMP_InputField confirmPasswordRegistrationField;
 
+    // ---------- USER DATA CLASS ----------
+    [System.Serializable]
+    public class UserDataFlat
+    {
+        public string stat_01_username;
+        public string stat_02_email;
+        public int stat_03_level = 1;
+        public int stat_04_exp = 0;
+        public int stat_05_music = 0;
+        public int stat_06_art = 0;
+        public int stat_07_science = 0;
+        public int stat_08_math = 0;
+        public int stat_09_english = 0;
+        public int stat_10_history = 0;
+    }
+
+    // ---------- UNITY METHODS ----------
     private void Awake()
     {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
@@ -45,6 +68,7 @@ public class FirebaseAuthManager : MonoBehaviour
     void InitializeFirebase()
     {
         auth = FirebaseAuth.DefaultInstance;
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
 
         auth.StateChanged += AuthStateChanged;
         AuthStateChanged(this, null);
@@ -70,7 +94,7 @@ public class FirebaseAuthManager : MonoBehaviour
         }
     }
 
-    // 🔹 Login Button calls this
+    // ---------- LOGIN ----------
     public void Login()
     {
         StartCoroutine(LoginAsync(emailLoginField.text, passwordLoginField.text));
@@ -83,7 +107,7 @@ public class FirebaseAuthManager : MonoBehaviour
 
         if (loginTask.Exception != null)
         {
-            Debug.LogError(loginTask.Exception); // log actual exception
+            Debug.LogError(loginTask.Exception);
 
             FirebaseException firebaseException = loginTask.Exception.GetBaseException() as FirebaseException;
             AuthError authError = (AuthError)firebaseException.ErrorCode;
@@ -105,13 +129,18 @@ public class FirebaseAuthManager : MonoBehaviour
             user = loginTask.Result.User;
             Debug.Log($"Welcome back {user?.DisplayName ?? email}!");
 
-            References.userName = user.DisplayName; 
-            
-            SceneManager.LoadScene("SampleScene"); 
+            // 🔹 Store for global access
+            LoggedInUserId = user.UserId;
+            LoggedInUserName = user.DisplayName ?? email;
+
+            // Optional reference
+            References.userName = user.DisplayName;
+
+            SceneManager.LoadScene("SampleScene");
         }
     }
 
-    // 🔹 Register Button calls this
+    // ---------- REGISTRATION ----------
     public void Register()
     {
         StartCoroutine(RegisterAsync(
@@ -178,26 +207,35 @@ public class FirebaseAuthManager : MonoBehaviour
                 if (updateProfileTask.Exception != null)
                 {
                     user.DeleteAsync(); // rollback account
-
                     Debug.LogError(updateProfileTask.Exception);
-
-                    FirebaseException firebaseException = updateProfileTask.Exception.GetBaseException() as FirebaseException;
-                    AuthError authError = (AuthError)firebaseException.ErrorCode;
-
-                    string failedMessage = "Profile update failed! Because ";
-                    switch (authError)
-                    {
-                        case AuthError.InvalidEmail: failedMessage += "Email is invalid."; break;
-                        default: failedMessage += "Unknown error."; break;
-                    }
-
-                    Debug.LogError(failedMessage);
                 }
                 else
                 {
                     Debug.Log("Registration successful! Welcome " + user.DisplayName);
+
+                    // Save user to Realtime Database
+                    WriteNewUser(user.UserId, name, email);
                 }
             }
         }
+    }
+
+    // ---------- SAVE TO DATABASE ----------
+    private void WriteNewUser(string userId, string username, string email)
+    {
+        UserDataFlat newUser = new UserDataFlat
+        {
+            stat_01_username = username,
+            stat_02_email = email
+        };
+
+        string json = JsonUtility.ToJson(newUser);
+        dbReference.Child("users").Child(userId).SetRawJsonValueAsync(json).ContinueWith(task =>
+        {
+            if (task.IsCompleted)
+                Debug.Log("User successfully written to DB!");
+            if (task.IsFaulted)
+                Debug.LogError("Write failed: " + task.Exception);
+        });
     }
 }
