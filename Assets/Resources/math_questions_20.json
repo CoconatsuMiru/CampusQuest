@@ -1,0 +1,204 @@
+{
+  "questions": [
+    {
+      "question": "What is 5 + 7?",
+      "answers": [
+        "11",
+        "12",
+        "10"
+      ],
+      "correctAnswer": "12",
+      "enabled": 1
+    },
+    {
+      "question": "What is 9 * 3?",
+      "answers": [
+        "27",
+        "26",
+        "25"
+      ],
+      "correctAnswer": "27",
+      "enabled": 1
+    },
+    {
+      "question": "What is 25 / 5?",
+      "answers": [
+        "6",
+        "7",
+        "5"
+      ],
+      "correctAnswer": "5",
+      "enabled": 1
+    },
+    {
+      "question": "What is 18 - 9?",
+      "answers": [
+        "8",
+        "10",
+        "9"
+      ],
+      "correctAnswer": "9",
+      "enabled": 1
+    },
+    {
+      "question": "What is 7 * 8?",
+      "answers": [
+        "56",
+        "58",
+        "54"
+      ],
+      "correctAnswer": "56",
+      "enabled": 1
+    },
+    {
+      "question": "What is 10 + 15?",
+      "answers": [
+        "23",
+        "24",
+        "25"
+      ],
+      "correctAnswer": "25",
+      "enabled": 1
+    },
+    {
+      "question": "What is 81 / 9?",
+      "answers": [
+        "8",
+        "9",
+        "7"
+      ],
+      "correctAnswer": "9",
+      "enabled": 1
+    },
+    {
+      "question": "What is 100 - 55?",
+      "answers": [
+        "44",
+        "45",
+        "46"
+      ],
+      "correctAnswer": "45",
+      "enabled": 1
+    },
+    {
+      "question": "What is 6 * 6?",
+      "answers": [
+        "35",
+        "37",
+        "36"
+      ],
+      "correctAnswer": "36",
+      "enabled": 1
+    },
+    {
+      "question": "What is 12 + 9?",
+      "answers": [
+        "22",
+        "20",
+        "21"
+      ],
+      "correctAnswer": "21",
+      "enabled": 1
+    },
+    {
+      "question": "What is 49 / 7?",
+      "answers": [
+        "6",
+        "7",
+        "8"
+      ],
+      "correctAnswer": "7",
+      "enabled": 1
+    },
+    {
+      "question": "What is 8 * 4?",
+      "answers": [
+        "28",
+        "30",
+        "32"
+      ],
+      "correctAnswer": "32",
+      "enabled": 1
+    },
+    {
+      "question": "What is 99 - 9?",
+      "answers": [
+        "91",
+        "90",
+        "89"
+      ],
+      "correctAnswer": "90",
+      "enabled": 1
+    },
+    {
+      "question": "What is 15 + 15?",
+      "answers": [
+        "25",
+        "30",
+        "35"
+      ],
+      "correctAnswer": "30",
+      "enabled": 1
+    },
+    {
+      "question": "What is 64 / 8?",
+      "answers": [
+        "8",
+        "6",
+        "7"
+      ],
+      "correctAnswer": "8",
+      "enabled": 1
+    },
+    {
+      "question": "What is 14 * 2?",
+      "answers": [
+        "26",
+        "28",
+        "30"
+      ],
+      "correctAnswer": "28",
+      "enabled": 1
+    },
+    {
+      "question": "What is 100 / 10?",
+      "answers": [
+        "9",
+        "10",
+        "11"
+      ],
+      "correctAnswer": "10",
+      "enabled": 1
+    },
+    {
+      "question": "What is 11 + 12?",
+      "answers": [
+        "23",
+        "22",
+        "24"
+      ],
+      "correctAnswer": "23",
+      "enabled": 1
+    },
+    {
+      "question": "What is 18 + 7?",
+      "answers": [
+        "24",
+        "25",
+        "26"
+      ],
+      "correctAnswer": "25",
+      "enabled": 1
+    },
+    {
+      "question": "What is 40 - 15?",
+      "answers": [
+        "26",
+        "24",
+        "25"
+      ],
+      "correctAnswer": "25",
+      "enabled": 1
+    }
+  ]
+}

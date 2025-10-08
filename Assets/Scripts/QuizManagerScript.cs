@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using Firebase.Database;
 
 public class QuizManagerScript : MonoBehaviour
 {
@@ -15,16 +16,20 @@ public class QuizManagerScript : MonoBehaviour
     public Button answerButton2;
     public Button answerButton3;
     public TMP_Text questionProgressText;
-    public TMP_Text scoreText; 
+    public TMP_Text scoreText;
 
     [Header("XP & Level UI (optional inside quiz)")]
-    public TMP_Text levelText;  
-    public TMP_Text xpText;     
+    public TMP_Text levelText;
+    public TMP_Text xpText;
 
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip correctSound;
     public AudioClip incorrectSound;
+
+    [Header("Quiz Configuration")]
+    public TextAsset quizJSON; // ✅ Drag your JSON file here (per subject)
+    public string subjectStatKey = "stat_06_art"; // ✅ Example: stat_06_art, stat_08_math, etc.
 
     private List<Question> questions = new List<Question>();
     private Question currentQuestion;
@@ -34,47 +39,48 @@ public class QuizManagerScript : MonoBehaviour
     private int currentQuestionIndex = 0;
 
     private const int MaxQuestionCount = 5;
-    private string[] subjects = { "artQuestions_100", "mathQuestions_100", "scienceQuestions_100" };
+    private DatabaseReference dbReference;
 
     void Start()
     {
-        LoadAllSubjects();
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        LoadQuestions();
         StartQuiz();
-        UpdateXPUI(); 
+        UpdateXPUI();
     }
 
-    void LoadAllSubjects()
+    void LoadQuestions()
     {
-        foreach (var subject in subjects)
+        if (quizJSON == null)
         {
-            TextAsset jsonFile = Resources.Load<TextAsset>(subject);
-            if (jsonFile != null)
-            {
-                QuizData quizData = JsonUtility.FromJson<QuizData>(jsonFile.text);
-                if (quizData != null && quizData.questions != null)
-                {
-                    var enabledQuestions = quizData.questions.Where(q => q.enabled == 1);
-                    questions.AddRange(enabledQuestions);
-                }
-            }
+            Debug.LogError("❌ No quiz JSON file assigned in the inspector!");
+            return;
         }
 
+        QuizData quizData = JsonUtility.FromJson<QuizData>(quizJSON.text);
+        if (quizData != null && quizData.questions != null)
+        {
+            var enabledQuestions = quizData.questions.Where(q => q.enabled == 1);
+            questions.AddRange(enabledQuestions);
+        }
+
+        // ✅ Randomize once only
         questions = questions.OrderBy(q => Random.value).Take(MaxQuestionCount).ToList();
     }
 
     public void StartQuiz()
     {
-        if (questions != null && questions.Count > 0)
+        if (questions.Count > 0)
         {
             quizPanel.SetActive(true);
             score = 0;
-            UpdateScoreUI();
             currentQuestionIndex = 0;
+            UpdateScoreUI();
             ShowQuestion(currentQuestionIndex);
         }
         else
         {
-            Debug.LogError("No questions available.");
+            Debug.LogError("❌ No questions available.");
             quizPanel.SetActive(false);
         }
     }
@@ -98,7 +104,13 @@ public class QuizManagerScript : MonoBehaviour
         answerButton2.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[1];
         answerButton3.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[2];
 
-        questionProgressText.text = $"{MaxQuestionCount - questions.Count + 1}/{MaxQuestionCount}";
+        // ✅ Sequential question number display
+        questionProgressText.text = $"{index + 1}/{MaxQuestionCount}";
+
+        // Re-enable buttons each round
+        answerButton1.interactable = true;
+        answerButton2.interactable = true;
+        answerButton3.interactable = true;
     }
 
     public void OnAnswerButtonClicked(int buttonIndex)
@@ -108,6 +120,9 @@ public class QuizManagerScript : MonoBehaviour
         if (buttonIndex == 0) selectedAnswer = answerButton1.GetComponentInChildren<TMP_Text>().text;
         if (buttonIndex == 1) selectedAnswer = answerButton2.GetComponentInChildren<TMP_Text>().text;
         if (buttonIndex == 2) selectedAnswer = answerButton3.GetComponentInChildren<TMP_Text>().text;
+
+        // ✅ Disable buttons temporarily to prevent double-clicks
+        DisableButtons();
 
         if (selectedAnswer == selectedCorrectAnswer)
         {
@@ -120,37 +135,63 @@ public class QuizManagerScript : MonoBehaviour
         {
             if (incorrectSound != null && audioSource != null)
                 audioSource.PlayOneShot(incorrectSound);
-
 #if UNITY_ANDROID || UNITY_IOS
             Handheld.Vibrate();
 #endif
         }
 
-        questions.RemoveAt(currentQuestionIndex);
+        // ✅ Move sequentially
+        currentQuestionIndex++;
 
-        if (questions.Count > 0)
-        {
-            currentQuestionIndex = Random.Range(0, questions.Count);
+        if (currentQuestionIndex < questions.Count)
             ShowQuestion(currentQuestionIndex);
-        }
         else
-        {
             EndQuiz();
-        }
     }
 
-void EndQuiz()
-{
-    Debug.Log($"🎉 Quiz complete! Final score: {score}/{MaxQuestionCount}");
+    void EndQuiz()
+    {
+        Debug.Log($"🎉 Quiz complete! Final score: {score}/{MaxQuestionCount}");
+        quizPanel.SetActive(true);
+        DisableButtons();
 
-    // === AWARD XP BASED ON CORRECT ANSWERS ===
-    if (GameManager.Instance != null)
-        GameManager.Instance.AddXP(score);
+        // ✅ Update Firebase stat for this subject
+        StartCoroutine(UpdateFirebaseStat(score));
 
-    quizPanel.SetActive(true);
-    DisableButtons();
-    StartCoroutine(WaitAndLoadMainScene(3f));
-}
+        // ✅ Return to main menu
+        StartCoroutine(WaitAndLoadMainScene(3f));
+    }
+
+    IEnumerator UpdateFirebaseStat(int amount)
+    {
+        string userId = FirebaseAuthManager.LoggedInUserId;
+        if (string.IsNullOrEmpty(userId))
+        {
+            Debug.LogError("❌ Cannot update stat — no logged-in user ID found!");
+            yield break;
+        }
+
+        var statRef = dbReference.Child("users").Child(userId).Child(subjectStatKey);
+        var statTask = statRef.GetValueAsync();
+
+        yield return new WaitUntil(() => statTask.IsCompleted);
+
+        if (statTask.Exception != null)
+        {
+            Debug.LogError("⚠️ Failed to fetch stat: " + statTask.Exception);
+            yield break;
+        }
+
+        int currentStatValue = 0;
+        if (statTask.Result.Value != null)
+            int.TryParse(statTask.Result.Value.ToString(), out currentStatValue);
+
+        int newStatValue = currentStatValue + amount;
+        yield return statRef.SetValueAsync(newStatValue);
+
+        Debug.Log($"✅ Updated {subjectStatKey}: {currentStatValue} → {newStatValue}");
+    }
+
     void DisableButtons()
     {
         answerButton1.interactable = false;
@@ -161,7 +202,7 @@ void EndQuiz()
     IEnumerator WaitAndLoadMainScene(float delayTime)
     {
         yield return new WaitForSeconds(delayTime);
-        SceneManager.LoadScene("SampleScene"); 
+        SceneManager.LoadScene("SampleScene");
     }
 
     void UpdateScoreUI()
@@ -169,40 +210,10 @@ void EndQuiz()
         scoreText.text = $"Score: {score}";
     }
 
-    // ==== XP SYSTEM (PlayerPrefs for persistence) ====
-    void AddXP(int amount)
-    {
-        int savedXP = PlayerPrefs.GetInt("CurrentXP", 0);
-        int savedLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
-        int savedXpToNext = PlayerPrefs.GetInt("XpToNextLevel", 10);
-
-        savedXP += amount;
-
-        while (savedXP >= savedXpToNext)
-        {
-            savedXP -= savedXpToNext;
-            savedLevel++;
-            savedXpToNext += 5; 
-        }
-
-        PlayerPrefs.SetInt("CurrentXP", savedXP);
-        PlayerPrefs.SetInt("PlayerLevel", savedLevel);
-        PlayerPrefs.SetInt("XpToNextLevel", savedXpToNext);
-        PlayerPrefs.Save();
-
-        UpdateXPUI();
-    }
-
     void UpdateXPUI()
     {
-        int savedXP = PlayerPrefs.GetInt("CurrentXP", 0);
-        int savedLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
-        int savedXpToNext = PlayerPrefs.GetInt("XpToNextLevel", 10);
-
-        if (levelText != null)
-            levelText.text = $"Level: {savedLevel}";
-        if (xpText != null)
-            xpText.text = $"XP: {savedXP}/{savedXpToNext}";
+        if (levelText != null) levelText.text = "Level: --";
+        if (xpText != null) xpText.text = "XP: --";
     }
 
     [System.Serializable]
