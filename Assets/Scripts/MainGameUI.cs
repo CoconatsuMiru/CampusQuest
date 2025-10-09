@@ -1,34 +1,82 @@
 using UnityEngine;
 using TMPro;
+using Mapbox.Unity.Location;
+using Mapbox.Unity.Map;
 
-public class MainGameUI : MonoBehaviour
+public class MainGameUIWithGPS : MonoBehaviour
 {
     [Header("UI References")]
     public TMP_Text levelText;
     public TMP_Text xpText;
+    public TMP_Text locationText;
 
-    private PlayerStats playerStats;
+    private ILocationProvider _locationProvider;
+    private AbstractMap _map;
+    private bool _isInitialized;
 
     void Start()
     {
-        playerStats = GameManager.Instance.PlayerStats;
-
-        if (playerStats != null)
+        // Subscribe to GameManager updates
+        if (GameManager.Instance != null)
         {
-            playerStats.OnStatsChanged += UpdateXPUI;
-            UpdateXPUI(); // show correct stats immediately
+            GameManager.Instance.OnStatsChanged += UpdateXPUI;
+            UpdateXPUI();
         }
+
+        // Initialize Mapbox
+        if (LocationProviderFactory.Instance != null)
+        {
+            _map = LocationProviderFactory.Instance.mapManager;
+            _map.OnInitialized += () => _isInitialized = true;
+
+            _locationProvider = LocationProviderFactory.Instance.DefaultLocationProvider;
+        }
+
+        // Ask for GPS permission on Android
+#if UNITY_ANDROID
+        if (!UnityEngine.Android.Permission.HasUserAuthorizedPermission(UnityEngine.Android.Permission.FineLocation))
+        {
+            UnityEngine.Android.Permission.RequestUserPermission(UnityEngine.Android.Permission.FineLocation);
+        }
+#endif
     }
 
     void OnDestroy()
     {
-        if (playerStats != null)
-            playerStats.OnStatsChanged -= UpdateXPUI;
+        if (GameManager.Instance != null)
+            GameManager.Instance.OnStatsChanged -= UpdateXPUI;
+    }
+
+    void LateUpdate()
+    {
+        if (_isInitialized && _locationProvider != null)
+        {
+            var currentLocation = _locationProvider.CurrentLocation;
+            double lat = currentLocation.LatitudeLongitude.x;
+            double lng = currentLocation.LatitudeLongitude.y;
+
+            // Update location text smoothly
+            if (locationText != null)
+            {
+                locationText.text = $"📍 Lat: {lat:F6}\nLng: {lng:F6}";
+            }
+        }
+        else if (locationText != null)
+        {
+            locationText.text = "📡 Locating...";
+        }
     }
 
     private void UpdateXPUI()
     {
-        levelText.text = $"Level: {playerStats.level}";
-        xpText.text = $"XP: {playerStats.currentXP}/{playerStats.xpToNextLevel}";
+        if (GameManager.Instance == null) return;
+
+        var gm = GameManager.Instance;
+
+        if (levelText != null)
+            levelText.text = $"Level: {gm.PlayerLevel}";
+
+        if (xpText != null)
+            xpText.text = $"XP: {gm.CurrentXP}/{gm.XpToNextLevel}";
     }
 }
