@@ -39,12 +39,12 @@ public class FirebaseAuthManager : MonoBehaviour
         public string stat_02_email;
         public int stat_03_level = 1;
         public int stat_04_exp = 0;
-        public int stat_05_music = 0;
-        public int stat_06_art = 0;
-        public int stat_07_science = 0;
-        public int stat_08_math = 0;
-        public int stat_09_english = 0;
-        public int stat_10_history = 0;
+        public int stat_05_music = 1;
+        public int stat_06_art = 1;
+        public int stat_07_science = 1;
+        public int stat_08_math = 1;
+        public int stat_09_english = 1;
+        public int stat_10_history = 1;
     }
 
     // ---------- UNITY METHODS ----------

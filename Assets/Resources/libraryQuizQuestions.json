@@ -1,0 +1,214 @@
+{
+  "questions": [
+    {
+      "subject": "Math",
+      "question": "What is 8 × 7?",
+      "answers": ["54", "56", "64", "48"],
+      "correctAnswer": "56",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is the square root of 81?",
+      "answers": ["8", "9", "10", "11"],
+      "correctAnswer": "9",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 15% of 200?",
+      "answers": ["20", "25", "30", "35"],
+      "correctAnswer": "30",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is the value of π (pi) approximately?",
+      "answers": ["2.14", "3.14", "4.13", "3.41"],
+      "correctAnswer": "3.14",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 100 divided by 4?",
+      "answers": ["20", "25", "30", "40"],
+      "correctAnswer": "25",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Who was the first President of the United States?",
+      "answers": ["Abraham Lincoln", "George Washington", "John Adams", "Thomas Jefferson"],
+      "correctAnswer": "George Washington",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "In what year did World War II end?",
+      "answers": ["1942", "1945", "1948", "1950"],
+      "correctAnswer": "1945",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "The pyramids of Giza are located in which country?",
+      "answers": ["Egypt", "Mexico", "Greece", "Peru"],
+      "correctAnswer": "Egypt",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Who discovered America in 1492?",
+      "answers": ["Christopher Columbus", "Marco Polo", "Ferdinand Magellan", "Amerigo Vespucci"],
+      "correctAnswer": "Christopher Columbus",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "What ancient civilization built the Colosseum?",
+      "answers": ["Greek", "Roman", "Mayan", "Egyptian"],
+      "correctAnswer": "Roman",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What planet is known as the Red Planet?",
+      "answers": ["Venus", "Jupiter", "Mars", "Saturn"],
+      "correctAnswer": "Mars",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What is the chemical symbol for water?",
+      "answers": ["H2O", "CO2", "O2", "H2"],
+      "correctAnswer": "H2O",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What gas do plants release during photosynthesis?",
+      "answers": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+      "correctAnswer": "Oxygen",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What part of the cell contains DNA?",
+      "answers": ["Cytoplasm", "Nucleus", "Membrane", "Mitochondria"],
+      "correctAnswer": "Nucleus",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What planet has rings?",
+      "answers": ["Saturn", "Neptune", "Mars", "Jupiter"],
+      "correctAnswer": "Saturn",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Who painted the Mona Lisa?",
+      "answers": ["Leonardo da Vinci", "Michelangelo", "Vincent van Gogh", "Pablo Picasso"],
+      "correctAnswer": "Leonardo da Vinci",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What do you call a painting done on wet plaster?",
+      "answers": ["Fresco", "Mosaic", "Portrait", "Canvas"],
+      "correctAnswer": "Fresco",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which art style is Salvador Dalí known for?",
+      "answers": ["Surrealism", "Cubism", "Realism", "Expressionism"],
+      "correctAnswer": "Surrealism",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which of the following is a primary color?",
+      "answers": ["Red", "Green", "Purple", "Orange"],
+      "correctAnswer": "Red",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What tool is used to mix paint on a palette?",
+      "answers": ["Palette knife", "Brush", "Sponge", "Roller"],
+      "correctAnswer": "Palette knife",
+      "enabled": 1
+    },
+    {
+      "subject": "Music",
+      "question": "How many notes are in a musical scale?",
+      "answers": ["6", "7", "8", "9"],
+      "correctAnswer": "7",
+      "enabled": 1
+    },
+    {
+      "subject": "Music",
+      "question": "Which clef is used for higher-pitched instruments?",
+      "answers": ["Bass clef", "Treble clef", "Alto clef", "Tenor clef"],
+      "correctAnswer": "Treble clef",
+      "enabled": 1
+    },
+    {
+      "subject": "Music",
+      "question": "Which instrument has keys, pedals, and strings?",
+      "answers": ["Piano", "Guitar", "Harp", "Drum"],
+      "correctAnswer": "Piano",
+      "enabled": 1
+    },
+    {
+      "subject": "Music",
+      "question": "What symbol represents silence in music?",
+      "answers": ["Rest", "Note", "Beat", "Chord"],
+      "correctAnswer": "Rest",
+      "enabled": 1
+    },
+    {
+      "subject": "Music",
+      "question": "Who composed the Fifth Symphony?",
+      "answers": ["Mozart", "Beethoven", "Bach", "Chopin"],
+      "correctAnswer": "Beethoven",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What is the past tense of 'go'?",
+      "answers": ["Goed", "Went", "Gone", "Go"],
+      "correctAnswer": "Went",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which of the following is a noun?",
+      "answers": ["Run", "Happy", "Table", "Quickly"],
+      "correctAnswer": "Table",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which punctuation ends a question?",
+      "answers": [".", "!", "?", ","],
+      "correctAnswer": "?",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What is a synonym for 'big'?",
+      "answers": ["Small", "Tiny", "Large", "Thin"],
+      "correctAnswer": "Large",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What do we call a word that describes a noun?",
+      "answers": ["Verb", "Adjective", "Adverb", "Pronoun"],
+      "correctAnswer": "Adjective",
+      "enabled": 1
+    }
+  ]
+}
