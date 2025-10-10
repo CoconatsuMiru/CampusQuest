@@ -10,15 +10,15 @@ using Firebase.Database;
 public class QuizManagerScript : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject quizPanel;
     public TMP_Text questionText;
-    public Button answerButton1;
-    public Button answerButton2;
-    public Button answerButton3;
-    public TMP_Text questionProgressText;
+    public Button answerButtonA;
+    public Button answerButtonB;
+    public Button answerButtonC;
+    public Button answerButtonD;
     public TMP_Text scoreText;
+    public GameObject correctPanel;
 
-    [Header("XP & Level UI (optional inside quiz)")]
+    [Header("XP & Level UI (optional)")]
     public TMP_Text levelText;
     public TMP_Text xpText;
 
@@ -28,8 +28,7 @@ public class QuizManagerScript : MonoBehaviour
     public AudioClip incorrectSound;
 
     [Header("Quiz Configuration")]
-    public TextAsset quizJSON; // ✅ Drag your JSON file here (per subject)
-    public string subjectStatKey = "stat_06_art"; // ✅ Example: stat_06_art, stat_08_math, etc.
+    public TextAsset quizJSON;
 
     private List<Question> questions = new List<Question>();
     private Question currentQuestion;
@@ -37,8 +36,8 @@ public class QuizManagerScript : MonoBehaviour
 
     private int score = 0;
     private int currentQuestionIndex = 0;
-
     private const int MaxQuestionCount = 5;
+
     private DatabaseReference dbReference;
 
     void Start()
@@ -53,7 +52,7 @@ public class QuizManagerScript : MonoBehaviour
     {
         if (quizJSON == null)
         {
-            Debug.LogError("❌ No quiz JSON file assigned in the inspector!");
+            Debug.LogError("❌ No quiz JSON file assigned!");
             return;
         }
 
@@ -64,7 +63,6 @@ public class QuizManagerScript : MonoBehaviour
             questions.AddRange(enabledQuestions);
         }
 
-        // ✅ Randomize once only
         questions = questions.OrderBy(q => Random.value).Take(MaxQuestionCount).ToList();
     }
 
@@ -72,7 +70,6 @@ public class QuizManagerScript : MonoBehaviour
     {
         if (questions.Count > 0)
         {
-            quizPanel.SetActive(true);
             score = 0;
             currentQuestionIndex = 0;
             UpdateScoreUI();
@@ -81,7 +78,6 @@ public class QuizManagerScript : MonoBehaviour
         else
         {
             Debug.LogError("❌ No questions available.");
-            quizPanel.SetActive(false);
         }
     }
 
@@ -100,48 +96,54 @@ public class QuizManagerScript : MonoBehaviour
         List<string> shuffledAnswers = new List<string>(currentQuestion.answers);
         shuffledAnswers = shuffledAnswers.OrderBy(a => Random.value).ToList();
 
-        answerButton1.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[0];
-        answerButton2.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[1];
-        answerButton3.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[2];
+        answerButtonA.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[0];
+        answerButtonB.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[1];
+        answerButtonC.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[2];
+        answerButtonD.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[3];
 
-        // ✅ Sequential question number display
-        questionProgressText.text = $"{index + 1}/{MaxQuestionCount}";
-
-        // Re-enable buttons each round
-        answerButton1.interactable = true;
-        answerButton2.interactable = true;
-        answerButton3.interactable = true;
+        correctPanel.SetActive(false);
+        EnableButtons();
     }
 
     public void OnAnswerButtonClicked(int buttonIndex)
     {
         string selectedAnswer = "";
 
-        if (buttonIndex == 0) selectedAnswer = answerButton1.GetComponentInChildren<TMP_Text>().text;
-        if (buttonIndex == 1) selectedAnswer = answerButton2.GetComponentInChildren<TMP_Text>().text;
-        if (buttonIndex == 2) selectedAnswer = answerButton3.GetComponentInChildren<TMP_Text>().text;
+        switch (buttonIndex)
+        {
+            case 0: selectedAnswer = answerButtonA.GetComponentInChildren<TMP_Text>().text; break;
+            case 1: selectedAnswer = answerButtonB.GetComponentInChildren<TMP_Text>().text; break;
+            case 2: selectedAnswer = answerButtonC.GetComponentInChildren<TMP_Text>().text; break;
+            case 3: selectedAnswer = answerButtonD.GetComponentInChildren<TMP_Text>().text; break;
+        }
 
-        // ✅ Disable buttons temporarily to prevent double-clicks
         DisableButtons();
 
         if (selectedAnswer == selectedCorrectAnswer)
         {
             score++;
             UpdateScoreUI();
-            if (correctSound != null && audioSource != null)
-                audioSource.PlayOneShot(correctSound);
+            correctPanel.SetActive(true);
+            correctPanel.GetComponentInChildren<TMP_Text>().text = "✅ Correct!";
+            if (correctSound) audioSource.PlayOneShot(correctSound);
         }
         else
         {
-            if (incorrectSound != null && audioSource != null)
-                audioSource.PlayOneShot(incorrectSound);
+            correctPanel.SetActive(true);
+            correctPanel.GetComponentInChildren<TMP_Text>().text = "❌ Wrong!";
+            if (incorrectSound) audioSource.PlayOneShot(incorrectSound);
 #if UNITY_ANDROID || UNITY_IOS
             Handheld.Vibrate();
 #endif
         }
 
-        // ✅ Move sequentially
         currentQuestionIndex++;
+        StartCoroutine(NextQuestionWithDelay());
+    }
+
+    IEnumerator NextQuestionWithDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
 
         if (currentQuestionIndex < questions.Count)
             ShowQuestion(currentQuestionIndex);
@@ -151,58 +153,85 @@ public class QuizManagerScript : MonoBehaviour
 
     void EndQuiz()
     {
-        Debug.Log($"🎉 Quiz complete! Final score: {score}/{MaxQuestionCount}");
-        quizPanel.SetActive(true);
+        correctPanel.SetActive(true);
+        correctPanel.GetComponentInChildren<TMP_Text>().text = $"🎉 Quiz Complete!\nScore: {score}/{MaxQuestionCount}";
         DisableButtons();
 
-        // ✅ Update Firebase stat for this subject
-        StartCoroutine(UpdateFirebaseStat(score));
+        // ✅ If player perfected the quiz, give reward (+1 to all stats)
+        if (score == MaxQuestionCount)
+        {
+            Debug.Log("🏅 Perfect score! Granting +1 to all stats...");
+            StartCoroutine(UpdateAllStatsReward());
+        }
 
-        // ✅ Return to main menu
         StartCoroutine(WaitAndLoadMainScene(3f));
     }
 
-    IEnumerator UpdateFirebaseStat(int amount)
+    IEnumerator UpdateAllStatsReward()
     {
         string userId = FirebaseAuthManager.LoggedInUserId;
         if (string.IsNullOrEmpty(userId))
         {
-            Debug.LogError("❌ Cannot update stat — no logged-in user ID found!");
+            Debug.LogError("❌ Cannot update stats — no logged-in user ID found!");
             yield break;
         }
 
-        var statRef = dbReference.Child("users").Child(userId).Child(subjectStatKey);
-        var statTask = statRef.GetValueAsync();
+        string[] statKeys = {
+            "stat_01_math",
+            "stat_02_science",
+            "stat_03_english",
+            "stat_04_art",
+            "stat_05_music",
+            "stat_06_history"
+        };
 
-        yield return new WaitUntil(() => statTask.IsCompleted);
-
-        if (statTask.Exception != null)
+        foreach (string key in statKeys)
         {
-            Debug.LogError("⚠️ Failed to fetch stat: " + statTask.Exception);
-            yield break;
+            var statRef = dbReference.Child("users").Child(userId).Child(key);
+            var statTask = statRef.GetValueAsync();
+            yield return new WaitUntil(() => statTask.IsCompleted);
+
+            if (statTask.Exception != null)
+            {
+                Debug.LogError("⚠️ Failed to fetch stat: " + statTask.Exception);
+                continue;
+            }
+
+            int currentValue = 0;
+            if (statTask.Result.Value != null)
+                int.TryParse(statTask.Result.Value.ToString(), out currentValue);
+
+            int newValue = currentValue + 1;
+            yield return statRef.SetValueAsync(newValue);
+            Debug.Log($"✅ Updated {key}: {currentValue} → {newValue}");
         }
+    }
 
-        int currentStatValue = 0;
-        if (statTask.Result.Value != null)
-            int.TryParse(statTask.Result.Value.ToString(), out currentStatValue);
+   IEnumerator WaitAndLoadMainScene(float delayTime)
+{
+    yield return new WaitForSeconds(delayTime);
 
-        int newStatValue = currentStatValue + amount;
-        yield return statRef.SetValueAsync(newStatValue);
+    // ✅ Start cooldown AFTER finishing quiz and before returning
+    CooldownManager.StartCooldown(2f);
 
-        Debug.Log($"✅ Updated {subjectStatKey}: {currentStatValue} → {newStatValue}");
+    SceneManager.LoadScene("SampleScene"); // your main/base scene
+}
+
+
+    void EnableButtons()
+    {
+        answerButtonA.interactable = true;
+        answerButtonB.interactable = true;
+        answerButtonC.interactable = true;
+        answerButtonD.interactable = true;
     }
 
     void DisableButtons()
     {
-        answerButton1.interactable = false;
-        answerButton2.interactable = false;
-        answerButton3.interactable = false;
-    }
-
-    IEnumerator WaitAndLoadMainScene(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        SceneManager.LoadScene("SampleScene");
+        answerButtonA.interactable = false;
+        answerButtonB.interactable = false;
+        answerButtonC.interactable = false;
+        answerButtonD.interactable = false;
     }
 
     void UpdateScoreUI()
