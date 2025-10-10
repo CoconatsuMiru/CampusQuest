@@ -1,0 +1,46 @@
+{
+  "bosses": [
+    {
+      "bossName": "Hotdog Junior",
+      "hp": 500,
+      "imagePath": "Assets/Bosses/Mid/English_mid_tier.png",
+      "subject": "english",
+      "expReward": 30
+    },
+    {
+      "bossName": "Tiny Taco",
+      "hp": 500,
+      "imagePath": "Assets/Bosses/Mid/History_mid_tier.png",
+      "subject": "history",
+      "expReward": 30
+    },
+    {
+      "bossName": "Burger Baron",
+      "hp": 500,
+      "imagePath": "Assets/Bosses/Mid/Math_mid_tier.png",
+      "subject": "math",
+      "expReward": 30
+    },
+    {
+      "bossName": "Pizza Duke",
+      "hp": 500,
+      "imagePath": "Assets/Bosses/Mid/Music_mid_tier.png",
+      "subject": "music",
+      "expReward": 30
+    },
+    {
+      "bossName": "Hotdog King",
+      "hp": 500,
+      "imagePath": "Assets/Bosses/Mid/pixellab-Mid-Tier--The-Easel-Revenant---1759923731614.png",
+      "subject": "art",
+      "expReward": 30
+    },
+    {
+      "bossName": "Burger Emperor",
+      "hp": 500,
+      "imagePath": "Assets/Bosses/Mid/Science_mid_tier.png",
+      "subject": "science",
+      "expReward": 30
+    }
+  ]
+}

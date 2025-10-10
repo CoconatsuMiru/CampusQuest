@@ -1,0 +1,204 @@
+{
+  "questions": [
+    {
+      "question": "Who wrote 'Romeo and Juliet'?",
+      "answers": [
+        "William Shakespeare",
+        "Jane Austen",
+        "Charles Dickens"
+      ],
+      "correctAnswer": "William Shakespeare",
+      "enabled": 1
+    },
+    {
+      "question": "What is a synonym for 'happy'?",
+      "answers": [
+        "Sad",
+        "Joyful",
+        "Angry"
+      ],
+      "correctAnswer": "Joyful",
+      "enabled": 1
+    },
+    {
+      "question": "Which of these is a noun?",
+      "answers": [
+        "Running",
+        "Table",
+        "Quickly"
+      ],
+      "correctAnswer": "Table",
+      "enabled": 1
+    },
+    {
+      "question": "What punctuation ends a question?",
+      "answers": [
+        "Period",
+        "Comma",
+        "Question mark"
+      ],
+      "correctAnswer": "Question mark",
+      "enabled": 1
+    },
+    {
+      "question": "Which word is an adjective?",
+      "answers": [
+        "Run",
+        "Dog",
+        "Beautiful"
+      ],
+      "correctAnswer": "Beautiful",
+      "enabled": 1
+    },
+    {
+      "question": "Who wrote 'Pride and Prejudice'?",
+      "answers": [
+        "Jane Austen",
+        "George Eliot",
+        "Emily Bront\u00eb"
+      ],
+      "correctAnswer": "Jane Austen",
+      "enabled": 1
+    },
+    {
+      "question": "What is the opposite of 'cold'?",
+      "answers": [
+        "Hot",
+        "Warm",
+        "Cool"
+      ],
+      "correctAnswer": "Hot",
+      "enabled": 1
+    },
+    {
+      "question": "What tense is the word 'ran'?",
+      "answers": [
+        "Future",
+        "Past",
+        "Present"
+      ],
+      "correctAnswer": "Past",
+      "enabled": 1
+    },
+    {
+      "question": "What is a group of words that expresses a complete thought?",
+      "answers": [
+        "Clause",
+        "Phrase",
+        "Sentence"
+      ],
+      "correctAnswer": "Sentence",
+      "enabled": 1
+    },
+    {
+      "question": "What is a synonym for 'fast'?",
+      "answers": [
+        "Quick",
+        "Slow",
+        "Late"
+      ],
+      "correctAnswer": "Quick",
+      "enabled": 1
+    },
+    {
+      "question": "Which of these is a pronoun?",
+      "answers": [
+        "Big",
+        "He",
+        "Run"
+      ],
+      "correctAnswer": "He",
+      "enabled": 1
+    },
+    {
+      "question": "What is the plural of 'child'?",
+      "answers": [
+        "Children",
+        "Childs",
+        "Childes"
+      ],
+      "correctAnswer": "Children",
+      "enabled": 1
+    },
+    {
+      "question": "What is an antonym for 'up'?",
+      "answers": [
+        "High",
+        "Above",
+        "Down"
+      ],
+      "correctAnswer": "Down",
+      "enabled": 1
+    },
+    {
+      "question": "Which author wrote 'The Raven'?",
+      "answers": [
+        "Edgar Allan Poe",
+        "Mark Twain",
+        "Oscar Wilde"
+      ],
+      "correctAnswer": "Edgar Allan Poe",
+      "enabled": 1
+    },
+    {
+      "question": "What is the past tense of 'go'?",
+      "answers": [
+        "Gone",
+        "Went",
+        "Goed"
+      ],
+      "correctAnswer": "Went",
+      "enabled": 1
+    },
+    {
+      "question": "Which word is a verb?",
+      "answers": [
+        "Blue",
+        "Run",
+        "Happy"
+      ],
+      "correctAnswer": "Run",
+      "enabled": 1
+    },
+    {
+      "question": "What do you call words that sound the same but have different meanings?",
+      "answers": [
+        "Homonyms",
+        "Antonyms",
+        "Synonyms"
+      ],
+      "correctAnswer": "Homonyms",
+      "enabled": 1
+    },
+    {
+      "question": "Which part of speech describes an action?",
+      "answers": [
+        "Adjective",
+        "Noun",
+        "Verb"
+      ],
+      "correctAnswer": "Verb",
+      "enabled": 1
+    },
+    {
+      "question": "Who wrote 'Macbeth'?",
+      "answers": [
+        "William Shakespeare",
+        "Charles Dickens",
+        "Robert Frost"
+      ],
+      "correctAnswer": "William Shakespeare",
+      "enabled": 1
+    },
+    {
+      "question": "What do quotation marks usually indicate?",
+      "answers": [
+        "Emphasis",
+        "Speech",
+        "Title"
+      ],
+      "correctAnswer": "Speech",
+      "enabled": 1
+    }
+  ]
+}

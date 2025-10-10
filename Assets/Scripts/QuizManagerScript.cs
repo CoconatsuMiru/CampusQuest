@@ -5,26 +5,30 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
+using Firebase.Database;
 
 public class QuizManagerScript : MonoBehaviour
 {
     [Header("UI References")]
-    public GameObject quizPanel;
     public TMP_Text questionText;
-    public Button answerButton1;
-    public Button answerButton2;
-    public Button answerButton3;
-    public TMP_Text questionProgressText;
-    public TMP_Text scoreText; 
+    public Button answerButtonA;
+    public Button answerButtonB;
+    public Button answerButtonC;
+    public Button answerButtonD;
+    public TMP_Text scoreText;
+    public GameObject correctPanel;
 
-    [Header("XP & Level UI (optional inside quiz)")]
-    public TMP_Text levelText;  
-    public TMP_Text xpText;     
+    [Header("XP & Level UI (optional)")]
+    public TMP_Text levelText;
+    public TMP_Text xpText;
 
     [Header("Audio")]
     public AudioSource audioSource;
     public AudioClip correctSound;
     public AudioClip incorrectSound;
+
+    [Header("Quiz Configuration")]
+    public TextAsset quizJSON;
 
     private List<Question> questions = new List<Question>();
     private Question currentQuestion;
@@ -32,31 +36,31 @@ public class QuizManagerScript : MonoBehaviour
 
     private int score = 0;
     private int currentQuestionIndex = 0;
-
     private const int MaxQuestionCount = 5;
-    private string[] subjects = { "artQuestions_100", "mathQuestions_100", "scienceQuestions_100" };
+
+    private DatabaseReference dbReference;
 
     void Start()
     {
-        LoadAllSubjects();
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+        LoadQuestions();
         StartQuiz();
-        UpdateXPUI(); 
+        UpdateXPUI();
     }
 
-    void LoadAllSubjects()
+    void LoadQuestions()
     {
-        foreach (var subject in subjects)
+        if (quizJSON == null)
         {
-            TextAsset jsonFile = Resources.Load<TextAsset>(subject);
-            if (jsonFile != null)
-            {
-                QuizData quizData = JsonUtility.FromJson<QuizData>(jsonFile.text);
-                if (quizData != null && quizData.questions != null)
-                {
-                    var enabledQuestions = quizData.questions.Where(q => q.enabled == 1);
-                    questions.AddRange(enabledQuestions);
-                }
-            }
+            Debug.LogError("❌ No quiz JSON file assigned!");
+            return;
+        }
+
+        QuizData quizData = JsonUtility.FromJson<QuizData>(quizJSON.text);
+        if (quizData != null && quizData.questions != null)
+        {
+            var enabledQuestions = quizData.questions.Where(q => q.enabled == 1);
+            questions.AddRange(enabledQuestions);
         }
 
         questions = questions.OrderBy(q => Random.value).Take(MaxQuestionCount).ToList();
@@ -64,18 +68,16 @@ public class QuizManagerScript : MonoBehaviour
 
     public void StartQuiz()
     {
-        if (questions != null && questions.Count > 0)
+        if (questions.Count > 0)
         {
-            quizPanel.SetActive(true);
             score = 0;
-            UpdateScoreUI();
             currentQuestionIndex = 0;
+            UpdateScoreUI();
             ShowQuestion(currentQuestionIndex);
         }
         else
         {
-            Debug.LogError("No questions available.");
-            quizPanel.SetActive(false);
+            Debug.LogError("❌ No questions available.");
         }
     }
 
@@ -94,74 +96,142 @@ public class QuizManagerScript : MonoBehaviour
         List<string> shuffledAnswers = new List<string>(currentQuestion.answers);
         shuffledAnswers = shuffledAnswers.OrderBy(a => Random.value).ToList();
 
-        answerButton1.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[0];
-        answerButton2.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[1];
-        answerButton3.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[2];
+        answerButtonA.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[0];
+        answerButtonB.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[1];
+        answerButtonC.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[2];
+        answerButtonD.GetComponentInChildren<TMP_Text>().text = shuffledAnswers[3];
 
-        questionProgressText.text = $"{MaxQuestionCount - questions.Count + 1}/{MaxQuestionCount}";
+        correctPanel.SetActive(false);
+        EnableButtons();
     }
 
     public void OnAnswerButtonClicked(int buttonIndex)
     {
         string selectedAnswer = "";
 
-        if (buttonIndex == 0) selectedAnswer = answerButton1.GetComponentInChildren<TMP_Text>().text;
-        if (buttonIndex == 1) selectedAnswer = answerButton2.GetComponentInChildren<TMP_Text>().text;
-        if (buttonIndex == 2) selectedAnswer = answerButton3.GetComponentInChildren<TMP_Text>().text;
+        switch (buttonIndex)
+        {
+            case 0: selectedAnswer = answerButtonA.GetComponentInChildren<TMP_Text>().text; break;
+            case 1: selectedAnswer = answerButtonB.GetComponentInChildren<TMP_Text>().text; break;
+            case 2: selectedAnswer = answerButtonC.GetComponentInChildren<TMP_Text>().text; break;
+            case 3: selectedAnswer = answerButtonD.GetComponentInChildren<TMP_Text>().text; break;
+        }
+
+        DisableButtons();
 
         if (selectedAnswer == selectedCorrectAnswer)
         {
             score++;
             UpdateScoreUI();
-            if (correctSound != null && audioSource != null)
-                audioSource.PlayOneShot(correctSound);
+            correctPanel.SetActive(true);
+            correctPanel.GetComponentInChildren<TMP_Text>().text = "✅ Correct!";
+            if (correctSound) audioSource.PlayOneShot(correctSound);
         }
         else
         {
-            if (incorrectSound != null && audioSource != null)
-                audioSource.PlayOneShot(incorrectSound);
-
+            correctPanel.SetActive(true);
+            correctPanel.GetComponentInChildren<TMP_Text>().text = "❌ Wrong!";
+            if (incorrectSound) audioSource.PlayOneShot(incorrectSound);
 #if UNITY_ANDROID || UNITY_IOS
             Handheld.Vibrate();
 #endif
         }
 
-        questions.RemoveAt(currentQuestionIndex);
+        currentQuestionIndex++;
+        StartCoroutine(NextQuestionWithDelay());
+    }
 
-        if (questions.Count > 0)
-        {
-            currentQuestionIndex = Random.Range(0, questions.Count);
+    IEnumerator NextQuestionWithDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+
+        if (currentQuestionIndex < questions.Count)
             ShowQuestion(currentQuestionIndex);
-        }
         else
-        {
             EndQuiz();
+    }
+
+    void EndQuiz()
+    {
+        correctPanel.SetActive(true);
+        correctPanel.GetComponentInChildren<TMP_Text>().text = $"🎉 Quiz Complete!\nScore: {score}/{MaxQuestionCount}";
+        DisableButtons();
+
+        // ✅ If player perfected the quiz, give reward (+1 to all stats)
+        if (score == MaxQuestionCount)
+        {
+            Debug.Log("🏅 Perfect score! Granting +1 to all stats...");
+            StartCoroutine(UpdateAllStatsReward());
+        }
+
+        StartCoroutine(WaitAndLoadMainScene(3f));
+    }
+
+    IEnumerator UpdateAllStatsReward()
+    {
+        string userId = FirebaseAuthManager.LoggedInUserId;
+        if (string.IsNullOrEmpty(userId))
+        {
+            Debug.LogError("❌ Cannot update stats — no logged-in user ID found!");
+            yield break;
+        }
+
+        string[] statKeys = {
+            "stat_01_math",
+            "stat_02_science",
+            "stat_03_english",
+            "stat_04_art",
+            "stat_05_music",
+            "stat_06_history"
+        };
+
+        foreach (string key in statKeys)
+        {
+            var statRef = dbReference.Child("users").Child(userId).Child(key);
+            var statTask = statRef.GetValueAsync();
+            yield return new WaitUntil(() => statTask.IsCompleted);
+
+            if (statTask.Exception != null)
+            {
+                Debug.LogError("⚠️ Failed to fetch stat: " + statTask.Exception);
+                continue;
+            }
+
+            int currentValue = 0;
+            if (statTask.Result.Value != null)
+                int.TryParse(statTask.Result.Value.ToString(), out currentValue);
+
+            int newValue = currentValue + 1;
+            yield return statRef.SetValueAsync(newValue);
+            Debug.Log($"✅ Updated {key}: {currentValue} → {newValue}");
         }
     }
 
-void EndQuiz()
+   IEnumerator WaitAndLoadMainScene(float delayTime)
 {
-    Debug.Log($"🎉 Quiz complete! Final score: {score}/{MaxQuestionCount}");
+    yield return new WaitForSeconds(delayTime);
 
-    // === AWARD XP BASED ON CORRECT ANSWERS ===
-    if (GameManager.Instance != null)
-        GameManager.Instance.AddXP(score);
+    // ✅ Start cooldown AFTER finishing quiz and before returning
+    CooldownManager.StartCooldown(2f);
 
-    quizPanel.SetActive(true);
-    DisableButtons();
-    StartCoroutine(WaitAndLoadMainScene(3f));
+    SceneManager.LoadScene("SampleScene"); // your main/base scene
 }
+
+
+    void EnableButtons()
+    {
+        answerButtonA.interactable = true;
+        answerButtonB.interactable = true;
+        answerButtonC.interactable = true;
+        answerButtonD.interactable = true;
+    }
+
     void DisableButtons()
     {
-        answerButton1.interactable = false;
-        answerButton2.interactable = false;
-        answerButton3.interactable = false;
-    }
-
-    IEnumerator WaitAndLoadMainScene(float delayTime)
-    {
-        yield return new WaitForSeconds(delayTime);
-        SceneManager.LoadScene("SampleScene"); 
+        answerButtonA.interactable = false;
+        answerButtonB.interactable = false;
+        answerButtonC.interactable = false;
+        answerButtonD.interactable = false;
     }
 
     void UpdateScoreUI()
@@ -169,40 +239,10 @@ void EndQuiz()
         scoreText.text = $"Score: {score}";
     }
 
-    // ==== XP SYSTEM (PlayerPrefs for persistence) ====
-    void AddXP(int amount)
-    {
-        int savedXP = PlayerPrefs.GetInt("CurrentXP", 0);
-        int savedLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
-        int savedXpToNext = PlayerPrefs.GetInt("XpToNextLevel", 10);
-
-        savedXP += amount;
-
-        while (savedXP >= savedXpToNext)
-        {
-            savedXP -= savedXpToNext;
-            savedLevel++;
-            savedXpToNext += 5; 
-        }
-
-        PlayerPrefs.SetInt("CurrentXP", savedXP);
-        PlayerPrefs.SetInt("PlayerLevel", savedLevel);
-        PlayerPrefs.SetInt("XpToNextLevel", savedXpToNext);
-        PlayerPrefs.Save();
-
-        UpdateXPUI();
-    }
-
     void UpdateXPUI()
     {
-        int savedXP = PlayerPrefs.GetInt("CurrentXP", 0);
-        int savedLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
-        int savedXpToNext = PlayerPrefs.GetInt("XpToNextLevel", 10);
-
-        if (levelText != null)
-            levelText.text = $"Level: {savedLevel}";
-        if (xpText != null)
-            xpText.text = $"XP: {savedXP}/{savedXpToNext}";
+        if (levelText != null) levelText.text = "Level: --";
+        if (xpText != null) xpText.text = "XP: --";
     }
 
     [System.Serializable]

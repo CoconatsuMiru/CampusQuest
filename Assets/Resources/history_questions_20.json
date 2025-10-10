@@ -1,0 +1,204 @@
+{
+  "questions": [
+    {
+      "question": "Who was the first President of the United States?",
+      "answers": [
+        "Thomas Jefferson",
+        "Abraham Lincoln",
+        "George Washington"
+      ],
+      "correctAnswer": "George Washington",
+      "enabled": 1
+    },
+    {
+      "question": "In which year did World War II end?",
+      "answers": [
+        "1939",
+        "1950",
+        "1945"
+      ],
+      "correctAnswer": "1945",
+      "enabled": 1
+    },
+    {
+      "question": "Who was known as the 'Maid of Orl\u00e9ans'?",
+      "answers": [
+        "Joan of Arc",
+        "Marie Antoinette",
+        "Cleopatra"
+      ],
+      "correctAnswer": "Joan of Arc",
+      "enabled": 1
+    },
+    {
+      "question": "Which ancient civilization built the pyramids?",
+      "answers": [
+        "Egyptians",
+        "Greeks",
+        "Romans"
+      ],
+      "correctAnswer": "Egyptians",
+      "enabled": 1
+    },
+    {
+      "question": "Who discovered America in 1492?",
+      "answers": [
+        "Magellan",
+        "Christopher Columbus",
+        "Vasco da Gama"
+      ],
+      "correctAnswer": "Christopher Columbus",
+      "enabled": 1
+    },
+    {
+      "question": "What wall divided Berlin during the Cold War?",
+      "answers": [
+        "Berlin Wall",
+        "Wall of Europe",
+        "Iron Curtain"
+      ],
+      "correctAnswer": "Berlin Wall",
+      "enabled": 1
+    },
+    {
+      "question": "Who was the first man to step on the moon?",
+      "answers": [
+        "Yuri Gagarin",
+        "Neil Armstrong",
+        "Buzz Aldrin"
+      ],
+      "correctAnswer": "Neil Armstrong",
+      "enabled": 1
+    },
+    {
+      "question": "In which country did the Renaissance begin?",
+      "answers": [
+        "France",
+        "Italy",
+        "England"
+      ],
+      "correctAnswer": "Italy",
+      "enabled": 1
+    },
+    {
+      "question": "Who was the first emperor of Rome?",
+      "answers": [
+        "Caesar",
+        "Nero",
+        "Augustus"
+      ],
+      "correctAnswer": "Augustus",
+      "enabled": 1
+    },
+    {
+      "question": "What was the name of the ship that brought the Pilgrims to America?",
+      "answers": [
+        "Endeavour",
+        "Santa Maria",
+        "Mayflower"
+      ],
+      "correctAnswer": "Mayflower",
+      "enabled": 1
+    },
+    {
+      "question": "Who was the British Prime Minister during World War II?",
+      "answers": [
+        "Margaret Thatcher",
+        "Neville Chamberlain",
+        "Winston Churchill"
+      ],
+      "correctAnswer": "Winston Churchill",
+      "enabled": 1
+    },
+    {
+      "question": "When did the Titanic sink?",
+      "answers": [
+        "1905",
+        "1918",
+        "1912"
+      ],
+      "correctAnswer": "1912",
+      "enabled": 1
+    },
+    {
+      "question": "Who was Cleopatra?",
+      "answers": [
+        "Roman Empress",
+        "Greek Philosopher",
+        "Queen of Egypt"
+      ],
+      "correctAnswer": "Queen of Egypt",
+      "enabled": 1
+    },
+    {
+      "question": "What empire was ruled by Genghis Khan?",
+      "answers": [
+        "Roman Empire",
+        "Mongol Empire",
+        "Ottoman Empire"
+      ],
+      "correctAnswer": "Mongol Empire",
+      "enabled": 1
+    },
+    {
+      "question": "Who invented the telephone?",
+      "answers": [
+        "Alexander Graham Bell",
+        "Thomas Edison",
+        "Nikola Tesla"
+      ],
+      "correctAnswer": "Alexander Graham Bell",
+      "enabled": 1
+    },
+    {
+      "question": "What was the name of the trade route between China and Europe?",
+      "answers": [
+        "Spice Route",
+        "Amber Road",
+        "Silk Road"
+      ],
+      "correctAnswer": "Silk Road",
+      "enabled": 1
+    },
+    {
+      "question": "Which war was fought between the North and South regions in the US?",
+      "answers": [
+        "Revolutionary War",
+        "World War I",
+        "Civil War"
+      ],
+      "correctAnswer": "Civil War",
+      "enabled": 1
+    },
+    {
+      "question": "Who wrote the Declaration of Independence?",
+      "answers": [
+        "George Washington",
+        "John Adams",
+        "Thomas Jefferson"
+      ],
+      "correctAnswer": "Thomas Jefferson",
+      "enabled": 1
+    },
+    {
+      "question": "Who was the leader of Nazi Germany?",
+      "answers": [
+        "Benito Mussolini",
+        "Adolf Hitler",
+        "Joseph Stalin"
+      ],
+      "correctAnswer": "Adolf Hitler",
+      "enabled": 1
+    },
+    {
+      "question": "What city was the capital of the Byzantine Empire?",
+      "answers": [
+        "Athens",
+        "Rome",
+        "Constantinople"
+      ],
+      "correctAnswer": "Constantinople",
+      "enabled": 1
+    }
+  ]
+}

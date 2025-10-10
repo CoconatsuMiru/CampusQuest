@@ -1,72 +1,66 @@
 using UnityEngine;
-using System;
+using Firebase;
+using Firebase.Database;
+using TMPro;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    [Header("UI Elements")]
+    public TMP_Text usernameText;
+    public TMP_Text levelText;
+    public TMP_Text expText;
+    public TMP_Text skillPointsText;
 
-    public PlayerStats PlayerStats;
+    private DatabaseReference dbReference;
 
-    public int CurrentXP { get; private set; }
-    public int PlayerLevel { get; private set; }
-    public int XpToNextLevel { get; private set; }
-
-    // 🔔 Event for UI updates
-    public event Action OnStatsChanged;
-
-    void Awake()
+    void Start()
     {
-        if (Instance == null)
+        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
+
+        if (!string.IsNullOrEmpty(FirebaseAuthManager.LoggedInUserId))
         {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            LoadPlayerProgress();
+            StartCoroutine(LoadUserData(FirebaseAuthManager.LoggedInUserId));
         }
         else
         {
-            Destroy(gameObject);
+            Debug.LogError("❌ No logged in user ID found!");
         }
     }
 
-    public void LoadPlayerProgress()
+    private IEnumerator LoadUserData(string userId)
     {
-        CurrentXP = PlayerPrefs.GetInt("CurrentXP", 0);
-        PlayerLevel = PlayerPrefs.GetInt("PlayerLevel", 1);
-        XpToNextLevel = PlayerPrefs.GetInt("XpToNextLevel", 10);
-        
-        OnStatsChanged?.Invoke(); // 🔔 Notify UI right after loading
-    }
+        var userDataTask = dbReference.Child("users").Child(userId).GetValueAsync();
+        yield return new WaitUntil(() => userDataTask.IsCompleted);
 
-    public void SavePlayerProgress()
-    {
-        PlayerPrefs.SetInt("CurrentXP", CurrentXP);
-        PlayerPrefs.SetInt("PlayerLevel", PlayerLevel);
-        PlayerPrefs.SetInt("XpToNextLevel", XpToNextLevel);
-        PlayerPrefs.Save();
-
-        OnStatsChanged?.Invoke(); // 🔔 Notify any subscribers
-    }
-
-    // ===== XP & LEVEL UP FUNCTION =====
-    public void AddXP(int amount)
-    {
-        CurrentXP += amount;
-
-        while (CurrentXP >= XpToNextLevel)
+        if (userDataTask.Exception != null)
         {
-            CurrentXP -= XpToNextLevel;
-            LevelUp();
+            Debug.LogError("Failed to fetch user data: " + userDataTask.Exception);
+            yield break;
         }
 
-        SavePlayerProgress();
-    }
+        if (userDataTask.Result == null || userDataTask.Result.Value == null)
+        {
+            Debug.LogWarning("No data found for this user!");
+            yield break;
+        }
 
-    private void LevelUp()
-    {
-        PlayerLevel++;
-        XpToNextLevel += 5;
-        Debug.Log($"🎉 LEVEL UP! Now Level {PlayerLevel}");
+        DataSnapshot snapshot = userDataTask.Result;
 
-        OnStatsChanged?.Invoke(); // 🔔 Notify right after leveling up
+        string username = snapshot.Child("stat_01_username").Value?.ToString() ?? "Unknown";
+        int level = int.Parse(snapshot.Child("stat_03_level").Value?.ToString() ?? "1");
+        int exp = int.Parse(snapshot.Child("stat_04_exp").Value?.ToString() ?? "0");
+        int skillPoints = int.Parse(snapshot.Child("stat_11_skillpoints").Value?.ToString() ?? "0");
+
+        // 🧮 Calculate the required EXP dynamically
+        int expToNext = level * 50;
+
+        // 🖥️ Update the UI
+        if (usernameText != null) usernameText.text = username;
+        if (levelText != null) levelText.text = $"Level: {level}";
+        if (expText != null) expText.text = $"Exp: {exp}/{expToNext}";
+        if (skillPointsText != null) skillPointsText.text = $"Skill Points: {skillPoints}";
+
+        Debug.Log($"✅ User data loaded! (Exp: {exp}/{expToNext})");
     }
 }
