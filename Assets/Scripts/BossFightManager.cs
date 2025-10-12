@@ -38,6 +38,10 @@ public class BossFightManager : MonoBehaviour
     public TextMeshProUGUI bossHPText;
     public Image bossImage;
 
+    [Header("Sliders")]
+    public Slider bossHPSlider;
+    public Slider timerSlider;
+
     [Header("Scene Settings")]
     public string mainSceneName = "MainScene";
 
@@ -61,11 +65,19 @@ public class BossFightManager : MonoBehaviour
             Debug.Log($"🧠 A wild {currentBoss.bossName} appeared ({currentBoss.subject}) with {currentBoss.hp} HP!");
             currentHP = currentBoss.hp;
 
+            // 🧍 Boss UI
             if (bossNameText != null)
                 bossNameText.text = currentBoss.bossName;
 
             if (bossHPText != null)
                 bossHPText.text = "HP: " + currentHP.ToString();
+
+            // ✅ Initialize HP Slider
+            if (bossHPSlider != null)
+            {
+                bossHPSlider.maxValue = currentBoss.hp;
+                bossHPSlider.value = currentHP;
+            }
 
             if (!string.IsNullOrEmpty(currentBoss.imagePath) && File.Exists(currentBoss.imagePath))
             {
@@ -74,13 +86,21 @@ public class BossFightManager : MonoBehaviour
             }
         }
 
+        // 🕹️ Button setup
         if (fightButton != null)
         {
             fightButton.onClick.RemoveAllListeners();
             fightButton.onClick.AddListener(OnFight);
         }
 
+        // ⏳ Timer setup
         timer = fightTimeLimit;
+
+        if (timerSlider != null)
+        {
+            timerSlider.maxValue = fightTimeLimit;
+            timerSlider.value = fightTimeLimit;
+        }
     }
 
     void Update()
@@ -91,6 +111,9 @@ public class BossFightManager : MonoBehaviour
 
             if (timerText != null)
                 timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
+
+            if (timerSlider != null)
+                timerSlider.value = timer;
         }
         else
         {
@@ -140,6 +163,9 @@ public class BossFightManager : MonoBehaviour
         if (bossHPText != null)
             bossHPText.text = "HP: " + currentHP.ToString();
 
+        if (bossHPSlider != null)
+            bossHPSlider.value = currentHP;
+
         if (currentHP <= 0)
         {
             Debug.Log($"✅ {currentBoss.bossName} defeated!");
@@ -178,26 +204,18 @@ public class BossFightManager : MonoBehaviour
         int currentLevel = int.Parse(snapshot.Child("stat_03_level").Value.ToString());
         int currentSkillPoints = int.Parse(snapshot.Child("stat_11_skillpoints").Value.ToString());
 
-        // ✅ Add EXP
         currentExp += expGained;
-
-        // ✅ Dynamic EXP requirement (scales up)
         int expToNext = 50 * currentLevel;
 
-        // ✅ Level-up loop
         while (currentExp >= expToNext)
         {
             currentExp -= expToNext;
             currentLevel++;
             currentSkillPoints += 5;
-
             Debug.Log($"🎉 Level Up! Now Level {currentLevel} (+5 Skill Points)");
-
-            // Increase EXP requirement for next level
             expToNext = 50 * currentLevel;
         }
 
-        // ✅ Update Firebase
         var updates = new Dictionary<string, object>
         {
             { "stat_03_level", currentLevel },

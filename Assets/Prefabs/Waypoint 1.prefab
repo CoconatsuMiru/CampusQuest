@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1a325052534104987af67cf7ccceaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: TextJSONTest
+  targetSceneName: ArtTest
 --- !u!114 &4000095319822662378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049b6ff6a10cb8d4d818e92a03f939f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSceneName: SampleScene
 --- !u!1 &6872500020418761628
 GameObject:
   m_ObjectHideFlags: 0
