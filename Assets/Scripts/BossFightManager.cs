@@ -123,7 +123,6 @@ public class BossFightManager : MonoBehaviour
         }
 
         DataSnapshot snapshot = userTask.Result;
-
         string subjectKey = GetSubjectKey(currentBoss.subject);
         if (string.IsNullOrEmpty(subjectKey))
         {
@@ -131,11 +130,17 @@ public class BossFightManager : MonoBehaviour
             yield break;
         }
 
-        int damage = int.Parse(snapshot.Child(subjectKey).Value.ToString());
+        // Base damage from Firebase
+        int baseDamage = int.Parse(snapshot.Child(subjectKey).Value.ToString());
+
+        // Apply boost multiplier (if any)
+        float finalDamage = baseDamage * DamageBoostManager.Instance.globalDamageMultiplier;
+        int damage = Mathf.RoundToInt(finalDamage);
+
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
 
-        Debug.Log($"💥 You hit {currentBoss.bossName}! Dealt {damage} damage. HP left: {currentHP}");
+        Debug.Log($"💥 You hit {currentBoss.bossName}! {damage} damage dealt (base {baseDamage}, x{DamageBoostManager.Instance.globalDamageMultiplier}). HP left: {currentHP}");
 
         if (bossHPText != null)
             bossHPText.text = "HP: " + currentHP.ToString();
@@ -173,36 +178,27 @@ public class BossFightManager : MonoBehaviour
         }
 
         DataSnapshot snapshot = userDataTask.Result;
-
         int currentExp = int.Parse(snapshot.Child("stat_04_exp").Value.ToString());
         int currentLevel = int.Parse(snapshot.Child("stat_03_level").Value.ToString());
-        int currentSkillPoints = int.Parse(snapshot.Child("stat_11_skillpoints").Value.ToString());
+        int currentSkillPoints = int.Parse(snapshot.Child("skillPoints").Value.ToString());
 
-        // ✅ Add EXP
         currentExp += expGained;
-
-        // ✅ Dynamic EXP requirement (scales up)
         int expToNext = 50 * currentLevel;
 
-        // ✅ Level-up loop
         while (currentExp >= expToNext)
         {
             currentExp -= expToNext;
             currentLevel++;
             currentSkillPoints += 5;
-
             Debug.Log($"🎉 Level Up! Now Level {currentLevel} (+5 Skill Points)");
-
-            // Increase EXP requirement for next level
             expToNext = 50 * currentLevel;
         }
 
-        // ✅ Update Firebase
         var updates = new Dictionary<string, object>
         {
             { "stat_03_level", currentLevel },
             { "stat_04_exp", currentExp },
-            { "stat_11_skillpoints", currentSkillPoints }
+            { "skillPoints", currentSkillPoints }
         };
 
         var dbTask = dbReference.Child("users").Child(userId).UpdateChildrenAsync(updates);
@@ -211,7 +207,7 @@ public class BossFightManager : MonoBehaviour
         if (dbTask.Exception != null)
             Debug.LogError("❌ Failed to update EXP/level: " + dbTask.Exception);
         else
-            Debug.Log($"🏆 Gained {expGained} EXP! Level: {currentLevel}, Skill Points: {currentSkillPoints}, Next Level At: {expToNext} EXP");
+            Debug.Log($"🏆 Gained {expGained} EXP! Level: {currentLevel}, Skill Points: {currentSkillPoints}");
 
         ReturnToMainScene(true);
     }

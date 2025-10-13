@@ -152,20 +152,47 @@ public class QuizManagerScript : MonoBehaviour
     }
 
     void EndQuiz()
-    {
-        correctPanel.SetActive(true);
-        correctPanel.GetComponentInChildren<TMP_Text>().text = $"🎉 Quiz Complete!\nScore: {score}/{MaxQuestionCount}";
-        DisableButtons();
+{
+    correctPanel.SetActive(true);
+    correctPanel.GetComponentInChildren<TMP_Text>().text = $"🎉 Quiz Complete!\nScore: {score}/{MaxQuestionCount}";
+    DisableButtons();
 
-        // ✅ If player perfected the quiz, give reward (+1 to all stats)
-        if (score == MaxQuestionCount)
+    // ✅ Apply fixed multiplier based on correct answers
+    if (score > 0)
+    {
+        float boostMultiplier = 1f;
+
+        switch (score)
         {
-            Debug.Log("🏅 Perfect score! Granting +1 to all stats...");
-            StartCoroutine(UpdateAllStatsReward());
+            case 1:
+                boostMultiplier = 1.5f;
+                break;
+            case 2:
+                boostMultiplier = 2f;
+                break;
+            case 3:
+                boostMultiplier = 3f;
+                break;
+            case 4:
+                boostMultiplier = 4f;
+                break;
+            case 5:
+                boostMultiplier = 5f;
+                break;
+            default:
+                boostMultiplier = 1f; // in case of 0 or unexpected values
+                break;
         }
 
-        StartCoroutine(WaitAndLoadMainScene(3f));
+        float boostDuration = 300f; // lasts 5 minutes, you can adjust this
+        DamageBoostManager.Instance.ApplyGlobalDamageBoost(boostMultiplier, boostDuration);
+
+        Debug.Log($"✅ Damage boost applied: {boostMultiplier}x for {boostDuration}s (score: {score})");
     }
+
+    StartCoroutine(WaitAndLoadMainScene(3f));
+}
+
 
     IEnumerator UpdateAllStatsReward()
     {
