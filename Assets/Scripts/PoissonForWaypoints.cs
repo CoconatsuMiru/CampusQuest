@@ -83,7 +83,11 @@ public class PoissonForWaypoints : MonoBehaviour
         }
 
         Debug.Log($"[Waypoint {gameObject.name}] Spawned {spawnCount} rewards.");
+
+        // ✅ Only vibrate on supported mobile platforms
+        #if UNITY_ANDROID || UNITY_IOS
         Handheld.Vibrate();
+        #endif
     }
 
     private List<Vector2> GeneratePoissonPoints(float radius, float circleRadius, int rejectionLimit)

@@ -14,42 +14,23 @@ public class LocationTracker : MonoBehaviour
 
     IEnumerator Start()
     {
-#if PLATFORM_ANDROID
-        if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
+        bool done = false;
+        string errorMsg = null;
+        yield return LocationUtils.EnsureLocationService(10f, 1f, 20, (result) =>
         {
-            Permission.RequestUserPermission(Permission.FineLocation);
-            yield return null;
-        }
-#endif
+            done = true;
+            if (!result.started)
+            {
+                errorMsg = result.error;
+            }
+        });
 
-        if (!Input.location.isEnabledByUser)
+        if (!done || !string.IsNullOrEmpty(errorMsg))
         {
-            locationText.text = "Location services not enabled.";
+            locationText.text = string.IsNullOrEmpty(errorMsg) ? "Location service failed." : errorMsg;
             yield break;
         }
 
-        Input.location.Start();
-
-        int maxWait = 20;
-        while (Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
-        {
-            yield return new WaitForSeconds(1);
-            maxWait--;
-        }
-
-        if (maxWait <= 0)
-        {
-            locationText.text = "Location service timed out.";
-            yield break;
-        }
-
-        if (Input.location.status == LocationServiceStatus.Failed)
-        {
-            locationText.text = "Unable to determine device location.";
-            yield break;
-        }
-
-        // Start updating in coroutine
         StartCoroutine(TrackLocation());
     }
 
@@ -57,14 +38,20 @@ public class LocationTracker : MonoBehaviour
     {
         while (true)
         {
-            float currentLat = Input.location.lastData.latitude;
-            float currentLon = Input.location.lastData.longitude;
+            float currentLat;
+            float currentLon;
+            float acc;
+            if (!LocationUtils.TryGetLastLocation(out currentLat, out currentLon, out acc))
+            {
+                yield return new WaitForSeconds(0.5f);
+                continue;
+            }
 
             if (currentLat != lastLat || currentLon != lastLon)
             {
                 lastLat = currentLat;
                 lastLon = currentLon;
-                locationText.text = $"Lat: {currentLat:F6}\nLon: {currentLon:F6}";
+                locationText.text = $"Lat: {currentLat:F6}\nLon: {currentLon:F6}\nAcc: ±{acc:F1} m";
             }
 
             yield return new WaitForSeconds(0.1f); // Check 10 times per second

@@ -63,11 +63,13 @@ public class PoissonAroundPlayer : MonoBehaviour
             if (spawnCount >= maxSpawnCount) break;
         }
 
-        // Vibrate once after spawning objects if any were spawned
+        // ✅ Vibrate only on supported platforms (mobile)
+        #if UNITY_ANDROID || UNITY_IOS
         if (spawnCount > 0)
         {
             Handheld.Vibrate();
         }
+        #endif
     }
 
     List<Vector2> GeneratePoissonPoints(float radius, float circleRadius, int rejectionLimit)

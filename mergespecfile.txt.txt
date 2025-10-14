@@ -1,0 +1,8 @@
+unity use "C:\Program Files\Unity\Hub\Editor\6000.0.37f1\Editor\Data\Tools\UnityYAMLMerge.exe" merge -p "%l" "%r" "%b" "%d"
+prefab use "C:\Program Files\Unity\Hub\Editor\6000.0.37f1\Editor\Data\Tools\UnityYAMLMerge.exe" merge -p "%l" "%r" "%b" "%d"
+scene use "C:\Program Files\Unity\Hub\Editor\6000.0.37f1\Editor\Data\Tools\UnityYAMLMerge.exe" merge -p "%l" "%r" "%b" "%d"
+
+# Default fallback
+* use "%programfiles%\Beyond Compare 4\bcomp.exe" "%r" "%l" "%b" "%d"
+
+

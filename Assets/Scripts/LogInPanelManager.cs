@@ -11,9 +11,11 @@ public class LoginPanelManager : MonoBehaviour
     [Header("UI References")]
     public TMP_Text errorText;
 
+    [Header("Firebase Reference")]
+    public FirebaseAuthManager firebaseAuth; // Drag your FirebaseAuthManager object here
+
     void OnEnable()
     {
-        // Always clear fields when panel opens
         ClearFields();
     }
 
@@ -30,15 +32,16 @@ public class LoginPanelManager : MonoBehaviour
             return;
         }
 
-        // ✅ For now, just simulate a successful login
-        errorText.text = "Login successful! (UI test only)";
-        StartCoroutine(ClearMessageAfterDelay());
+        // ✅ Pass values to Firebase login fields and trigger login
+        firebaseAuth.emailLoginField.text = email;
+        firebaseAuth.passwordLoginField.text = password;
+        firebaseAuth.Login();
     }
 
     void ShowError(string message)
     {
         errorText.text = message;
-        StopAllCoroutines(); // stop old timer if still running
+        StopAllCoroutines();
         StartCoroutine(ClearMessageAfterDelay());
     }
 

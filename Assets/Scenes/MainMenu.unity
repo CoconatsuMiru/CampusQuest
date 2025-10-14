@@ -534,12 +534,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -4208,7 +4208,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -467, y: 1095}
+  m_AnchoredPosition: {x: -420, y: 927}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1491399248
@@ -4334,7 +4334,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1506970713
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5001,6 +5001,7 @@ MonoBehaviour:
   emailRegistrationField: {fileID: 1177561499}
   passwordRegistrationField: {fileID: 253515640}
   confirmPasswordRegistrationField: {fileID: 165726266}
+  statusText: {fileID: 0}
 --- !u!4 &1649429800
 Transform:
   m_ObjectHideFlags: 0
@@ -5338,6 +5339,7 @@ MonoBehaviour:
   emailInput: {fileID: 422596549}
   passwordInput: {fileID: 1923587656}
   errorText: {fileID: 1099538549}
+  firebaseAuth: {fileID: 1649429799}
 --- !u!4 &1669524963
 Transform:
   m_ObjectHideFlags: 0
@@ -5755,7 +5757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1901479076
 RectTransform:
   m_ObjectHideFlags: 0
