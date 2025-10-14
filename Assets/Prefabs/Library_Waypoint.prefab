@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd1a325052534104987af67cf7ccceaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetSceneName: ArtTest
+  targetSceneName: libraryQuiz
 --- !u!114 &4000095319822662378
 MonoBehaviour:
   m_ObjectHideFlags: 0
