@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using Firebase.Database;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -50,14 +49,9 @@ public class BossFightManager : MonoBehaviour
     private float timer;
     private int currentHP;
 
-    private DatabaseReference dbReference;
-    private string userId;
-
     void Start()
     {
-        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-        userId = FirebaseAuthManager.LoggedInUserId;
-
+        // ✅ Load random boss
         LoadRandomBoss();
 
         if (currentBoss != null)
@@ -135,8 +129,13 @@ public class BossFightManager : MonoBehaviour
 
     public void OnFight()
     {
-        if (currentBoss == null) return;
-        if (string.IsNullOrEmpty(userId))
+        if (currentBoss == null)
+        {
+            Debug.LogError("❌ No boss data found!");
+            return;
+        }
+
+        if (LocalAuthManager.Instance == null || LocalAuthManager.Instance.currentUser == null)
         {
             Debug.LogError("❌ No logged in user found!");
             return;
@@ -147,25 +146,18 @@ public class BossFightManager : MonoBehaviour
 
     private IEnumerator HandleFightDamage()
     {
-        var userTask = dbReference.Child("users").Child(userId).GetValueAsync();
-        yield return new WaitUntil(() => userTask.IsCompleted);
+        yield return null; // simulate async step for consistency
 
-        if (userTask.Exception != null || userTask.Result == null)
-        {
-            Debug.LogError("❌ Failed to load user stats for damage calculation.");
-            yield break;
-        }
+        var user = LocalAuthManager.Instance.currentUser;
+        string subjectKey = currentBoss.subject.ToLower();
 
-        DataSnapshot snapshot = userTask.Result;
-        string subjectKey = GetSubjectKey(currentBoss.subject);
-        if (string.IsNullOrEmpty(subjectKey))
+        if (!user.subjects.ContainsKey(subjectKey))
         {
             Debug.LogWarning($"⚠️ Unknown subject type: {currentBoss.subject}");
             yield break;
         }
 
-        // ✅ Base damage from Firebase
-        int baseDamage = int.Parse(snapshot.Child(subjectKey).Value.ToString());
+        int baseDamage = user.subjects[subjectKey];
 
         // ✅ Apply damage multiplier from DamageBoostManager
         float finalDamage = baseDamage * DamageBoostManager.Instance.globalDamageMultiplier;
@@ -185,38 +177,15 @@ public class BossFightManager : MonoBehaviour
         }
     }
 
-    private string GetSubjectKey(string subject)
-    {
-        switch (subject.ToLower())
-        {
-            case "music": return "stat_05_music";
-            case "art": return "stat_06_art";
-            case "science": return "stat_07_science";
-            case "math": return "stat_08_math";
-            case "english": return "stat_09_english";
-            case "history": return "stat_10_history";
-            default: return null;
-        }
-    }
-
     private IEnumerator RewardExpCoroutine(int expGained)
     {
-        var userDataTask = dbReference.Child("users").Child(userId).GetValueAsync();
-        yield return new WaitUntil(() => userDataTask.IsCompleted);
+        yield return null; // simulate async step
 
-        if (userDataTask.Exception != null || userDataTask.Result == null)
-        {
-            Debug.LogError("❌ Failed to load user data for EXP reward.");
-            yield break;
-        }
+        var user = LocalAuthManager.Instance.currentUser;
 
-        DataSnapshot snapshot = userDataTask.Result;
-        int currentExp = int.Parse(snapshot.Child("stat_04_exp").Value.ToString());
-        int currentLevel = int.Parse(snapshot.Child("stat_03_level").Value.ToString());
-
-        int currentSkillPoints = snapshot.HasChild("stat_11_skillpoints")
-            ? int.Parse(snapshot.Child("stat_11_skillpoints").Value.ToString())
-            : int.Parse(snapshot.Child("skillPoints").Value.ToString());
+        int currentExp = user.exp;
+        int currentLevel = user.level;
+        int currentSkillPoints = PlayerBossStats.Instance != null ? PlayerBossStats.Instance.skillPoints : 0;
 
         currentExp += expGained;
         int expToNext = 50 * currentLevel;
@@ -230,21 +199,14 @@ public class BossFightManager : MonoBehaviour
             expToNext = 50 * currentLevel;
         }
 
-        var updates = new Dictionary<string, object>
-        {
-            { "stat_03_level", currentLevel },
-            { "stat_04_exp", currentExp },
-            { "stat_11_skillpoints", currentSkillPoints },
-            { "skillPoints", currentSkillPoints }
-        };
+        // ✅ Update user stats
+        user.level = currentLevel;
+        user.exp = currentExp;
+        if (PlayerBossStats.Instance != null)
+            PlayerBossStats.Instance.skillPoints = currentSkillPoints;
 
-        var dbTask = dbReference.Child("users").Child(userId).UpdateChildrenAsync(updates);
-        yield return new WaitUntil(() => dbTask.IsCompleted);
-
-        if (dbTask.Exception != null)
-            Debug.LogError("❌ Failed to update EXP/level: " + dbTask.Exception);
-        else
-            Debug.Log($"🏆 Gained {expGained} EXP! Level: {currentLevel}, Skill Points: {currentSkillPoints}");
+        LocalAuthManager.Instance.UpdateUserData();
+        Debug.Log($"🏆 Gained {expGained} EXP! Level: {currentLevel}, Skill Points: {currentSkillPoints}");
 
         ReturnToMainScene(true);
     }

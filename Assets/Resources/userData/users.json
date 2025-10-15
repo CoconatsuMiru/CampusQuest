@@ -1,0 +1,39 @@
+{
+    "users": [
+        {
+            "username": "",
+            "email": "test10@gmail.com",
+            "password": "test123",
+            "level": 1,
+            "exp": 0
+        },
+        {
+            "username": "",
+            "email": "test11@gmail.com",
+            "password": "test123",
+            "level": 1,
+            "exp": 0
+        },
+        {
+            "username": "",
+            "email": "test13@gmail.com",
+            "password": "test123",
+            "level": 1,
+            "exp": 0
+        },
+        {
+            "username": "",
+            "email": "test19@gmail.com",
+            "password": "test123",
+            "level": 1,
+            "exp": 0
+        },
+        {
+            "username": "test90",
+            "email": "test90@gmail.com",
+            "password": "test123",
+            "level": 1,
+            "exp": 0
+        }
+    ]
+}

@@ -11,7 +11,7 @@ public class SignUpPanelManager : MonoBehaviour
     public TMP_InputField confirmPasswordInput;
 
     [Header("UI References")]
-    public TMP_Text errorText;
+    public TMP_Text feedbackText;
 
     private Coroutine fadeCoroutine;
 
@@ -24,15 +24,13 @@ public class SignUpPanelManager : MonoBehaviour
 
         if (fadeCoroutine != null) StopCoroutine(fadeCoroutine);
 
-        errorText.alpha = 1f;
-        errorText.text = "";
+        feedbackText.alpha = 1f;
+        feedbackText.text = "";
 
-        if (string.IsNullOrEmpty(username) ||
-            string.IsNullOrEmpty(email) ||
-            string.IsNullOrEmpty(password) ||
-            string.IsNullOrEmpty(confirmPassword))
+        if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) ||
+            string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
         {
-            ShowMessage("All fields must be filled in!");
+            ShowMessage("⚠ All fields are required!");
             return;
         }
 
@@ -48,42 +46,51 @@ public class SignUpPanelManager : MonoBehaviour
             return;
         }
 
-        ShowMessage("✅ Account Created (UI test only)");
+        bool success = LocalAuthManager.Instance.Register(username, email, password);
+
+        if (success)
+            ShowMessage("✅ Account created successfully!");
+        else
+            ShowMessage("⚠ Email already exists!");
     }
 
     private void ShowMessage(string message)
     {
-        errorText.text = message;
+        feedbackText.text = message;
+        feedbackText.alpha = 1f;
+
+        if (fadeCoroutine != null)
+            StopCoroutine(fadeCoroutine);
+
         fadeCoroutine = StartCoroutine(FadeOutText(3f, 1f));
     }
 
     private IEnumerator FadeOutText(float delay, float duration)
     {
+        yield return null; // ✅ wait one frame to ensure text renders on Android
         yield return new WaitForSeconds(delay);
 
-        float startAlpha = errorText.alpha;
+        float startAlpha = feedbackText.alpha;
         float time = 0f;
 
         while (time < duration)
         {
             time += Time.deltaTime;
-            float t = time / duration;
-            errorText.alpha = Mathf.Lerp(startAlpha, 0f, t);
+            feedbackText.alpha = Mathf.Lerp(startAlpha, 0f, time / duration);
             yield return null;
         }
 
-        errorText.text = "";
-        errorText.alpha = 1f;
+        feedbackText.text = "";
+        feedbackText.alpha = 1f;
     }
 
-    // 🚀 Call this when closing the panel
     public void ClearFields()
     {
         usernameInput.text = "";
         emailInput.text = "";
         passwordInput.text = "";
         confirmPasswordInput.text = "";
-        errorText.text = "";
-        errorText.alpha = 1f; // reset in case it faded last time
+        feedbackText.text = "";
+        feedbackText.alpha = 1f;
     }
 }

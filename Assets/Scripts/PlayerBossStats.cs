@@ -1,32 +1,26 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Firebase;
-using Firebase.Database;
-using Firebase.Auth;
-using Firebase.Extensions; // recommended to use ContinueWithOnMainThread
-using System;
 
 public class PlayerBossStats : MonoBehaviour
 {
     public static PlayerBossStats Instance { get; private set; }
     public bool isLoaded { get; private set; } = false;
 
-    // user identity
-    public string userId;
+    // User identity
     public string username;
     public string email;
 
-    // core stats (names match your DB keys)
-    public int stat_03_level = 1;
-    public int stat_04_exp = 0;
-    public int stat_05_music = 1;
-    public int stat_06_art = 1;
-    public int stat_07_science = 1;
-    public int stat_08_math = 1;
-    public int stat_09_english = 1;
-    public int stat_10_history = 1;
+    // Core stats (matching your LocalAuthManager schema)
+    public int level = 1;
+    public int exp = 0;
+    public int stat_music = 1;
+    public int stat_art = 1;
+    public int stat_science = 1;
+    public int stat_math = 1;
+    public int stat_english = 1;
+    public int stat_history = 1;
 
-    // skill point pool
+    // Skill points
     public int skillPoints = 0;
 
     private void Awake()
@@ -42,199 +36,153 @@ public class PlayerBossStats : MonoBehaviour
 
     private void Start()
     {
-        // attempt to set userId automatically if using FirebaseAuth
-        if (string.IsNullOrEmpty(userId))
-        {
-            if (FirebaseAuth.DefaultInstance != null && FirebaseAuth.DefaultInstance.CurrentUser != null)
-            {
-                userId = FirebaseAuth.DefaultInstance.CurrentUser.UserId;
-            }
-        }
-
-        if (!string.IsNullOrEmpty(userId))
-        {
-            LoadFromFirebase(userId);
-        }
-        else
-        {
-            Debug.LogWarning("PlayerBossStats: userId not set and no authenticated user. Using default local stats.");
-            isLoaded = true; // if you want to wait for login, set false instead
-        }
+        LoadFromLocal();
     }
 
-    public void LoadFromFirebase(string uid)
+    public void LoadFromLocal()
     {
-        userId = uid;
-        isLoaded = false;
-
-        FirebaseDatabase.DefaultInstance
-            .GetReference($"users/{userId}")
-            .GetValueAsync()
-            .ContinueWithOnMainThread(task =>
+        if (LocalAuthManager.Instance == null || LocalAuthManager.Instance.currentUser == null)
         {
-            if (task.IsFaulted)
-            {
-                Debug.LogError("PlayerBossStats: Failed to load user data: " + task.Exception);
-                isLoaded = true;
-                return;
-            }
-
-            DataSnapshot snapshot = task.Result;
-            if (snapshot == null || !snapshot.Exists)
-            {
-                Debug.Log("PlayerBossStats: No existing data for user - defaults will be used.");
-                isLoaded = true;
-                return;
-            }
-
-            username = snapshot.Child("stat_01_username").Value?.ToString() ?? username;
-            email = snapshot.Child("stat_02_email").Value?.ToString() ?? email;
-            stat_03_level = ParseInt(snapshot.Child("stat_03_level").Value, stat_03_level);
-            stat_04_exp = ParseInt(snapshot.Child("stat_04_exp").Value, stat_04_exp);
-            stat_05_music = ParseInt(snapshot.Child("stat_05_music").Value, stat_05_music);
-            stat_06_art = ParseInt(snapshot.Child("stat_06_art").Value, stat_06_art);
-            stat_07_science = ParseInt(snapshot.Child("stat_07_science").Value, stat_07_science);
-            stat_08_math = ParseInt(snapshot.Child("stat_08_math").Value, stat_08_math);
-            stat_09_english = ParseInt(snapshot.Child("stat_09_english").Value, stat_09_english);
-            stat_10_history = ParseInt(snapshot.Child("stat_10_history").Value, stat_10_history);
-            skillPoints = ParseInt(snapshot.Child("skillPoints").Value, skillPoints);
-
-            Debug.Log("PlayerBossStats: loaded data for user " + userId);
+            Debug.LogWarning("⚠ PlayerBossStats: No logged-in user found. Using default stats.");
             isLoaded = true;
-        });
+            return;
+        }
+
+        var user = LocalAuthManager.Instance.currentUser;
+        username = user.username;
+        email = user.email;
+
+        // Load base stats
+        level = user.level;
+        exp = user.exp;
+
+        // Load subjects
+        if (user.subjects != null)
+        {
+            stat_music = GetValue(user.subjects, "music", stat_music);
+            stat_art = GetValue(user.subjects, "art", stat_art);
+            stat_science = GetValue(user.subjects, "science", stat_science);
+            stat_math = GetValue(user.subjects, "math", stat_math);
+            stat_english = GetValue(user.subjects, "english", stat_english);
+            stat_history = GetValue(user.subjects, "history", stat_history);
+        }
+
+        Debug.Log("✅ PlayerBossStats: Loaded stats for " + username);
+        isLoaded = true;
     }
 
-    private int ParseInt(object value, int fallback)
+    private int GetValue(Dictionary<string, int> dict, string key, int fallback)
     {
-        if (value == null) return fallback;
-        int outVal;
-        if (int.TryParse(value.ToString(), out outVal)) return outVal;
+        if (dict != null && dict.ContainsKey(key))
+            return dict[key];
         return fallback;
     }
 
-    // returns stat used to compute damage (simple mapping)
-    public int GetStatBySubject(string subject)
-    {
-        switch (subject.ToLower())
-        {
-            case "music": return stat_05_music;
-            case "art": return stat_06_art;
-            case "science": return stat_07_science;
-            case "math": return stat_08_math;
-            case "english": return stat_09_english;
-            case "history": return stat_10_history;
-            default: return 1;
-        }
-    }
-
-    // Add EXP, handle level-ups, award skill points, push to Firebase
+    // Add EXP and handle level-ups
     public void AddExp(int amount)
     {
         if (!isLoaded)
         {
-            Debug.LogWarning("PlayerBossStats.AddExp called before data was loaded. Ignoring.");
+            Debug.LogWarning("⚠ PlayerBossStats.AddExp called before data was loaded.");
             return;
         }
 
         if (amount <= 0) return;
 
-        stat_04_exp += amount;
-        Debug.Log($"PlayerBossStats: +{amount} EXP (now {stat_04_exp})");
+        exp += amount;
+        Debug.Log($"PlayerBossStats: +{amount} EXP (now {exp})");
 
-        bool anyLevelUp = false;
+        bool leveledUp = false;
 
-        // Level up rule: to go from level L -> L+1 you need (L * 50) EXP.
-        while (true)
+        // Level up rule: need (level * 50) EXP to level up
+        while (exp >= level * 50)
         {
-            int needed = stat_03_level * 50;
-            if (stat_04_exp >= needed)
-            {
-                stat_04_exp -= needed;
-                stat_03_level += 1;
-                skillPoints += 5; // +5 skill points per level up
-                anyLevelUp = true;
-                Debug.Log($"PlayerBossStats: Leveled up! New level = {stat_03_level}. SkillPoints = {skillPoints}");
-            }
-            else
-            {
-                break;
-            }
+            exp -= level * 50;
+            level += 1;
+            skillPoints += 5;
+            leveledUp = true;
+            Debug.Log($"🎉 Level up! New level = {level}, Skill Points = {skillPoints}");
         }
 
-        // push updated values to Firebase
-        UpdateUserDataInFirebase();
+        UpdateLocalData();
 
-        // Optionally trigger an in-game UI/notification for level-up:
-        if (anyLevelUp)
+        if (leveledUp)
         {
-            // Example: send event / call UI code to display LevelUp popup
+            Debug.Log("🏆 PlayerBossStats: Level up complete!");
         }
     }
 
-    // Spend skill points to increase a subject stat (1 point = +1 stat)
+    // Spend skill points to upgrade a subject
     public bool SpendSkillPoints(string subject, int points)
     {
         if (points <= 0) return false;
         if (skillPoints < points)
         {
-            Debug.LogWarning("PlayerBossStats: Not enough skill points.");
+            Debug.LogWarning("⚠ Not enough skill points.");
             return false;
         }
 
         switch (subject.ToLower())
         {
-            case "music": stat_05_music += points; break;
-            case "art": stat_06_art += points; break;
-            case "science": stat_07_science += points; break;
-            case "math": stat_08_math += points; break;
-            case "english": stat_09_english += points; break;
-            case "history": stat_10_history += points; break;
+            case "music": stat_music += points; break;
+            case "art": stat_art += points; break;
+            case "science": stat_science += points; break;
+            case "math": stat_math += points; break;
+            case "english": stat_english += points; break;
+            case "history": stat_history += points; break;
             default:
-                Debug.LogWarning("PlayerBossStats: Unknown subject: " + subject);
+                Debug.LogWarning("⚠ Unknown subject: " + subject);
                 return false;
         }
 
         skillPoints -= points;
-        UpdateUserDataInFirebase();
-        Debug.Log($"PlayerBossStats: Spent {points} points on {subject}. Remaining skillPoints: {skillPoints}");
+        UpdateLocalData();
+
+        Debug.Log($"✅ {points} skill points spent on {subject}. Remaining: {skillPoints}");
         return true;
     }
 
-    // push relevant fields to Firebase
-    public void UpdateUserDataInFirebase()
+    // Save updates back to LocalAuthManager’s JSON
+    private void UpdateLocalData()
     {
-        if (string.IsNullOrEmpty(userId))
+        if (LocalAuthManager.Instance == null || LocalAuthManager.Instance.currentUser == null)
         {
-            Debug.LogWarning("PlayerBossStats: userId empty, cannot update Firebase.");
+            Debug.LogWarning("⚠ Cannot update local data: no user logged in.");
             return;
         }
 
-        var updates = new Dictionary<string, object>()
-        {
-            { "stat_03_level", stat_03_level },
-            { "stat_04_exp", stat_04_exp },
-            { "stat_05_music", stat_05_music },
-            { "stat_06_art", stat_06_art },
-            { "stat_07_science", stat_07_science },
-            { "stat_08_math", stat_08_math },
-            { "stat_09_english", stat_09_english },
-            { "stat_10_history", stat_10_history },
-            { "skillPoints", skillPoints }
-        };
+        var user = LocalAuthManager.Instance.currentUser;
 
-        FirebaseDatabase.DefaultInstance
-            .GetReference($"users/{userId}")
-            .UpdateChildrenAsync(updates)
-            .ContinueWithOnMainThread(task =>
+        user.level = level;
+        user.exp = exp;
+
+        if (user.subjects == null)
+            user.subjects = new Dictionary<string, int>();
+
+        user.subjects["music"] = stat_music;
+        user.subjects["art"] = stat_art;
+        user.subjects["science"] = stat_science;
+        user.subjects["math"] = stat_math;
+        user.subjects["english"] = stat_english;
+        user.subjects["history"] = stat_history;
+
+        LocalAuthManager.Instance.UpdateUserData();
+
+        Debug.Log("💾 PlayerBossStats: Local data updated.");
+    }
+
+    // Returns a stat value for quiz damage boosts, etc.
+    public int GetStatBySubject(string subject)
+    {
+        switch (subject.ToLower())
         {
-            if (task.IsFaulted)
-            {
-                Debug.LogError("PlayerBossStats: Failed to update Firebase: " + task.Exception);
-            }
-            else
-            {
-                Debug.Log("PlayerBossStats: Successfully updated Firebase with new stats.");
-            }
-        });
+            case "music": return stat_music;
+            case "art": return stat_art;
+            case "science": return stat_science;
+            case "math": return stat_math;
+            case "english": return stat_english;
+            case "history": return stat_history;
+            default: return 1;
+        }
     }
 }

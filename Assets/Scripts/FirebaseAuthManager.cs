@@ -15,21 +15,26 @@ public class FirebaseAuthManager : MonoBehaviour
     public FirebaseUser user;
     private DatabaseReference dbReference;
 
-    // 🔹 Static so other scripts/scenes can easily access
     public static string LoggedInUserId;
     public static string LoggedInUserName;
 
+    private bool firebaseReady = false;
+
     [Space]
-    [Header("Login")]
+    [Header("Login Fields")]
     public TMP_InputField emailLoginField;
     public TMP_InputField passwordLoginField;
 
     [Space]
-    [Header("Registration")]
+    [Header("Registration Fields")]
     public TMP_InputField usernameRegistrationField;
     public TMP_InputField emailRegistrationField;
     public TMP_InputField passwordRegistrationField;
     public TMP_InputField confirmPasswordRegistrationField;
+
+    [Space]
+    [Header("UI Feedback")]
+    public TMP_Text statusText;
 
     // ---------- USER DATA CLASS ----------
     [System.Serializable]
@@ -50,17 +55,21 @@ public class FirebaseAuthManager : MonoBehaviour
     // ---------- UNITY METHODS ----------
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
+        Debug.Log("🔄 Checking Firebase dependencies...");
+
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
             dependencyStatus = task.Result;
-
             if (dependencyStatus == DependencyStatus.Available)
             {
                 InitializeFirebase();
+                firebaseReady = true;
             }
             else
             {
-                Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
+                Debug.LogError("❌ Could not resolve all Firebase dependencies: " + dependencyStatus);
             }
         });
     }
@@ -72,6 +81,8 @@ public class FirebaseAuthManager : MonoBehaviour
 
         auth.StateChanged += AuthStateChanged;
         AuthStateChanged(this, null);
+
+        Debug.Log("✅ Firebase initialized successfully!");
     }
 
     void AuthStateChanged(object sender, System.EventArgs eventArgs)
@@ -79,17 +90,21 @@ public class FirebaseAuthManager : MonoBehaviour
         if (auth.CurrentUser != user)
         {
             bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null;
-
-            if (!signedIn && user != null)
-            {
-                Debug.Log("Signed out " + user.UserId);
-            }
-
             user = auth.CurrentUser;
 
             if (signedIn)
             {
-                Debug.Log("Signed in " + user.UserId);
+                LoggedInUserId = user.UserId;
+                LoggedInUserName = user.DisplayName ?? user.Email;
+                Debug.Log("✅ Signed in: " + LoggedInUserName);
+
+                // Auto-login if already signed in and not in main scene
+                if (SceneManager.GetActiveScene().name != "SampleScene")
+                    SceneManager.LoadScene("SampleScene");
+            }
+            else if (user == null)
+            {
+                Debug.Log("👋 Signed out");
             }
         }
     }
@@ -97,44 +112,34 @@ public class FirebaseAuthManager : MonoBehaviour
     // ---------- LOGIN ----------
     public void Login()
     {
+        if (!firebaseReady)
+        {
+            if (statusText) statusText.text = "Firebase is still initializing...";
+            Debug.LogWarning("⚠️ Firebase not ready yet!");
+            return;
+        }
+
         StartCoroutine(LoginAsync(emailLoginField.text, passwordLoginField.text));
     }
 
     private IEnumerator LoginAsync(string email, string password)
     {
+        if (statusText) statusText.text = "Logging in...";
         var loginTask = auth.SignInWithEmailAndPasswordAsync(email, password);
         yield return new WaitUntil(() => loginTask.IsCompleted);
 
         if (loginTask.Exception != null)
         {
-            Debug.LogError(loginTask.Exception);
-
-            FirebaseException firebaseException = loginTask.Exception.GetBaseException() as FirebaseException;
-            AuthError authError = (AuthError)firebaseException.ErrorCode;
-
-            string failedMessage = "Login Failed! Because ";
-            switch (authError)
-            {
-                case AuthError.InvalidEmail: failedMessage += "Email is invalid."; break;
-                case AuthError.WrongPassword: failedMessage += "Wrong Password."; break;
-                case AuthError.MissingEmail: failedMessage += "Email is missing."; break;
-                case AuthError.MissingPassword: failedMessage += "Password is missing."; break;
-                default: failedMessage += "Unknown error."; break;
-            }
-
-            Debug.LogError(failedMessage);
+            HandleAuthError(loginTask.Exception, "Login Failed!");
         }
         else
         {
             user = loginTask.Result.User;
-            Debug.Log($"Welcome back {user?.DisplayName ?? email}!");
-
-            // 🔹 Store for global access
             LoggedInUserId = user.UserId;
             LoggedInUserName = user.DisplayName ?? email;
 
-            // Optional reference
-            References.userName = user.DisplayName;
+            Debug.Log($"✅ Welcome back {LoggedInUserName}!");
+            if (statusText) statusText.text = "Login successful!";
 
             SceneManager.LoadScene("SampleScene");
         }
@@ -143,6 +148,13 @@ public class FirebaseAuthManager : MonoBehaviour
     // ---------- REGISTRATION ----------
     public void Register()
     {
+        if (!firebaseReady)
+        {
+            if (statusText) statusText.text = "Firebase is still initializing...";
+            Debug.LogWarning("⚠️ Firebase not ready yet!");
+            return;
+        }
+
         StartCoroutine(RegisterAsync(
             usernameRegistrationField.text,
             emailRegistrationField.text,
@@ -155,67 +167,54 @@ public class FirebaseAuthManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(name))
         {
-            Debug.LogError("Username is empty");
+            if (statusText) statusText.text = "Username is empty!";
+            yield break;
         }
-        else if (string.IsNullOrEmpty(email))
+        if (string.IsNullOrEmpty(email))
         {
-            Debug.LogError("Email is empty");
+            if (statusText) statusText.text = "Email is empty!";
+            yield break;
         }
-        else if (password != confirmPassword)
+        if (password != confirmPassword)
         {
-            Debug.LogError("Passwords do not match");
+            if (statusText) statusText.text = "Passwords do not match!";
+            yield break;
         }
-        else if (password.Length < 6)
+        if (password.Length < 6)
         {
-            Debug.LogError("Password must be at least 6 characters");
+            if (statusText) statusText.text = "Password must be at least 6 characters!";
+            yield break;
+        }
+
+        if (statusText) statusText.text = "Creating account...";
+
+        var registerTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
+        yield return new WaitUntil(() => registerTask.IsCompleted);
+
+        if (registerTask.Exception != null)
+        {
+            HandleAuthError(registerTask.Exception, "Registration failed!");
         }
         else
         {
-            var registerTask = auth.CreateUserWithEmailAndPasswordAsync(email, password);
-            yield return new WaitUntil(() => registerTask.IsCompleted);
+            user = registerTask.Result.User;
 
-            if (registerTask.Exception != null)
+            // Update display name
+            UserProfile profile = new UserProfile { DisplayName = name };
+            var updateTask = user.UpdateUserProfileAsync(profile);
+            yield return new WaitUntil(() => updateTask.IsCompleted);
+
+            if (updateTask.Exception != null)
             {
-                Debug.LogError(registerTask.Exception);
-
-                FirebaseException firebaseException = registerTask.Exception.GetBaseException() as FirebaseException;
-                AuthError authError = (AuthError)firebaseException.ErrorCode;
-
-                string failedMessage = "Registration failed! Because ";
-                switch (authError)
-                {
-                    case AuthError.InvalidEmail: failedMessage += "Email is invalid."; break;
-                    case AuthError.MissingEmail: failedMessage += "Email is missing."; break;
-                    case AuthError.MissingPassword: failedMessage += "Password is missing."; break;
-                    case AuthError.WeakPassword: failedMessage += "Password is too weak."; break;
-                    case AuthError.EmailAlreadyInUse: failedMessage += "Email already in use."; break;
-                    default: failedMessage += "Unknown error."; break;
-                }
-
-                Debug.LogError(failedMessage);
+                Debug.LogError(updateTask.Exception);
+                user.DeleteAsync();
+                if (statusText) statusText.text = "Profile setup failed.";
             }
             else
             {
-                user = registerTask.Result.User;
-
-                // Update display name
-                UserProfile userProfile = new UserProfile { DisplayName = name };
-                var updateProfileTask = user.UpdateUserProfileAsync(userProfile);
-
-                yield return new WaitUntil(() => updateProfileTask.IsCompleted);
-
-                if (updateProfileTask.Exception != null)
-                {
-                    user.DeleteAsync(); // rollback account
-                    Debug.LogError(updateProfileTask.Exception);
-                }
-                else
-                {
-                    Debug.Log("Registration successful! Welcome " + user.DisplayName);
-
-                    // Save user to Realtime Database
-                    WriteNewUser(user.UserId, name, email);
-                }
+                Debug.Log("✅ Registration successful! Welcome " + user.DisplayName);
+                if (statusText) statusText.text = "Registration successful!";
+                WriteNewUser(user.UserId, name, email);
             }
         }
     }
@@ -233,9 +232,31 @@ public class FirebaseAuthManager : MonoBehaviour
         dbReference.Child("users").Child(userId).SetRawJsonValueAsync(json).ContinueWith(task =>
         {
             if (task.IsCompleted)
-                Debug.Log("User successfully written to DB!");
+                Debug.Log("✅ User written to DB!");
             if (task.IsFaulted)
-                Debug.LogError("Write failed: " + task.Exception);
+                Debug.LogError("❌ Write failed: " + task.Exception);
         });
+    }
+
+    // ---------- AUTH ERROR HANDLER ----------
+    private void HandleAuthError(System.AggregateException exception, string prefix)
+    {
+        FirebaseException firebaseEx = exception.GetBaseException() as FirebaseException;
+        AuthError errorCode = (AuthError)firebaseEx.ErrorCode;
+
+        string message = prefix + " ";
+        switch (errorCode)
+        {
+            case AuthError.InvalidEmail: message += "Invalid email."; break;
+            case AuthError.WrongPassword: message += "Wrong password."; break;
+            case AuthError.MissingEmail: message += "Email missing."; break;
+            case AuthError.MissingPassword: message += "Password missing."; break;
+            case AuthError.EmailAlreadyInUse: message += "Email already in use."; break;
+            case AuthError.WeakPassword: message += "Weak password."; break;
+            default: message += "Unknown error."; break;
+        }
+
+        Debug.LogError(message);
+        if (statusText) statusText.text = message;
     }
 }
