@@ -56,6 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CampusQuest-forMerge.sln",
+    "dotnet.defaultSolution": "CampusQuest.sln",
     "git.ignoreLimitWarning": true
 }
