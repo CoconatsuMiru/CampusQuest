@@ -11,7 +11,7 @@ public class BossData
 {
     public string bossName;
     public int hp;
-    public string imagePath;
+    public string imagePath; // Kept for compatibility — not used anymore
     public string subject;
     public int expReward;
     public int seen;
@@ -22,6 +22,14 @@ public class BossData
 public class BossList
 {
     public List<BossData> bosses;
+}
+
+// ✅ New helper class for linking subjects with sprites
+[System.Serializable]
+public class SubjectSpritePair
+{
+    public string subject;
+    public Sprite sprite;
 }
 
 public class BossFightManager : MonoBehaviour
@@ -43,6 +51,9 @@ public class BossFightManager : MonoBehaviour
 
     [Header("Timer Settings")]
     public float fightTimeLimit = 10f;
+
+    [Header("Sprites by Subject")]
+    public List<SubjectSpritePair> bossSprites; // 👈 assign here in Inspector (e.g. math, english, etc.)
 
     private BossList allBosses;
     private BossData currentBoss;
@@ -72,12 +83,12 @@ public class BossFightManager : MonoBehaviour
                 bossHPSlider.value = currentHP;
             }
 
-            if (!string.IsNullOrEmpty(currentBoss.imagePath))
-            {
-                Texture2D tex = LoadTexture(currentBoss.imagePath);
-                if (tex != null)
-                    bossImage.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-            }
+            // ✅ Use subject-sprite mapping instead of file loading
+            Sprite bossSprite = GetSpriteForSubject(currentBoss.subject);
+            if (bossSprite != null)
+                bossImage.sprite = bossSprite;
+            else
+                Debug.LogWarning($"⚠️ No sprite found for subject: {currentBoss.subject}");
         }
 
         if (fightButton != null)
@@ -113,7 +124,6 @@ public class BossFightManager : MonoBehaviour
         }
         else
         {
-            // copy from your TextAsset into persistentDataPath
             allBosses = JsonUtility.FromJson<BossList>(bossDataJSON.text);
             SaveBossData();
         }
@@ -232,12 +242,14 @@ public class BossFightManager : MonoBehaviour
         timerSlider.value = timer;
     }
 
-    private Texture2D LoadTexture(string filePath)
+    // ✅ Helper: find the sprite that matches the current subject
+    private Sprite GetSpriteForSubject(string subject)
     {
-        if (!File.Exists(filePath)) return null;
-        byte[] fileData = File.ReadAllBytes(filePath);
-        Texture2D tex = new Texture2D(2, 2);
-        tex.LoadImage(fileData);
-        return tex;
+        foreach (var pair in bossSprites)
+        {
+            if (pair.subject.ToLower() == subject.ToLower())
+                return pair.sprite;
+        }
+        return null;
     }
 }

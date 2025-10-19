@@ -3,7 +3,6 @@
     {
       "bossName": "Hotdog Junior",
       "hp": 100,
-      "imagePath": "Assets/Bosses/Low/english_low_tier.png",
       "subject": "english",
       "expReward": 15,
       "seen": 0,
@@ -12,7 +11,6 @@
     {
       "bossName": "Tiny Taco",
       "hp": 100,
-      "imagePath": "Assets/Bosses/Low/history_low_tier.png",
       "subject": "history",
       "expReward": 15,
       "seen": 0,
@@ -21,7 +19,6 @@
     {
       "bossName": "Burger Baron",
       "hp": 100,
-      "imagePath": "Assets/Bosses/Low/math_low_tier.png",
       "subject": "math",
       "expReward": 15,
       "seen": 0,
@@ -30,7 +27,6 @@
     {
       "bossName": "Pizza Duke",
       "hp": 100,
-      "imagePath": "Assets/Bosses/Low/music_low_tier.png",
       "subject": "music",
       "expReward": 15,
       "seen": 0,
@@ -39,7 +35,6 @@
     {
       "bossName": "Hotdog King",
       "hp": 100,
-      "imagePath": "Assets/Bosses/Low/pixellab-Low-Tier--Paintling--Theme--Li-1759923908643.png",
       "subject": "art",
       "expReward": 15,
       "seen": 0,
@@ -48,7 +43,6 @@
     {
       "bossName": "Burger Emperor",
       "hp": 100,
-      "imagePath": "Assets/Bosses/Low/science_low_tier.png",
       "subject": "science",
       "expReward": 15,
       "seen": 0,

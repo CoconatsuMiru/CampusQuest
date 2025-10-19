@@ -1320,7 +1320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &823963749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,6 +1343,19 @@ MonoBehaviour:
   timerSlider: {fileID: 1680420654}
   mainSceneName: SampleScene
   fightTimeLimit: 10
+  bossSprites:
+  - subject: English
+    sprite: {fileID: 21300000, guid: 55f65ecd4ecc2bf44847f8d4326e588b, type: 3}
+  - subject: History
+    sprite: {fileID: 21300000, guid: ab1b66e06a71df347bec9af08a99d839, type: 3}
+  - subject: Math
+    sprite: {fileID: 21300000, guid: d17f670808ab51647a4273341e391cc6, type: 3}
+  - subject: Music
+    sprite: {fileID: 21300000, guid: c5a43d1d1fbff0345bce232a1c4d2f81, type: 3}
+  - subject: Art
+    sprite: {fileID: 21300000, guid: e6b443fadf3fcbe46b514add68a715e7, type: 3}
+  - subject: Science
+    sprite: {fileID: 21300000, guid: f88b52db982a879458524711bd2742e5, type: 3}
 --- !u!82 &823963750
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2607,7 +2620,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: acf5829d857919a4483a042ceccb758b, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

@@ -30,28 +30,28 @@ public class SignUpPanelManager : MonoBehaviour
         if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(email) ||
             string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
         {
-            ShowMessage("⚠ All fields are required!");
+            ShowMessage("All fields are required!");
             return;
         }
 
         if (password.Length < 6)
         {
-            ShowMessage("⚠ Password must be at least 6 characters.");
+            ShowMessage("Password must be at least 6 characters.");
             return;
         }
 
         if (password != confirmPassword)
         {
-            ShowMessage("⚠ Passwords do not match!");
+            ShowMessage("Passwords do not match!");
             return;
         }
 
         bool success = LocalAuthManager.Instance.Register(username, email, password);
 
         if (success)
-            ShowMessage("✅ Account created successfully!");
+            ShowMessage("Account created successfully!");
         else
-            ShowMessage("⚠ Email already exists!");
+            ShowMessage("Email already exists!");
     }
 
     private void ShowMessage(string message)

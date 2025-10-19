@@ -29,7 +29,7 @@ public class LoginPanelManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
-            ShowMessage("⚠ All fields must be filled!");
+            ShowMessage("All fields must be filled!");
             return;
         }
 
@@ -37,12 +37,12 @@ public class LoginPanelManager : MonoBehaviour
 
         if (success)
         {
-            ShowMessage("✅ Login successful!");
+            ShowMessage("Login successful!");
             SceneManager.LoadScene("SampleScene"); // replace with your main scene
         }
         else
         {
-            ShowMessage("❌ Invalid credentials!");
+            ShowMessage("Invalid credentials!");
         }
     }
 

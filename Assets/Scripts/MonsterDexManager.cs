@@ -2,7 +2,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using System.IO;
+
+[System.Serializable]
+public class BossSpriteData
+{
+    public string subject;
+    public Sprite sprite;
+}
 
 public class MonsterDexManager : MonoBehaviour
 {
@@ -16,13 +22,22 @@ public class MonsterDexManager : MonoBehaviour
     [SerializeField] private Button nextButton;
     [SerializeField] private Button prevButton;
 
+    [Header("Boss Sprites by Subject")]
+    [SerializeField] private List<BossSpriteData> bossSprites = new List<BossSpriteData>();
+
+    [Header("Boss Data Source (Drag JSON File Here)")]
+    [SerializeField] private TextAsset bossJSONFile;
+
     private BossList bossList;
     private int currentIndex = 0;
-    private string persistentPath;
 
     void Start()
     {
-        persistentPath = Path.Combine(Application.persistentDataPath, "boss_data.json");
+        if (bossJSONFile == null)
+        {
+            Debug.LogError("❌ No boss JSON file assigned in " + gameObject.name);
+            return;
+        }
 
         LoadBossData();
         ShowBoss(currentIndex);
@@ -33,14 +48,12 @@ public class MonsterDexManager : MonoBehaviour
 
     private void LoadBossData()
     {
-        if (!File.Exists(persistentPath))
-        {
-            Debug.LogError("❌ boss_data.json not found in persistentDataPath!");
-            return;
-        }
+        bossList = JsonUtility.FromJson<BossList>(bossJSONFile.text);
 
-        string json = File.ReadAllText(persistentPath);
-        bossList = JsonUtility.FromJson<BossList>(json);
+        if (bossList == null || bossList.bosses == null || bossList.bosses.Count == 0)
+        {
+            Debug.LogError($"❌ Failed to load boss data from {bossJSONFile.name}");
+        }
     }
 
     private void ShowBoss(int index)
@@ -63,7 +76,7 @@ public class MonsterDexManager : MonoBehaviour
         }
         else
         {
-            Sprite sprite = LoadSprite(boss.imagePath);
+            Sprite sprite = GetSpriteForSubject(boss.subject);
             bossImage.sprite = sprite != null ? sprite : unknownSprite;
             bossNameText.text = boss.bossName;
             subjectText.text = boss.subject;
@@ -74,32 +87,29 @@ public class MonsterDexManager : MonoBehaviour
             pageNumberText.text = $"{index + 1} / {bossList.bosses.Count}";
     }
 
-    private Sprite LoadSprite(string path)
+    private Sprite GetSpriteForSubject(string subject)
     {
-        if (string.IsNullOrEmpty(path)) return unknownSprite;
-        if (!File.Exists(path)) return unknownSprite;
-
-        byte[] bytes = File.ReadAllBytes(path);
-        Texture2D tex = new Texture2D(2, 2);
-        tex.LoadImage(bytes);
-        return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+        foreach (var entry in bossSprites)
+        {
+            if (entry.subject.ToLower() == subject.ToLower())
+                return entry.sprite;
+        }
+        return unknownSprite;
     }
 
     public void NextPage()
     {
+        if (bossList == null || bossList.bosses.Count == 0) return;
+
         if (currentIndex < bossList.bosses.Count - 1)
-        {
-            LoadBossData(); // reload in real time
             ShowBoss(currentIndex + 1);
-        }
     }
 
     public void PreviousPage()
     {
+        if (bossList == null || bossList.bosses.Count == 0) return;
+
         if (currentIndex > 0)
-        {
-            LoadBossData(); // reload in real time
             ShowBoss(currentIndex - 1);
-        }
     }
 }

@@ -1672,6 +1672,19 @@ MonoBehaviour:
   timerSlider: {fileID: 506948123}
   mainSceneName: SampleScene
   fightTimeLimit: 10
+  bossSprites:
+  - subject: English
+    sprite: {fileID: 21300000, guid: fad810c76a3b37e4a95aae4a5d9c068d, type: 3}
+  - subject: History
+    sprite: {fileID: 21300000, guid: ad197c6d773f9764cbc5894be4e0486a, type: 3}
+  - subject: Math
+    sprite: {fileID: 21300000, guid: 286bcef3e16777b43829fa64fbe56e9c, type: 3}
+  - subject: Music
+    sprite: {fileID: 21300000, guid: cc93dafa5e121d4469759d51dd23be0e, type: 3}
+  - subject: Art
+    sprite: {fileID: 21300000, guid: df8a5a1d9164d5948975ec64de5a7784, type: 3}
+  - subject: Science
+    sprite: {fileID: 21300000, guid: 7af696c64546e3049985adc458b3c44c, type: 3}
 --- !u!1 &1420081845
 GameObject:
   m_ObjectHideFlags: 0

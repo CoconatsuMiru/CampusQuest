@@ -2,45 +2,51 @@
   "bosses": [
     {
       "bossName": "Hotdog Junior",
-      "hp": 500,
-      "imagePath": "Assets/Bosses/High/English_boss_tier.png",
+      "hp": 800,
       "subject": "english",
-      "expReward": 50
+      "expReward": 50,
+      "seen": 0,
+      "defeated": 0
     },
     {
       "bossName": "Tiny Taco",
-      "hp": 500,
-      "imagePath": "Assets/Bosses/High/History_boss_tier.png",
+      "hp": 800,
       "subject": "history",
-      "expReward": 50
+      "expReward": 50,
+      "seen": 0,
+      "defeated": 0
     },
     {
       "bossName": "Burger Baron",
-      "hp": 500,
-      "imagePath": "Assets/Bosses/High/Math_boss_tier.png",
+      "hp": 800,
       "subject": "math",
-      "expReward": 50
+      "expReward": 50,
+      "seen": 0,
+      "defeated": 0
     },
     {
       "bossName": "Pizza Duke",
-      "hp": 500,
-      "imagePath": "Assets/Bosses/High/Music_boss_tier.png",
+      "hp": 800,
       "subject": "music",
-      "expReward": 50
+      "expReward": 50,
+      "seen": 0,
+      "defeated": 0
     },
     {
       "bossName": "Hotdog King",
-      "hp": 500,
-      "imagePath": "Assets/Bosses/High/pixellab-----Boss-Tier--Maestro-Chromag-1759923847387.png",
+      "hp": 800,
       "subject": "art",
-      "expReward": 50
+      "expReward": 50,
+      "seen": 0,
+      "defeated": 0
     },
     {
       "bossName": "Burger Emperor",
-      "hp": 500,
-      "imagePath": "Assets/Bosses/High/Science_boss_tier.png",
+      "hp": 800,
       "subject": "science",
-      "expReward": 50
+      "expReward": 50,
+      "seen": 0,
+      "defeated": 0
     }
   ]
 }

@@ -37,6 +37,10 @@ public class PlayerBossStats : MonoBehaviour
     private void Start()
     {
         LoadFromLocal();
+
+        // Ensure UI reflects loaded data on start
+        if (GameManager.Instance != null)
+            GameManager.Instance.RefreshUI();
     }
 
     public void LoadFromLocal()
@@ -55,6 +59,8 @@ public class PlayerBossStats : MonoBehaviour
         // Load base stats
         level = user.level;
         exp = user.exp;
+        skillPoints = user.subjects != null && user.subjects.ContainsKey("skillPoints") ? user.subjects["skillPoints"] : skillPoints;
+        // (If you stored skillPoints separately in your user object, adjust above accordingly.)
 
         // Load subjects
         if (user.subjects != null)
@@ -104,7 +110,11 @@ public class PlayerBossStats : MonoBehaviour
             Debug.Log($"🎉 Level up! New level = {level}, Skill Points = {skillPoints}");
         }
 
+        // Persist changes to LocalAuthManager and refresh UI
         UpdateLocalData();
+
+        if (GameManager.Instance != null)
+            GameManager.Instance.RefreshUI();
 
         if (leveledUp)
         {
@@ -136,7 +146,11 @@ public class PlayerBossStats : MonoBehaviour
         }
 
         skillPoints -= points;
+
+        // Persist changes and refresh UI
         UpdateLocalData();
+        if (GameManager.Instance != null)
+            GameManager.Instance.RefreshUI();
 
         Debug.Log($"✅ {points} skill points spent on {subject}. Remaining: {skillPoints}");
         return true;
@@ -166,6 +180,13 @@ public class PlayerBossStats : MonoBehaviour
         user.subjects["english"] = stat_english;
         user.subjects["history"] = stat_history;
 
+        // store skillPoints back into user if you keep it in a field (adjust as needed)
+        if (user.subjects.ContainsKey("skillPoints"))
+            user.subjects["skillPoints"] = skillPoints;
+        else
+            user.subjects.Add("skillPoints", skillPoints);
+
+        // LocalAuthManager.UpdateUserData expects no params in your version
         LocalAuthManager.Instance.UpdateUserData();
 
         Debug.Log("💾 PlayerBossStats: Local data updated.");

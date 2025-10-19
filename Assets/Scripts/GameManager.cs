@@ -1,24 +1,36 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance; // 👈 Allow other scripts to call RefreshUI()
+
     [Header("UI Elements")]
     public TMP_Text usernameText;
     public TMP_Text levelText;
-    public TMP_Text expText;
-    public TMP_Text skillPointsText;
+
+    [Header("EXP Bar")]
+    public Slider expSlider; // 👈 Assign in Inspector
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        LoadUserData();
+        RefreshUI();
     }
 
-    private void LoadUserData()
+    /// <summary>
+    /// Refreshes username, level, and EXP slider from the current user data.
+    /// </summary>
+    public void RefreshUI()
     {
         if (LocalAuthManager.Instance == null || LocalAuthManager.Instance.currentUser == null)
         {
-            Debug.LogError("❌ No logged-in user found! Cannot load data.");
+            Debug.LogError("❌ No logged-in user found! Cannot refresh UI.");
             return;
         }
 
@@ -28,18 +40,22 @@ public class GameManager : MonoBehaviour
         int level = user.level;
         int exp = user.exp;
 
-        // Skill points (if you're tracking them in PlayerBossStats)
-        int skillPoints = PlayerBossStats.Instance != null ? PlayerBossStats.Instance.skillPoints : 0;
-
-        // Calculate EXP requirement
+        // ✅ Calculate EXP needed for next level
         int expToNext = level * 50;
 
-        // 🖥️ Update UI safely
-        if (usernameText != null) usernameText.text = username;
-        if (levelText != null) levelText.text = $"Level: {level}";
-        if (expText != null) expText.text = $"Exp: {exp}/{expToNext}";
-        if (skillPointsText != null) skillPointsText.text = $"Skill Points: {skillPoints}";
+        // 🖥️ Update UI elements
+        if (usernameText != null)
+            usernameText.text = username;
 
-        Debug.Log($"✅ Loaded user data from JSON — {username} (Level {level}, Exp {exp}/{expToNext})");
+        if (levelText != null)
+            levelText.text = $"Level: {level}";
+
+        if (expSlider != null)
+        {
+            expSlider.maxValue = expToNext;
+            expSlider.value = exp;
+        }
+
+        Debug.Log($"🔄 UI refreshed — {username} (Level {level}, EXP {exp}/{expToNext})");
     }
 }
