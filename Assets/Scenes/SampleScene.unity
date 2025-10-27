@@ -9012,11 +9012,14 @@ MonoBehaviour:
   playerClearRadius: 1.43
   numSamplesBeforeRejection: 30
   maxSpawnCount: 1
-  spawnInterval: 10
-  spawnPrefabs:
-  - {fileID: 8942145738193474545, guid: 0fb82d5fecf12c84bbee3f8b61e92828, type: 3}
-  - {fileID: 8942145738193474545, guid: 3d25c09146059244ab384753e2ab38f0, type: 3}
-  - {fileID: 8942145738193474545, guid: cdac5fcccb6977941ab9deb4d9e7b736, type: 3}
+  spawnInterval: 2
+  weightedPrefabs:
+  - prefab: {fileID: 8942145738193474545, guid: 0fb82d5fecf12c84bbee3f8b61e92828, type: 3}
+    spawnChance: 0.6
+  - prefab: {fileID: 8942145738193474545, guid: 3d25c09146059244ab384753e2ab38f0, type: 3}
+    spawnChance: 0.3
+  - prefab: {fileID: 8942145738193474545, guid: cdac5fcccb6977941ab9deb4d9e7b736, type: 3}
+    spawnChance: 0.1
   player: {fileID: 1932751861}
 --- !u!1 &1244933841
 GameObject:

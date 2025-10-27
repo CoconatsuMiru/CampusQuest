@@ -49,7 +49,6 @@ public class MonsterDexManager : MonoBehaviour
     private void LoadBossData()
     {
         bossList = JsonUtility.FromJson<BossList>(bossJSONFile.text);
-
         if (bossList == null || bossList.bosses == null || bossList.bosses.Count == 0)
         {
             Debug.LogError($"❌ Failed to load boss data from {bossJSONFile.name}");
@@ -58,14 +57,13 @@ public class MonsterDexManager : MonoBehaviour
 
     private void ShowBoss(int index)
     {
-        if (bossList == null || bossList.bosses == null || bossList.bosses.Count == 0)
-            return;
+        if (bossList == null || bossList.bosses == null || bossList.bosses.Count == 0) return;
 
         index = Mathf.Clamp(index, 0, bossList.bosses.Count - 1);
         currentIndex = index;
 
         var boss = bossList.bosses[index];
-        bool known = boss.seen == 1 || boss.defeated == 1;
+        bool known = boss.seen == 1 && boss.defeated == 1; // ✅ both must be true
 
         if (!known)
         {
@@ -100,7 +98,6 @@ public class MonsterDexManager : MonoBehaviour
     public void NextPage()
     {
         if (bossList == null || bossList.bosses.Count == 0) return;
-
         if (currentIndex < bossList.bosses.Count - 1)
             ShowBoss(currentIndex + 1);
     }
@@ -108,7 +105,6 @@ public class MonsterDexManager : MonoBehaviour
     public void PreviousPage()
     {
         if (bossList == null || bossList.bosses.Count == 0) return;
-
         if (currentIndex > 0)
             ShowBoss(currentIndex - 1);
     }

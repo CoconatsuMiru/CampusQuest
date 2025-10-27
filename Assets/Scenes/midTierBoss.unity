@@ -815,7 +815,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &559618398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -828,7 +828,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a49abb0559e13448596cd4ff8340ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossDataJSON: {fileID: 4900000, guid: 5a33f313d516770458f1c97a8bcc93fa, type: 3}
+  selectedTier: 1
+  lowTierDataJSON: {fileID: 4900000, guid: 2aa9febd8a308394d9e6c14e3813b578, type: 3}
+  midTierDataJSON: {fileID: 4900000, guid: 5a33f313d516770458f1c97a8bcc93fa, type: 3}
+  highTierDataJSON: {fileID: 4900000, guid: 76ebefc49dde412469b1f9236c580908, type: 3}
   fightButton: {fileID: 70548840}
   timerText: {fileID: 617783368}
   bossNameText: {fileID: 302104153}

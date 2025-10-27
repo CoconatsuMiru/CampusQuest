@@ -3,6 +3,14 @@ using System.Collections.Generic;
 
 public class PoissonAroundPlayer : MonoBehaviour
 {
+    [System.Serializable]
+    public class WeightedPrefab
+    {
+        public GameObject prefab;
+        [Range(0f, 1f)]
+        public float spawnChance; // Example: 0.5 = 50%
+    }
+
     [Header("Poisson Sampling Settings")]
     public float minDistance = 1.5f;
     public float spawnRadius = 6f;
@@ -11,8 +19,8 @@ public class PoissonAroundPlayer : MonoBehaviour
     public int maxSpawnCount = 5;
     public float spawnInterval = 5f;
 
-    [Header("Prefabs")]
-    public GameObject[] spawnPrefabs;
+    [Header("Prefabs (Weighted RNG)")]
+    public List<WeightedPrefab> weightedPrefabs;
 
     [Header("Player")]
     public Transform player;
@@ -44,7 +52,7 @@ public class PoissonAroundPlayer : MonoBehaviour
         }
         spawnedObjects.Clear();
 
-        // Generate new points around the player
+        // Generate new points using Poisson Disk Sampling
         List<Vector2> points = GeneratePoissonPoints(minDistance, spawnRadius, numSamplesBeforeRejection);
         int spawnCount = 0;
 
@@ -52,10 +60,11 @@ public class PoissonAroundPlayer : MonoBehaviour
         {
             if (offset.magnitude < playerClearRadius) continue;
 
-            // Use XZ plane for 3D top-down
             Vector3 spawnPos = player.position + new Vector3(offset.x, 0f, offset.y);
 
-            GameObject prefab = spawnPrefabs[Random.Range(0, spawnPrefabs.Length)];
+            GameObject prefab = GetWeightedRandomPrefab();
+            if (prefab == null) continue;
+
             GameObject obj = Instantiate(prefab, spawnPos, prefab.transform.rotation);
             spawnedObjects.Add(obj);
 
@@ -63,13 +72,33 @@ public class PoissonAroundPlayer : MonoBehaviour
             if (spawnCount >= maxSpawnCount) break;
         }
 
-        // ✅ Vibrate only on supported platforms (mobile)
+        // ✅ Vibrate on mobile platforms only
         #if UNITY_ANDROID || UNITY_IOS
         if (spawnCount > 0)
         {
             Handheld.Vibrate();
         }
         #endif
+    }
+
+    GameObject GetWeightedRandomPrefab()
+    {
+        if (weightedPrefabs == null || weightedPrefabs.Count == 0) return null;
+
+        float total = 0f;
+        foreach (var wp in weightedPrefabs)
+            total += wp.spawnChance;
+
+        float randomPoint = Random.value * total;
+
+        foreach (var wp in weightedPrefabs)
+        {
+            if (randomPoint < wp.spawnChance)
+                return wp.prefab;
+            randomPoint -= wp.spawnChance;
+        }
+
+        return weightedPrefabs[weightedPrefabs.Count - 1].prefab; // fallback
     }
 
     List<Vector2> GeneratePoissonPoints(float radius, float circleRadius, int rejectionLimit)

@@ -11,7 +11,7 @@ public class BossData
 {
     public string bossName;
     public int hp;
-    public string imagePath; // Kept for compatibility — not used anymore
+    public string imagePath; // for compatibility, not used
     public string subject;
     public int expReward;
     public int seen;
@@ -24,7 +24,6 @@ public class BossList
     public List<BossData> bosses;
 }
 
-// ✅ New helper class for linking subjects with sprites
 [System.Serializable]
 public class SubjectSpritePair
 {
@@ -34,8 +33,16 @@ public class SubjectSpritePair
 
 public class BossFightManager : MonoBehaviour
 {
+    public enum TierType { Low, Mid, High }
+
+    [Header("Boss Tier Settings")]
+    [Tooltip("Select which tier of bosses this scene uses.")]
+    public TierType selectedTier = TierType.Low;
+
     [Header("Boss Data Source")]
-    public TextAsset bossDataJSON;
+    public TextAsset lowTierDataJSON;
+    public TextAsset midTierDataJSON;
+    public TextAsset highTierDataJSON;
 
     [Header("UI")]
     public Button fightButton;
@@ -47,13 +54,13 @@ public class BossFightManager : MonoBehaviour
     public Slider timerSlider;
 
     [Header("Scene Settings")]
-    public string mainSceneName = "MainScene";
+    public string mainSceneName = "SampleScene";
 
     [Header("Timer Settings")]
     public float fightTimeLimit = 10f;
 
     [Header("Sprites by Subject")]
-    public List<SubjectSpritePair> bossSprites; // 👈 assign here in Inspector (e.g. math, english, etc.)
+    public List<SubjectSpritePair> bossSprites;
 
     private BossList allBosses;
     private BossData currentBoss;
@@ -64,7 +71,8 @@ public class BossFightManager : MonoBehaviour
 
     void Start()
     {
-        persistentPath = Path.Combine(Application.persistentDataPath, "boss_data.json");
+        persistentPath = Path.Combine(Application.persistentDataPath, $"boss_data_{selectedTier.ToString().ToLower()}.json");
+
         LoadBossData();
         LoadRandomBoss();
 
@@ -83,7 +91,6 @@ public class BossFightManager : MonoBehaviour
                 bossHPSlider.value = currentHP;
             }
 
-            // ✅ Use subject-sprite mapping instead of file loading
             Sprite bossSprite = GetSpriteForSubject(currentBoss.subject);
             if (bossSprite != null)
                 bossImage.sprite = bossSprite;
@@ -124,7 +131,21 @@ public class BossFightManager : MonoBehaviour
         }
         else
         {
-            allBosses = JsonUtility.FromJson<BossList>(bossDataJSON.text);
+            TextAsset selectedData = null;
+            switch (selectedTier)
+            {
+                case TierType.Low: selectedData = lowTierDataJSON; break;
+                case TierType.Mid: selectedData = midTierDataJSON; break;
+                case TierType.High: selectedData = highTierDataJSON; break;
+            }
+
+            if (selectedData == null)
+            {
+                Debug.LogError($"❌ Missing JSON for {selectedTier} tier!");
+                return;
+            }
+
+            allBosses = JsonUtility.FromJson<BossList>(selectedData.text);
             SaveBossData();
         }
     }
@@ -242,7 +263,6 @@ public class BossFightManager : MonoBehaviour
         timerSlider.value = timer;
     }
 
-    // ✅ Helper: find the sprite that matches the current subject
     private Sprite GetSpriteForSubject(string subject)
     {
         foreach (var pair in bossSprites)
