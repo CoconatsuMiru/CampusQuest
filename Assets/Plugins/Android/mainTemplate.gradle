@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply from: '../shared/keepUnitySymbols.gradle'
 // Removed broken reference to missing gradle script
 
 dependencies {
@@ -6,16 +7,13 @@ dependencies {
 }
 
 android {
-	ndkPath "**NDKPATH**"
-	aaptOptions {
-		noCompress = ['.ress', '.resource', '.obb'] + unityStreamingAssets.tokenize(', ')
-		ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~"
-	}
+    ndkVersion "23.1.7779620"
+    ndkPath "C:/Program Files/Unity/Hub/Editor/6000.0.37f1/Editor/Data/PlaybackEngines/AndroidPlayer/NDK"
 
     namespace "com.unity3d.player"
 
     compileSdk 33
-    buildToolsVersion = "33.0.2"
+    buildToolsVersion "33.0.2"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -23,10 +21,16 @@ android {
     }
 
     defaultConfig {
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+            }
+        }
+
         minSdk 21
         targetSdk 33
         ndk {
-            abiFilters "armeabi-v7a", "arm64-v8a"
+            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
             debugSymbolLevel "FULL"
         }
         versionCode 1
@@ -39,7 +43,7 @@ android {
     }
 
     androidResources {
-        noCompress = ['.unity3d', '.ress', '.resource', '.obb']
+    noCompress = **BUILTIN_NOCOMPRESS** + unityStreamingAssets.tokenize(', ')
         ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
     }
 }

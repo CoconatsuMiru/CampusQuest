@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections;
-using Firebase.Database;
 
 public class QuizManagerScript : MonoBehaviour
 {
@@ -17,6 +16,10 @@ public class QuizManagerScript : MonoBehaviour
     public Button answerButtonD;
     public TMP_Text scoreText;
     public GameObject correctPanel;
+
+    [Header("Extra UI (Question Number & Timer)")]
+    public TMP_Text questionNumberText;  // <-- Drag your “Question #” TMP here
+    public TMP_Text timeLeftText;        // <-- Drag your “Time Left” TMP here
 
     [Header("XP & Level UI (optional)")]
     public TMP_Text levelText;
@@ -38,14 +41,17 @@ public class QuizManagerScript : MonoBehaviour
     private int currentQuestionIndex = 0;
     private const int MaxQuestionCount = 5;
 
-    private DatabaseReference dbReference;
+    // Timer variables
+    private float timePerQuestion = 30f;
+    private float currentTimeLeft;
+    private bool isTimerRunning = false;
 
     void Start()
     {
-        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
         LoadQuestions();
         StartQuiz();
         UpdateXPUI();
+        CooldownManager.Instance.StartCooldown();
     }
 
     void LoadQuestions()
@@ -103,10 +109,58 @@ public class QuizManagerScript : MonoBehaviour
 
         correctPanel.SetActive(false);
         EnableButtons();
+
+        // Update UI for question number
+        if (questionNumberText != null)
+            questionNumberText.text = $"Question #{index + 1}";
+
+        // Reset and start the timer
+        currentTimeLeft = timePerQuestion;
+        isTimerRunning = true;
+        UpdateTimerUI();
+    }
+
+    void Update()
+    {
+        if (isTimerRunning)
+        {
+            currentTimeLeft -= Time.deltaTime;
+            if (currentTimeLeft <= 0f)
+            {
+                currentTimeLeft = 0f;
+                isTimerRunning = false;
+                TimeOut();
+            }
+
+            UpdateTimerUI();
+        }
+    }
+
+    void UpdateTimerUI()
+    {
+        if (timeLeftText != null)
+        {
+            int displayTime = Mathf.CeilToInt(currentTimeLeft);
+            timeLeftText.text = $"Time left: {displayTime}s";
+        }
+    }
+
+    void TimeOut()
+    {
+        DisableButtons();
+        correctPanel.SetActive(true);
+        correctPanel.GetComponentInChildren<TMP_Text>().text = "⏰ Time’s up!";
+        if (incorrectSound) audioSource.PlayOneShot(incorrectSound);
+
+        currentQuestionIndex++;
+        StartCoroutine(NextQuestionWithDelay());
     }
 
     public void OnAnswerButtonClicked(int buttonIndex)
     {
+        if (!isTimerRunning) return; // prevent clicking after timeout
+
+        isTimerRunning = false;
         string selectedAnswer = "";
 
         switch (buttonIndex)
@@ -152,98 +206,46 @@ public class QuizManagerScript : MonoBehaviour
     }
 
     void EndQuiz()
-{
-    correctPanel.SetActive(true);
-    correctPanel.GetComponentInChildren<TMP_Text>().text = $"🎉 Quiz Complete!\nScore: {score}/{MaxQuestionCount}";
-    DisableButtons();
-
-    // ✅ Apply fixed multiplier based on correct answers
-    if (score > 0)
     {
-        float boostMultiplier = 1f;
+        isTimerRunning = false;
+        correctPanel.SetActive(true);
+        correctPanel.GetComponentInChildren<TMP_Text>().text = $"🎉 Quiz Complete!\nScore: {score}/{MaxQuestionCount}";
+        DisableButtons();
 
-        switch (score)
+        if (score > 0)
         {
-            case 1:
-                boostMultiplier = 1.5f;
-                break;
-            case 2:
-                boostMultiplier = 2f;
-                break;
-            case 3:
-                boostMultiplier = 3f;
-                break;
-            case 4:
-                boostMultiplier = 4f;
-                break;
-            case 5:
-                boostMultiplier = 5f;
-                break;
-            default:
-                boostMultiplier = 1f; // in case of 0 or unexpected values
-                break;
-        }
+            float boostMultiplier = 1f;
 
-        float boostDuration = 300f; // lasts 5 minutes, you can adjust this
-        DamageBoostManager.Instance.ApplyGlobalDamageBoost(boostMultiplier, boostDuration);
-
-        Debug.Log($"✅ Damage boost applied: {boostMultiplier}x for {boostDuration}s (score: {score})");
-    }
-
-    StartCoroutine(WaitAndLoadMainScene(3f));
-}
-
-
-    IEnumerator UpdateAllStatsReward()
-    {
-        string userId = FirebaseAuthManager.LoggedInUserId;
-        if (string.IsNullOrEmpty(userId))
-        {
-            Debug.LogError("❌ Cannot update stats — no logged-in user ID found!");
-            yield break;
-        }
-
-        string[] statKeys = {
-            "stat_01_math",
-            "stat_02_science",
-            "stat_03_english",
-            "stat_04_art",
-            "stat_05_music",
-            "stat_06_history"
-        };
-
-        foreach (string key in statKeys)
-        {
-            var statRef = dbReference.Child("users").Child(userId).Child(key);
-            var statTask = statRef.GetValueAsync();
-            yield return new WaitUntil(() => statTask.IsCompleted);
-
-            if (statTask.Exception != null)
+            switch (score)
             {
-                Debug.LogError("⚠️ Failed to fetch stat: " + statTask.Exception);
-                continue;
+                case 1: boostMultiplier = 1.1f; break;
+                case 2: boostMultiplier = 1.2f; break;
+                case 3: boostMultiplier = 1.3f; break;
+                case 4: boostMultiplier = 1.4f; break;
+                case 5: boostMultiplier = 1.5f; break;
             }
 
-            int currentValue = 0;
-            if (statTask.Result.Value != null)
-                int.TryParse(statTask.Result.Value.ToString(), out currentValue);
+            float boostDuration = 300f; // 5 minutes
 
-            int newValue = currentValue + 1;
-            yield return statRef.SetValueAsync(newValue);
-            Debug.Log($"✅ Updated {key}: {currentValue} → {newValue}");
+            if (DamageBoostManager.Instance != null)
+            {
+                DamageBoostManager.Instance.ApplyGlobalDamageBoost(boostMultiplier, boostDuration);
+                Debug.Log($"✅ Applied {boostMultiplier}x damage boost for {boostDuration}s (score: {score})");
+            }
+            else
+            {
+                Debug.LogWarning("⚠️ DamageBoostManager not found — boost not applied.");
+            }
         }
+
+        StartCoroutine(WaitAndLoadMainScene(3f));
     }
 
-   IEnumerator WaitAndLoadMainScene(float delayTime)
-{
-    yield return new WaitForSeconds(delayTime);
-
-    // ✅ Start cooldown AFTER finishing quiz and before returning
-    CooldownManager.StartCooldown(2f);
-
-    SceneManager.LoadScene("SampleScene"); // your main/base scene
-}
-
+    IEnumerator WaitAndLoadMainScene(float delayTime)
+    {
+        yield return new WaitForSeconds(delayTime);
+        SceneManager.LoadScene("SampleScene");
+    }
 
     void EnableButtons()
     {

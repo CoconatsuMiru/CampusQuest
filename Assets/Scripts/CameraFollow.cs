@@ -1,30 +1,56 @@
 using UnityEngine;
-using UnityEngine.InputSystem;  // New Input System namespace
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class CameraFollow : MonoBehaviour
 {
+    [Header("Follow Settings")]
     public Transform target;
     public float height = 20f;
     public float smoothSpeed = 0.125f;
 
+    [Header("Zoom Settings")]
     public float zoomSpeed = 0.5f;
     public float minZoom = 10f;
     public float maxZoom = 40f;
 
+    [Header("Pan Settings")]
     public float panSpeed = 0.5f;
 
     private Vector3 dragOrigin;
     private bool isPanning = false;
 
+    void Awake()
+    {
+        // Keep listening to scene changes
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "SampleScene")
+        {
+            gameObject.SetActive(true);
+            Debug.Log("[CameraFollow] 🎥 Re-enabled camera in SampleScene");
+        }
+        else
+        {
+            gameObject.SetActive(false);
+            Debug.Log($"[CameraFollow] 💤 Disabled camera (not SampleScene: {scene.name})");
+        }
+    }
+
     void Update()
     {
+        if (!gameObject.activeSelf) return;
+
         HandleZoom();
         HandlePan();
     }
 
     void LateUpdate()
     {
-        if (target == null) return;
+        if (!gameObject.activeSelf || target == null) return;
 
         Vector3 desiredPosition = new Vector3(target.position.x, height, target.position.z);
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);

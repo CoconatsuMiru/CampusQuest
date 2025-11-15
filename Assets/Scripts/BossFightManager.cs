@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
-using Firebase.Database;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -12,9 +11,11 @@ public class BossData
 {
     public string bossName;
     public int hp;
-    public string imagePath;
+    public string imagePath; // for compatibility, not used
     public string subject;
     public int expReward;
+    public int seen;
+    public int defeated;
 }
 
 [System.Serializable]
@@ -23,13 +24,25 @@ public class BossList
     public List<BossData> bosses;
 }
 
+[System.Serializable]
+public class SubjectSpritePair
+{
+    public string subject;
+    public Sprite sprite;
+}
+
 public class BossFightManager : MonoBehaviour
 {
-    [Header("Boss Settings")]
-    private BossData currentBoss;
+    public enum TierType { Low, Mid, High }
+
+    [Header("Boss Tier Settings")]
+    [Tooltip("Select which tier of bosses this scene uses.")]
+    public TierType selectedTier = TierType.Low;
 
     [Header("Boss Data Source")]
-    public TextAsset bossDataJSON;
+    public TextAsset lowTierDataJSON;
+    public TextAsset midTierDataJSON;
+    public TextAsset highTierDataJSON;
 
     [Header("UI")]
     public Button fightButton;
@@ -37,41 +50,50 @@ public class BossFightManager : MonoBehaviour
     public TextMeshProUGUI bossNameText;
     public TextMeshProUGUI bossHPText;
     public Image bossImage;
+    public Slider bossHPSlider;
+    public Slider timerSlider;
 
     [Header("Scene Settings")]
-    public string mainSceneName = "MainScene";
+    public string mainSceneName = "SampleScene";
 
     [Header("Timer Settings")]
     public float fightTimeLimit = 10f;
+
+    [Header("Sprites by Subject")]
+    public List<SubjectSpritePair> bossSprites;
+
+    private BossList allBosses;
+    private BossData currentBoss;
+    private int currentBossIndex;
     private float timer;
     private int currentHP;
-
-    private DatabaseReference dbReference;
-    private string userId;
+    private string persistentPath;
 
     void Start()
     {
-        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-        userId = FirebaseAuthManager.LoggedInUserId;
+        persistentPath = Path.Combine(Application.persistentDataPath, $"boss_data_{selectedTier.ToString().ToLower()}.json");
 
+        LoadBossData();
         LoadRandomBoss();
 
         if (currentBoss != null)
         {
-            Debug.Log($"🧠 A wild {currentBoss.bossName} appeared ({currentBoss.subject}) with {currentBoss.hp} HP!");
             currentHP = currentBoss.hp;
+            currentBoss.seen = 1;
+            SaveBossData();
 
-            if (bossNameText != null)
-                bossNameText.text = currentBoss.bossName;
+            bossNameText.text = currentBoss.bossName;
+            UpdateHPUI();
 
-            if (bossHPText != null)
-                bossHPText.text = "HP: " + currentHP.ToString();
-
-            if (!string.IsNullOrEmpty(currentBoss.imagePath) && File.Exists(currentBoss.imagePath))
+            if (bossHPSlider != null)
             {
-                Texture2D tex = LoadTexture(currentBoss.imagePath);
-                bossImage.sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+                bossHPSlider.maxValue = currentBoss.hp;
+                bossHPSlider.value = currentHP;
             }
+
+            Sprite bossSprite = GetSpriteForSubject(currentBoss.subject);
+            if (bossSprite != null)
+                bossImage.sprite = bossSprite;
         }
 
         if (fightButton != null)
@@ -81,6 +103,7 @@ public class BossFightManager : MonoBehaviour
         }
 
         timer = fightTimeLimit;
+        UpdateTimerUI();
     }
 
     void Update()
@@ -88,9 +111,7 @@ public class BossFightManager : MonoBehaviour
         if (timer > 0f)
         {
             timer -= Time.deltaTime;
-
-            if (timerText != null)
-                timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
+            UpdateTimerUI();
         }
         else
         {
@@ -99,149 +120,117 @@ public class BossFightManager : MonoBehaviour
         }
     }
 
-    public void OnFight()
+    private void LoadBossData()
     {
-        if (currentBoss == null) return;
-        if (string.IsNullOrEmpty(userId))
+        if (File.Exists(persistentPath))
         {
-            Debug.LogError("❌ No logged in user found!");
+            string json = File.ReadAllText(persistentPath);
+            allBosses = JsonUtility.FromJson<BossList>(json);
+        }
+        else
+        {
+            TextAsset selectedData = selectedTier switch
+            {
+                TierType.Low => lowTierDataJSON,
+                TierType.Mid => midTierDataJSON,
+                TierType.High => highTierDataJSON,
+                _ => null
+            };
+
+            if (selectedData == null)
+            {
+                Debug.LogError($"❌ Missing JSON for {selectedTier} tier!");
+                return;
+            }
+
+            allBosses = JsonUtility.FromJson<BossList>(selectedData.text);
+            SaveBossData();
+        }
+    }
+
+    private void SaveBossData()
+    {
+        string json = JsonUtility.ToJson(allBosses, true);
+        File.WriteAllText(persistentPath, json);
+    }
+
+    private void LoadRandomBoss()
+    {
+        if (allBosses == null || allBosses.bosses == null || allBosses.bosses.Count == 0)
+        {
+            Debug.LogError("❌ No bosses found!");
             return;
         }
 
+        currentBossIndex = Random.Range(0, allBosses.bosses.Count);
+        currentBoss = allBosses.bosses[currentBossIndex];
+    }
+
+    public void OnFight()
+    {
+        if (currentBoss == null) return;
+        if (LocalAuthManager.Instance == null || LocalAuthManager.Instance.currentUser == null) return;
         StartCoroutine(HandleFightDamage());
     }
 
     private IEnumerator HandleFightDamage()
     {
-        var userTask = dbReference.Child("users").Child(userId).GetValueAsync();
-        yield return new WaitUntil(() => userTask.IsCompleted);
+        yield return null;
 
-        if (userTask.Exception != null || userTask.Result == null)
-        {
-            Debug.LogError("❌ Failed to load user stats for damage calculation.");
-            yield break;
-        }
+        var user = LocalAuthManager.Instance.currentUser;
+        string subjectKey = currentBoss.subject.ToLower();
 
-        DataSnapshot snapshot = userTask.Result;
-        string subjectKey = GetSubjectKey(currentBoss.subject);
-        if (string.IsNullOrEmpty(subjectKey))
+        if (!user.subjects.ContainsKey(subjectKey))
         {
             Debug.LogWarning($"⚠️ Unknown subject type: {currentBoss.subject}");
             yield break;
         }
 
-        // Base damage from Firebase
-        int baseDamage = int.Parse(snapshot.Child(subjectKey).Value.ToString());
-
-        // Apply boost multiplier (if any)
+        int baseDamage = user.subjects[subjectKey];
         float finalDamage = baseDamage * DamageBoostManager.Instance.globalDamageMultiplier;
         int damage = Mathf.RoundToInt(finalDamage);
 
         currentHP -= damage;
         if (currentHP < 0) currentHP = 0;
 
-        Debug.Log($"💥 You hit {currentBoss.bossName}! {damage} damage dealt (base {baseDamage}, x{DamageBoostManager.Instance.globalDamageMultiplier}). HP left: {currentHP}");
-
-        if (bossHPText != null)
-            bossHPText.text = "HP: " + currentHP.ToString();
+        UpdateHPUI();
 
         if (currentHP <= 0)
         {
-            Debug.Log($"✅ {currentBoss.bossName} defeated!");
-            StartCoroutine(RewardExpCoroutine(currentBoss.expReward));
+            currentBoss.defeated = 1;
+            SaveBossData();
+
+            // ✅ Now the reward logic is centralized in PlayerBossStats
+            if (PlayerBossStats.Instance != null)
+                PlayerBossStats.Instance.AddExp(currentBoss.expReward);
+
+            ReturnToMainScene(true);
         }
     }
 
-    private string GetSubjectKey(string subject)
-    {
-        switch (subject.ToLower())
-        {
-            case "music": return "stat_05_music";
-            case "art": return "stat_06_art";
-            case "science": return "stat_07_science";
-            case "math": return "stat_08_math";
-            case "english": return "stat_09_english";
-            case "history": return "stat_10_history";
-            default: return null;
-        }
-    }
-
-    private IEnumerator RewardExpCoroutine(int expGained)
-    {
-        var userDataTask = dbReference.Child("users").Child(userId).GetValueAsync();
-        yield return new WaitUntil(() => userDataTask.IsCompleted);
-
-        if (userDataTask.Exception != null || userDataTask.Result == null)
-        {
-            Debug.LogError("❌ Failed to load user data for EXP reward.");
-            yield break;
-        }
-
-        DataSnapshot snapshot = userDataTask.Result;
-        int currentExp = int.Parse(snapshot.Child("stat_04_exp").Value.ToString());
-        int currentLevel = int.Parse(snapshot.Child("stat_03_level").Value.ToString());
-        int currentSkillPoints = int.Parse(snapshot.Child("skillPoints").Value.ToString());
-
-        currentExp += expGained;
-        int expToNext = 50 * currentLevel;
-
-        while (currentExp >= expToNext)
-        {
-            currentExp -= expToNext;
-            currentLevel++;
-            currentSkillPoints += 5;
-            Debug.Log($"🎉 Level Up! Now Level {currentLevel} (+5 Skill Points)");
-            expToNext = 50 * currentLevel;
-        }
-
-        var updates = new Dictionary<string, object>
-        {
-            { "stat_03_level", currentLevel },
-            { "stat_04_exp", currentExp },
-            { "skillPoints", currentSkillPoints }
-        };
-
-        var dbTask = dbReference.Child("users").Child(userId).UpdateChildrenAsync(updates);
-        yield return new WaitUntil(() => dbTask.IsCompleted);
-
-        if (dbTask.Exception != null)
-            Debug.LogError("❌ Failed to update EXP/level: " + dbTask.Exception);
-        else
-            Debug.Log($"🏆 Gained {expGained} EXP! Level: {currentLevel}, Skill Points: {currentSkillPoints}");
-
-        ReturnToMainScene(true);
-    }
-
-    void ReturnToMainScene(bool success)
+    private void ReturnToMainScene(bool success)
     {
         SceneManager.LoadScene(mainSceneName);
     }
 
-    void LoadRandomBoss()
+    private void UpdateHPUI()
     {
-        if (bossDataJSON == null)
-        {
-            Debug.LogError("❌ No bossDataJSON assigned in Inspector!");
-            return;
-        }
-
-        BossList allBosses = JsonUtility.FromJson<BossList>(bossDataJSON.text);
-
-        if (allBosses == null || allBosses.bosses == null || allBosses.bosses.Count == 0)
-        {
-            Debug.LogError("❌ No bosses found in provided boss_data.json!");
-            return;
-        }
-
-        int randomIndex = Random.Range(0, allBosses.bosses.Count);
-        currentBoss = allBosses.bosses[randomIndex];
+        bossHPText.text = $"HP: {currentHP}/{currentBoss.hp}";
+        bossHPSlider.value = currentHP;
     }
 
-    Texture2D LoadTexture(string filePath)
+    private void UpdateTimerUI()
     {
-        byte[] fileData = File.ReadAllBytes(filePath);
-        Texture2D tex = new Texture2D(2, 2);
-        tex.LoadImage(fileData);
-        return tex;
+        timerText.text = $"Time: {Mathf.Ceil(timer)}s";
+        timerSlider.maxValue = fightTimeLimit;
+        timerSlider.value = timer;
+    }
+
+    private Sprite GetSpriteForSubject(string subject)
+    {
+        foreach (var pair in bossSprites)
+            if (pair.subject.ToLower() == subject.ToLower())
+                return pair.sprite;
+        return null;
     }
 }

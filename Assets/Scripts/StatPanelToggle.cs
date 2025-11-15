@@ -1,21 +1,43 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class StatPanelToggle : MonoBehaviour
+public class StatsPanelToggle : MonoBehaviour
 {
-    [Header("Assign your Stat Panel here")]
-    public GameObject statPanel;
+    [Header("🎯 Assign your Button here")]
+    public Button toggleButton;
+
+    [Header("🪄 Assign your Stats Panel here")]
+    public GameObject statsPanel;
 
     private bool isOpen = false;
 
-    public void TogglePanel()
+    private void Start()
     {
-        if (statPanel == null)
+        if (toggleButton == null)
         {
-            Debug.LogWarning("⚠️ Stat Panel not assigned!");
+            Debug.LogError("❌ Toggle Button not assigned!");
             return;
         }
 
+        if (statsPanel == null)
+        {
+            Debug.LogError("❌ Stats Panel not assigned!");
+            return;
+        }
+
+        // 🔹 Ensure panel starts hidden
+        statsPanel.SetActive(false);
+
+        // 🔹 Automatically hook up the button
+        toggleButton.onClick.RemoveAllListeners();
+        toggleButton.onClick.AddListener(TogglePanel);
+    }
+
+    private void TogglePanel()
+    {
         isOpen = !isOpen;
-        statPanel.SetActive(isOpen);
+        statsPanel.SetActive(isOpen);
+
+        Debug.Log(isOpen ? "📖 Stats Panel opened!" : "❌ Stats Panel closed!");
     }
 }

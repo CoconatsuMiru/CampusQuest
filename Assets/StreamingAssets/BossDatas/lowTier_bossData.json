@@ -1,0 +1,58 @@
+{
+  "bosses": [
+    {
+      "bossName": "Hotdog Junior",
+      "hp": 100,
+      "imagePath": "BossDatas/Low/english_low_tier",
+      "subject": "english",
+      "expReward": 15,
+      "seen": 0,
+      "defeated": 0
+    },
+    {
+      "bossName": "Tiny Taco",
+      "hp": 100,
+      "imagePath": "BossDatas/Low/history_low_tier",
+      "subject": "history",
+      "expReward": 15,
+      "seen": 0,
+      "defeated": 0
+    },
+    {
+      "bossName": "Burger Baron",
+      "hp": 100,
+      "imagePath": "BossDatas/Low/math_low_tier",
+      "subject": "math",
+      "expReward": 15,
+      "seen": 0,
+      "defeated": 0
+    },
+    {
+      "bossName": "Pizza Duke",
+      "hp": 100,
+      "imagePath": "BossDatas/Low/music_low_tier",
+      "subject": "music",
+      "expReward": 15,
+      "seen": 0,
+      "defeated": 0
+    },
+    {
+      "bossName": "Hotdog King",
+      "hp": 100,
+      "imagePath": "BossDatas/Low/pixellab-Low-Tier--Paintling--Theme--Li-1759923908643",
+      "subject": "art",
+      "expReward": 15,
+      "seen": 0,
+      "defeated": 0
+    },
+    {
+      "bossName": "Burger Emperor",
+      "hp": 100,
+      "imagePath": "BossDatas/Low/science_low_tier",
+      "subject": "science",
+      "expReward": 15,
+      "seen": 0,
+      "defeated": 0
+    }
+  ]
+}

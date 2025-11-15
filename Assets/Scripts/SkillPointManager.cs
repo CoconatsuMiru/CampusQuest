@@ -1,130 +1,104 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using Firebase;
-using Firebase.Database;
-using Firebase.Auth;
-using System.Collections;
+using UnityEngine.UI;
 
-public class SkillPointManager : MonoBehaviour
+public class SkillPointsManagerLocal : MonoBehaviour
 {
-    [Header("UI Elements")]
-    public TMP_Text skillPointsText;
-    public TMP_Text historyText;
-    public TMP_Text scienceText;
-    public TMP_Text artText;
-    public TMP_Text englishText;
-    public TMP_Text mathText;
-    public TMP_Text musicText;
+    public static SkillPointsManagerLocal Instance;
 
-    [Header("Buttons")]
-    public Button addHistoryBtn;
-    public Button addScienceBtn;
-    public Button addArtBtn;
-    public Button addEnglishBtn;
-    public Button addMathBtn;
-    public Button addMusicBtn;
+    [Header("UI References")]
+    public TMP_Text levelText;           // e.g., "Level 5"
+    public TMP_Text skillPointsText;     // e.g., "Skill Points: 12"
 
-    private DatabaseReference dbReference;
-    private string userId;
+    [Header("Upgrade Buttons")]
+    public Button addMathButton;
+    public Button addScienceButton;
+    public Button addEnglishButton;
+    public Button addArtButton;
+    public Button addMusicButton;
 
-    private int availableSkillPoints;
-    private int history, science, art, english, math, music;
+    [Header("History (Separate Fields)")]
+    public Button addHistoryButton;
+    public TMP_Text historyValueText;    // Separate TMP just for history
 
-    void Start()
+    [Header("Subject Values (Other Subjects)")]
+    public TMP_Text mathValueText;
+    public TMP_Text scienceValueText;
+    public TMP_Text englishValueText;
+    public TMP_Text artValueText;
+    public TMP_Text musicValueText;
+
+    private void Awake()
     {
-        dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-        userId = FirebaseAuth.DefaultInstance.CurrentUser?.UserId;
-
-        if (string.IsNullOrEmpty(userId))
+        if (Instance != null && Instance != this)
         {
-            Debug.LogError("❌ No logged in user!");
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        SetupButtons();
+        RefreshUI();
+    }
+
+    private void SetupButtons()
+    {
+        if (addMathButton) addMathButton.onClick.AddListener(() => UpgradeSubject("math"));
+        if (addScienceButton) addScienceButton.onClick.AddListener(() => UpgradeSubject("science"));
+        if (addEnglishButton) addEnglishButton.onClick.AddListener(() => UpgradeSubject("english"));
+        if (addArtButton) addArtButton.onClick.AddListener(() => UpgradeSubject("art"));
+        if (addMusicButton) addMusicButton.onClick.AddListener(() => UpgradeSubject("music"));
+        if (addHistoryButton) addHistoryButton.onClick.AddListener(() => UpgradeSubject("history"));
+    }
+
+    public void RefreshUI()
+    {
+        if (PlayerBossStats.Instance == null || !PlayerBossStats.Instance.isLoaded)
+        {
+            Debug.LogWarning("⚠ SkillPointsManagerLocal: Player stats not loaded yet.");
             return;
         }
 
-        StartCoroutine(LoadStatsFromDB());
+        var stats = PlayerBossStats.Instance;
 
-        addHistoryBtn.onClick.AddListener(() => SpendSkillPoint("stat_10_history", ref history, historyText));
-        addScienceBtn.onClick.AddListener(() => SpendSkillPoint("stat_07_science", ref science, scienceText));
-        addArtBtn.onClick.AddListener(() => SpendSkillPoint("stat_06_art", ref art, artText));
-        addEnglishBtn.onClick.AddListener(() => SpendSkillPoint("stat_09_english", ref english, englishText));
-        addMathBtn.onClick.AddListener(() => SpendSkillPoint("stat_08_math", ref math, mathText));
-        addMusicBtn.onClick.AddListener(() => SpendSkillPoint("stat_05_music", ref music, musicText));
+        // Level and Skill Points
+        if (levelText != null)
+            levelText.text = $"Level {stats.level}";
+        if (skillPointsText != null)
+            skillPointsText.text = $"Skill Points: {stats.skillPoints}";
+
+        // Subject Values
+        if (mathValueText != null) mathValueText.text = stats.stat_math.ToString();
+        if (scienceValueText != null) scienceValueText.text = stats.stat_science.ToString();
+        if (englishValueText != null) englishValueText.text = stats.stat_english.ToString();
+        if (artValueText != null) artValueText.text = stats.stat_art.ToString();
+        if (musicValueText != null) musicValueText.text = stats.stat_music.ToString();
+
+        // Separate History Field
+        if (historyValueText != null) historyValueText.text = stats.stat_history.ToString();
     }
 
-    private IEnumerator LoadStatsFromDB()
+    private void UpgradeSubject(string subject)
     {
-        var task = dbReference.Child("users").Child(userId).GetValueAsync();
-        yield return new WaitUntil(() => task.IsCompleted);
-
-        if (task.Exception != null)
+        if (PlayerBossStats.Instance == null || !PlayerBossStats.Instance.isLoaded)
         {
-            Debug.LogError("❌ Failed to load user data: " + task.Exception);
-            yield break;
-        }
-
-        if (task.Result == null || task.Result.Value == null)
-        {
-            Debug.LogError("⚠️ No user data found!");
-            yield break;
-        }
-
-        DataSnapshot snapshot = task.Result;
-
-        int SafeRead(string key)
-        {
-            if (!snapshot.HasChild(key) || snapshot.Child(key).Value == null)
-            {
-                Debug.LogWarning($"⚠️ Missing key: {key}, defaulting to 0");
-                return 0;
-            }
-            return int.Parse(snapshot.Child(key).Value.ToString());
-        }
-
-        // 🔹 Load stats from Firebase
-        availableSkillPoints = SafeRead("stat_11_skillpoints");
-        history = SafeRead("stat_10_history");
-        science = SafeRead("stat_07_science");
-        art = SafeRead("stat_06_art");
-        english = SafeRead("stat_09_english");
-        math = SafeRead("stat_08_math");
-        music = SafeRead("stat_05_music");
-
-        // 🔹 Update UI
-        UpdateUI();
-        Debug.Log("✅ Skill stats loaded successfully!");
-    }
-
-    private void UpdateUI()
-    {
-        skillPointsText.text = $"Available Skill Points: {availableSkillPoints}";
-        historyText.text = history.ToString();
-        scienceText.text = science.ToString();
-        artText.text = art.ToString();
-        englishText.text = english.ToString();
-        mathText.text = math.ToString();
-        musicText.text = music.ToString();
-    }
-
-    private void SpendSkillPoint(string statKey, ref int statValue, TMP_Text statText)
-    {
-        if (availableSkillPoints <= 0)
-        {
-            Debug.LogWarning("⚠️ Not enough skill points!");
+            Debug.LogWarning("⚠ Cannot upgrade subject: Player stats not ready.");
             return;
         }
 
-        availableSkillPoints--;
-        statValue++;
+        bool success = PlayerBossStats.Instance.SpendSkillPoints(subject, 1);
 
-        // Update UI immediately
-        statText.text = statValue.ToString();
-        skillPointsText.text = $"Available Skill Points: {availableSkillPoints}";
-
-        // 🔹 Update Firebase
-        dbReference.Child("users").Child(userId).Child("stat_11_skillpoints").SetValueAsync(availableSkillPoints);
-        dbReference.Child("users").Child(userId).Child(statKey).SetValueAsync(statValue);
-
-        Debug.Log($"✅ Increased {statKey} to {statValue}. Remaining skill points: {availableSkillPoints}");
+        if (success)
+        {
+            Debug.Log($"✅ Upgraded {subject} by +1");
+            RefreshUI();
+        }
+        else
+        {
+            Debug.LogWarning($"❌ Failed to upgrade {subject}: Not enough points or invalid subject.");
+        }
     }
 }
