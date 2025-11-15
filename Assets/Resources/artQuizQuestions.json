@@ -1,0 +1,179 @@
+{
+  "questions": [
+    {
+      "subject": "Art",
+      "question": "Who painted the Mona Lisa?",
+      "answers": ["Leonardo da Vinci", "Michelangelo", "Vincent van Gogh", "Pablo Picasso"],
+      "correctAnswer": "Leonardo da Vinci",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What do you call a painting done on wet plaster?",
+      "answers": ["Fresco", "Mosaic", "Portrait", "Canvas"],
+      "correctAnswer": "Fresco",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which art style is Salvador Dalí known for?",
+      "answers": ["Surrealism", "Cubism", "Realism", "Expressionism"],
+      "correctAnswer": "Surrealism",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which of the following is a primary color?",
+      "answers": ["Red", "Green", "Purple", "Orange"],
+      "correctAnswer": "Red",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What tool is used to mix paint on a palette?",
+      "answers": ["Palette knife", "Brush", "Sponge", "Roller"],
+      "correctAnswer": "Palette knife",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Who sculpted David?",
+      "answers": ["Michelangelo", "Donatello", "Leonardo da Vinci", "Raphael"],
+      "correctAnswer": "Michelangelo",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which artist is known for painting 'Starry Night'?",
+      "answers": ["Vincent van Gogh", "Claude Monet", "Pablo Picasso", "Edvard Munch"],
+      "correctAnswer": "Vincent van Gogh",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which technique uses small dots of color to create an image?",
+      "answers": ["Pointillism", "Cubism", "Impressionism", "Fresco"],
+      "correctAnswer": "Pointillism",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which art movement emphasized light and color over detail?",
+      "answers": ["Impressionism", "Realism", "Surrealism", "Cubism"],
+      "correctAnswer": "Impressionism",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which sculptor is famous for 'The Thinker'?",
+      "answers": ["Auguste Rodin", "Michelangelo", "Donatello", "Gian Lorenzo Bernini"],
+      "correctAnswer": "Auguste Rodin",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What do you call a painting of inanimate objects?",
+      "answers": ["Still life", "Portrait", "Landscape", "Abstract"],
+      "correctAnswer": "Still life",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which artist co-founded Cubism?",
+      "answers": ["Pablo Picasso", "Salvador Dalí", "Vincent van Gogh", "Claude Monet"],
+      "correctAnswer": "Pablo Picasso",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What is the term for artwork that uses shapes and colors without representing reality?",
+      "answers": ["Abstract art", "Realism", "Surrealism", "Fresco"],
+      "correctAnswer": "Abstract art",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which medium uses wet plaster on walls for murals?",
+      "answers": ["Fresco", "Oil paint", "Watercolor", "Charcoal"],
+      "correctAnswer": "Fresco",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which type of painting is done on canvas stretched over a frame?",
+      "answers": ["Oil painting", "Fresco", "Mosaic", "Tempera"],
+      "correctAnswer": "Oil painting",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which artist is famous for the painting 'The Persistence of Memory'?",
+      "answers": ["Salvador Dalí", "Pablo Picasso", "Leonardo da Vinci", "Vincent van Gogh"],
+      "correctAnswer": "Salvador Dalí",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What kind of art uses colored glass pieces?",
+      "answers": ["Mosaic", "Fresco", "Oil painting", "Watercolor"],
+      "correctAnswer": "Mosaic",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which of these is a secondary color?",
+      "answers": ["Green", "Red", "Blue", "Yellow"],
+      "correctAnswer": "Green",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which medium involves carving or modeling materials into 3D forms?",
+      "answers": ["Sculpture", "Painting", "Drawing", "Printmaking"],
+      "correctAnswer": "Sculpture",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What is the term for a painting of natural scenery?",
+      "answers": ["Landscape", "Portrait", "Still life", "Abstract"],
+      "correctAnswer": "Landscape",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which technique uses small dots of color that blend at a distance?",
+      "answers": ["Pointillism", "Cubism", "Fresco", "Impressionism"],
+      "correctAnswer": "Pointillism",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which artist is known for 'The Birth of Venus'?",
+      "answers": ["Sandro Botticelli", "Leonardo da Vinci", "Michelangelo", "Raphael"],
+      "correctAnswer": "Sandro Botticelli",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which art style focuses on realistic, detailed representation?",
+      "answers": ["Realism", "Impressionism", "Surrealism", "Cubism"],
+      "correctAnswer": "Realism",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "What tool is used to apply and blend watercolor?",
+      "answers": ["Brush", "Palette knife", "Charcoal", "Easel"],
+      "correctAnswer": "Brush",
+      "enabled": 1
+    },
+    {
+      "subject": "Art",
+      "question": "Which famous sculptor designed the Pietà?",
+      "answers": ["Michelangelo", "Donatello", "Auguste Rodin", "Gian Lorenzo Bernini"],
+      "correctAnswer": "Michelangelo",
+      "enabled": 1
+    }
+  ]
+}

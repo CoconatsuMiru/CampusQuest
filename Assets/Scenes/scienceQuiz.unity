@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Library Quiz
+  m_text: Science Quiz
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2607,7 +2607,7 @@ MonoBehaviour:
   audioSource: {fileID: 1832857619}
   correctSound: {fileID: 8300000, guid: af6b30fe45b1b4640a2ebb09cd6cb076, type: 3}
   incorrectSound: {fileID: 8300000, guid: f7e5d902de5750249aa1a866429120a4, type: 3}
-  quizJSON: {fileID: 4900000, guid: 9729cba012ade954899e01789e842f29, type: 3}
+  quizJSON: {fileID: 4900000, guid: 4deeb77020fc80444aabdf7f53da163e, type: 3}
 --- !u!4 &1832857621
 Transform:
   m_ObjectHideFlags: 0

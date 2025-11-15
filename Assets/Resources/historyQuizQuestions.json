@@ -1,0 +1,179 @@
+{
+  "questions": [
+    {
+      "subject": "History",
+      "question": "Who was the first President of the United States?",
+      "answers": ["Abraham Lincoln", "George Washington", "John Adams", "Thomas Jefferson"],
+      "correctAnswer": "George Washington",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "In what year did World War II end?",
+      "answers": ["1942", "1945", "1948", "1950"],
+      "correctAnswer": "1945",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "The pyramids of Giza are located in which country?",
+      "answers": ["Egypt", "Mexico", "Greece", "Peru"],
+      "correctAnswer": "Egypt",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Who discovered America in 1492?",
+      "answers": ["Christopher Columbus", "Marco Polo", "Ferdinand Magellan", "Amerigo Vespucci"],
+      "correctAnswer": "Christopher Columbus",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "What ancient civilization built the Colosseum?",
+      "answers": ["Greek", "Roman", "Mayan", "Egyptian"],
+      "correctAnswer": "Roman",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Who was the first Emperor of Rome?",
+      "answers": ["Julius Caesar", "Augustus", "Nero", "Caligula"],
+      "correctAnswer": "Augustus",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "In which year did the American Civil War begin?",
+      "answers": ["1860", "1861", "1865", "1870"],
+      "correctAnswer": "1861",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which explorer circumnavigated the globe first?",
+      "answers": ["Ferdinand Magellan", "Christopher Columbus", "James Cook", "Marco Polo"],
+      "correctAnswer": "Ferdinand Magellan",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which empire was ruled by Genghis Khan?",
+      "answers": ["Mongol Empire", "Ottoman Empire", "Roman Empire", "Persian Empire"],
+      "correctAnswer": "Mongol Empire",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "What year did the French Revolution begin?",
+      "answers": ["1789", "1776", "1804", "1812"],
+      "correctAnswer": "1789",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Who was the British Prime Minister during most of World War II?",
+      "answers": ["Winston Churchill", "Neville Chamberlain", "Clement Attlee", "Margaret Thatcher"],
+      "correctAnswer": "Winston Churchill",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which civilization built Machu Picchu?",
+      "answers": ["Inca", "Aztec", "Mayan", "Olmec"],
+      "correctAnswer": "Inca",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "The Berlin Wall fell in which year?",
+      "answers": ["1987", "1989", "1991", "1993"],
+      "correctAnswer": "1989",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Who was the first man to step on the moon?",
+      "answers": ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "Michael Collins"],
+      "correctAnswer": "Neil Armstrong",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which war was fought between the North and South regions of the United States?",
+      "answers": ["World War I", "World War II", "American Civil War", "Revolutionary War"],
+      "correctAnswer": "American Civil War",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Who was the leader of Nazi Germany during World War II?",
+      "answers": ["Adolf Hitler", "Joseph Stalin", "Benito Mussolini", "Winston Churchill"],
+      "correctAnswer": "Adolf Hitler",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which civilization is known for creating cuneiform writing?",
+      "answers": ["Sumerians", "Egyptians", "Romans", "Greeks"],
+      "correctAnswer": "Sumerians",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "The Great Fire of London occurred in which year?",
+      "answers": ["1666", "1600", "1707", "1750"],
+      "correctAnswer": "1666",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which U.S. President issued the Emancipation Proclamation?",
+      "answers": ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "Theodore Roosevelt"],
+      "correctAnswer": "Abraham Lincoln",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "What was the primary cause of the Cold War?",
+      "answers": ["Ideological conflict between the USA and USSR", "Colonial expansion", "Trade disputes", "Religious wars"],
+      "correctAnswer": "Ideological conflict between the USA and USSR",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which ancient civilization built the Parthenon?",
+      "answers": ["Greek", "Roman", "Egyptian", "Persian"],
+      "correctAnswer": "Greek",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Who was the famous pharaoh known for the Great Pyramid of Giza?",
+      "answers": ["Khufu", "Tutankhamun", "Ramses II", "Cleopatra"],
+      "correctAnswer": "Khufu",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "The Magna Carta was signed in which country?",
+      "answers": ["England", "France", "Spain", "Germany"],
+      "correctAnswer": "England",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which empire was led by Alexander the Great?",
+      "answers": ["Macedonian Empire", "Roman Empire", "Ottoman Empire", "Persian Empire"],
+      "correctAnswer": "Macedonian Empire",
+      "enabled": 1
+    },
+    {
+      "subject": "History",
+      "question": "Which revolution led to the independence of India from British rule?",
+      "answers": ["Indian Independence Movement", "French Revolution", "American Revolution", "Russian Revolution"],
+      "correctAnswer": "Indian Independence Movement",
+      "enabled": 1
+    }
+  ]
+}

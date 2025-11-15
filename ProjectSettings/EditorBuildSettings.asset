@@ -23,25 +23,43 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/libraryQuiz.unity
     guid: e56a65a58d9ef8142b10959ef14dceab
+  - enabled: 1
+    path: Assets/Scenes/artQuiz.unity
+    guid: 3ad41772c03180844b22e0c227839f0b
+  - enabled: 1
+    path: Assets/Scenes/englishQuiz.unity
+    guid: eb7b3091da86cb34dadb20056ee0d315
+  - enabled: 1
+    path: Assets/Scenes/historyQuiz.unity
+    guid: db2075dcee2031f4ba86b6d75238d2f6
+  - enabled: 1
+    path: Assets/Scenes/mathQuiz.unity
+    guid: 71a8e21c176528c4e866b621cbbcf223
+  - enabled: 1
+    path: Assets/Scenes/scienceQuiz.unity
+    guid: ec99de58d92eb9c47a21aa0a7b838623
+  - enabled: 1
+    path: Assets/Scenes/musicQuiz.unity
+    guid: db51e24c6eaab224a942213d65ca8c67
   - enabled: 0
     path: Assets/Scenes/TextJSONTest.unity
     guid: 73c1789e4f0945c41a8efa2e39c8971d
   - enabled: 0
     path: Assets/Scenes/BossFightScene.unity
     guid: f47ba12bf1b387e418f475dbae54a8e2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MusicTest.unity
     guid: 1acc748338c68cb4880da6f1dcd53fe9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ScienceTest.unity
     guid: b7effbf8c0b9f904e8cec070ca5898cc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EnglishTest.unity
     guid: 78a8b9644e270c9459992e33b52b3e04
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ArtTest.unity
     guid: d4af5c3a3fcde9a4c9a5d7a724e00025
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HistoryTest.unity
     guid: 1c7721729e289434983ef3b2e4cd5405
   m_configObjects:

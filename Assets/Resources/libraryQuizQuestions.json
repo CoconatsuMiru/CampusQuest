@@ -1,213 +1,178 @@
 {
   "questions": [
     {
-      "subject": "Math",
-      "question": "What is 8 × 7?",
-      "answers": ["54", "56", "64", "48"],
-      "correctAnswer": "56",
+      "subject": "Library",
+      "question": "What system is commonly used to classify books in many libraries?",
+      "answers": ["Dewey Decimal System", "Metric System", "Gregorian System", "Scientific Method"],
+      "correctAnswer": "Dewey Decimal System",
       "enabled": 1
     },
     {
-      "subject": "Math",
-      "question": "What is the square root of 81?",
-      "answers": ["8", "9", "10", "11"],
-      "correctAnswer": "9",
+      "subject": "Library",
+      "question": "What do you call the place where books are stored in a library?",
+      "answers": ["Stacks", "Shelves", "Bins", "Drawers"],
+      "correctAnswer": "Stacks",
       "enabled": 1
     },
     {
-      "subject": "Math",
-      "question": "What is 15% of 200?",
-      "answers": ["20", "25", "30", "35"],
-      "correctAnswer": "30",
+      "subject": "Library",
+      "question": "Who is responsible for managing and organizing library resources?",
+      "answers": ["Librarian", "Designer", "Technician", "Editor"],
+      "correctAnswer": "Librarian",
       "enabled": 1
     },
     {
-      "subject": "Math",
-      "question": "What is the value of π (pi) approximately?",
-      "answers": ["2.14", "3.14", "4.13", "3.41"],
-      "correctAnswer": "3.14",
+      "subject": "Library",
+      "question": "What is the term for borrowing a book from the library?",
+      "answers": ["Check-out", "Upload", "Install", "Deploy"],
+      "correctAnswer": "Check-out",
       "enabled": 1
     },
     {
-      "subject": "Math",
-      "question": "What is 100 divided by 4?",
-      "answers": ["20", "25", "30", "40"],
-      "correctAnswer": "25",
+      "subject": "Library",
+      "question": "What is used to track books and materials in most libraries?",
+      "answers": ["Catalog", "Invoice", "Ledger", "Schedule"],
+      "correctAnswer": "Catalog",
       "enabled": 1
     },
     {
-      "subject": "History",
-      "question": "Who was the first President of the United States?",
-      "answers": ["Abraham Lincoln", "George Washington", "John Adams", "Thomas Jefferson"],
-      "correctAnswer": "George Washington",
+      "subject": "Library",
+      "question": "What do you call the date when a borrowed book must be returned?",
+      "answers": ["Due date", "Start date", "Return code", "Renewal date"],
+      "correctAnswer": "Due date",
       "enabled": 1
     },
     {
-      "subject": "History",
-      "question": "In what year did World War II end?",
-      "answers": ["1942", "1945", "1948", "1950"],
-      "correctAnswer": "1945",
+      "subject": "Library",
+      "question": "What is the quiet study area of a library often called?",
+      "answers": ["Reading room", "Play room", "Music hall", "Studio"],
+      "correctAnswer": "Reading room",
       "enabled": 1
     },
     {
-      "subject": "History",
-      "question": "The pyramids of Giza are located in which country?",
-      "answers": ["Egypt", "Mexico", "Greece", "Peru"],
-      "correctAnswer": "Egypt",
+      "subject": "Library",
+      "question": "What does ISBN stand for?",
+      "answers": ["International Standard Book Number", "Internal Shelf Book Note", "Indexed System Book Number", "International Storage Barcode Number"],
+      "correctAnswer": "International Standard Book Number",
       "enabled": 1
     },
     {
-      "subject": "History",
-      "question": "Who discovered America in 1492?",
-      "answers": ["Christopher Columbus", "Marco Polo", "Ferdinand Magellan", "Amerigo Vespucci"],
-      "correctAnswer": "Christopher Columbus",
+      "subject": "Library",
+      "question": "What section would you find dictionaries and encyclopedias?",
+      "answers": ["Reference section", "Fiction section", "Children's area", "Archives"],
+      "correctAnswer": "Reference section",
       "enabled": 1
     },
     {
-      "subject": "History",
-      "question": "What ancient civilization built the Colosseum?",
-      "answers": ["Greek", "Roman", "Mayan", "Egyptian"],
-      "correctAnswer": "Roman",
+      "subject": "Library",
+      "question": "Which part of the library holds older documents and historical records?",
+      "answers": ["Archives", "Cafeteria", "Lobby", "Computer lab"],
+      "correctAnswer": "Archives",
       "enabled": 1
     },
     {
-      "subject": "Science",
-      "question": "What planet is known as the Red Planet?",
-      "answers": ["Venus", "Jupiter", "Mars", "Saturn"],
-      "correctAnswer": "Mars",
+      "subject": "Library",
+      "question": "What is the term for renewing a borrowed book?",
+      "answers": ["Extend", "Reload", "Update", "Shift"],
+      "correctAnswer": "Extend",
       "enabled": 1
     },
     {
-      "subject": "Science",
-      "question": "What is the chemical symbol for water?",
-      "answers": ["H2O", "CO2", "O2", "H2"],
-      "correctAnswer": "H2O",
+      "subject": "Library",
+      "question": "What type of library is typically found in schools?",
+      "answers": ["Academic library", "National library", "Public library", "Special library"],
+      "correctAnswer": "Academic library",
       "enabled": 1
     },
     {
-      "subject": "Science",
-      "question": "What gas do plants release during photosynthesis?",
-      "answers": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
-      "correctAnswer": "Oxygen",
+      "subject": "Library",
+      "question": "What card or account is used to borrow books?",
+      "answers": ["Library card", "Game pass", "Visa card", "Logbook"],
+      "correctAnswer": "Library card",
       "enabled": 1
     },
     {
-      "subject": "Science",
-      "question": "What part of the cell contains DNA?",
-      "answers": ["Cytoplasm", "Nucleus", "Membrane", "Mitochondria"],
-      "correctAnswer": "Nucleus",
+      "subject": "Library",
+      "question": "In the Dewey Decimal System, where are science books usually located?",
+      "answers": ["500s", "200s", "700s", "900s"],
+      "correctAnswer": "500s",
       "enabled": 1
     },
     {
-      "subject": "Science",
-      "question": "What planet has rings?",
-      "answers": ["Saturn", "Neptune", "Mars", "Jupiter"],
-      "correctAnswer": "Saturn",
+      "subject": "Library",
+      "question": "What is the process of organizing books on shelves?",
+      "answers": ["Shelving", "Stacking", "Indexing", "Labeling"],
+      "correctAnswer": "Shelving",
       "enabled": 1
     },
     {
-      "subject": "Art",
-      "question": "Who painted the Mona Lisa?",
-      "answers": ["Leonardo da Vinci", "Michelangelo", "Vincent van Gogh", "Pablo Picasso"],
-      "correctAnswer": "Leonardo da Vinci",
+      "subject": "Library",
+      "question": "What is the person studying library science called?",
+      "answers": ["Library science student", "Archivist", "Technician", "Research aide"],
+      "correctAnswer": "Library science student",
       "enabled": 1
     },
     {
-      "subject": "Art",
-      "question": "What do you call a painting done on wet plaster?",
-      "answers": ["Fresco", "Mosaic", "Portrait", "Canvas"],
-      "correctAnswer": "Fresco",
+      "subject": "Library",
+      "question": "What section contains novels and storytelling books?",
+      "answers": ["Fiction section", "Reference section", "Digital media area", "Archives"],
+      "correctAnswer": "Fiction section",
       "enabled": 1
     },
     {
-      "subject": "Art",
-      "question": "Which art style is Salvador Dalí known for?",
-      "answers": ["Surrealism", "Cubism", "Realism", "Expressionism"],
-      "correctAnswer": "Surrealism",
+      "subject": "Library",
+      "question": "Which area usually contains computers for research?",
+      "answers": ["Computer lab", "Reading lounge", "Lobby", "Children's corner"],
+      "correctAnswer": "Computer lab",
       "enabled": 1
     },
     {
-      "subject": "Art",
-      "question": "Which of the following is a primary color?",
-      "answers": ["Red", "Green", "Purple", "Orange"],
-      "correctAnswer": "Red",
+      "subject": "Library",
+      "question": "What is the barcode on a library book used for?",
+      "answers": ["Tracking inventory", "Decoration", "Branding", "Pricing"],
+      "correctAnswer": "Tracking inventory",
       "enabled": 1
     },
     {
-      "subject": "Art",
-      "question": "What tool is used to mix paint on a palette?",
-      "answers": ["Palette knife", "Brush", "Sponge", "Roller"],
-      "correctAnswer": "Palette knife",
+      "subject": "Library",
+      "question": "What do you call a library that focuses on a specific subject like law or medicine?",
+      "answers": ["Special library", "General library", "Public library", "Home library"],
+      "correctAnswer": "Special library",
       "enabled": 1
     },
     {
-      "subject": "Music",
-      "question": "How many notes are in a musical scale?",
-      "answers": ["6", "7", "8", "9"],
-      "correctAnswer": "7",
+      "subject": "Library",
+      "question": "What area of the library is designed for young children?",
+      "answers": ["Children's section", "Quiet zone", "Reference hall", "Study pods"],
+      "correctAnswer": "Children's section",
       "enabled": 1
     },
     {
-      "subject": "Music",
-      "question": "Which clef is used for higher-pitched instruments?",
-      "answers": ["Bass clef", "Treble clef", "Alto clef", "Tenor clef"],
-      "correctAnswer": "Treble clef",
+      "subject": "Library",
+      "question": "What does a library call the list of all books they own?",
+      "answers": ["Catalog", "Playlist", "Notebook", "Directory"],
+      "correctAnswer": "Catalog",
       "enabled": 1
     },
     {
-      "subject": "Music",
-      "question": "Which instrument has keys, pedals, and strings?",
-      "answers": ["Piano", "Guitar", "Harp", "Drum"],
-      "correctAnswer": "Piano",
+      "subject": "Library",
+      "question": "What is the main purpose of a library?",
+      "answers": ["Provide access to information", "Sell books", "Store food", "Print newspapers"],
+      "correctAnswer": "Provide access to information",
       "enabled": 1
     },
     {
-      "subject": "Music",
-      "question": "What symbol represents silence in music?",
-      "answers": ["Rest", "Note", "Beat", "Chord"],
-      "correctAnswer": "Rest",
+      "subject": "Library",
+      "question": "What do you call the coded label used to organize books on shelves?",
+      "answers": ["Call number", "Book code", "Return tag", "Shelf ID"],
+      "correctAnswer": "Call number",
       "enabled": 1
     },
     {
-      "subject": "Music",
-      "question": "Who composed the Fifth Symphony?",
-      "answers": ["Mozart", "Beethoven", "Bach", "Chopin"],
-      "correctAnswer": "Beethoven",
-      "enabled": 1
-    },
-    {
-      "subject": "English",
-      "question": "What is the past tense of 'go'?",
-      "answers": ["Goed", "Went", "Gone", "Go"],
-      "correctAnswer": "Went",
-      "enabled": 1
-    },
-    {
-      "subject": "English",
-      "question": "Which of the following is a noun?",
-      "answers": ["Run", "Happy", "Table", "Quickly"],
-      "correctAnswer": "Table",
-      "enabled": 1
-    },
-    {
-      "subject": "English",
-      "question": "Which punctuation ends a question?",
-      "answers": [".", "!", "?", ","],
-      "correctAnswer": "?",
-      "enabled": 1
-    },
-    {
-      "subject": "English",
-      "question": "What is a synonym for 'big'?",
-      "answers": ["Small", "Tiny", "Large", "Thin"],
-      "correctAnswer": "Large",
-      "enabled": 1
-    },
-    {
-      "subject": "English",
-      "question": "What do we call a word that describes a noun?",
-      "answers": ["Verb", "Adjective", "Adverb", "Pronoun"],
-      "correctAnswer": "Adjective",
+      "subject": "Library",
+      "question": "What type of resource is an encyclopedia?",
+      "answers": ["Reference material", "Fiction book", "Magazine", "Comic"],
+      "correctAnswer": "Reference material",
       "enabled": 1
     }
   ]

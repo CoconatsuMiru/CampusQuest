@@ -1,0 +1,179 @@
+{
+  "questions": [
+    {
+      "subject": "Math",
+      "question": "What is 8 × 7?",
+      "answers": ["54", "56", "64", "48"],
+      "correctAnswer": "56",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is the square root of 81?",
+      "answers": ["8", "9", "10", "11"],
+      "correctAnswer": "9",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 15% of 200?",
+      "answers": ["20", "25", "30", "35"],
+      "correctAnswer": "30",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is the approximate value of pi?",
+      "answers": ["2.14", "3.14", "4.13", "3.41"],
+      "correctAnswer": "3.14",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 100 divided by 4?",
+      "answers": ["20", "25", "30", "40"],
+      "correctAnswer": "25",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 12 × 12?",
+      "answers": ["124", "132", "144", "156"],
+      "correctAnswer": "144",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is the square root of 49?",
+      "answers": ["5", "6", "7", "8"],
+      "correctAnswer": "7",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 25% of 80?",
+      "answers": ["15", "20", "25", "30"],
+      "correctAnswer": "20",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "Solve: 9 + 10",
+      "answers": ["18", "19", "20", "21"],
+      "correctAnswer": "19",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 45 ÷ 5?",
+      "answers": ["5", "8", "9", "10"],
+      "correctAnswer": "9",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 7 squared?",
+      "answers": ["42", "47", "49", "56"],
+      "correctAnswer": "49",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 3 cubed?",
+      "answers": ["6", "9", "18", "27"],
+      "correctAnswer": "27",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "Solve: 150 − 75",
+      "answers": ["70", "75", "80", "85"],
+      "correctAnswer": "75",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 5 × 9?",
+      "answers": ["40", "45", "50", "55"],
+      "correctAnswer": "45",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is the square root of 16?",
+      "answers": ["2", "3", "4", "5"],
+      "correctAnswer": "4",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 30% of 100?",
+      "answers": ["20", "25", "30", "35"],
+      "correctAnswer": "30",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "Solve: 8 + 15",
+      "answers": ["21", "22", "23", "24"],
+      "correctAnswer": "23",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "Solve: 90 ÷ 3",
+      "answers": ["20", "25", "30", "35"],
+      "correctAnswer": "30",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 6 × 11?",
+      "answers": ["54", "60", "66", "72"],
+      "correctAnswer": "66",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 18 + 24?",
+      "answers": ["38", "40", "42", "44"],
+      "correctAnswer": "42",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "Solve: 72 ÷ 8",
+      "answers": ["7", "8", "9", "10"],
+      "correctAnswer": "9",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is 3 × 14?",
+      "answers": ["30", "36", "38", "42"],
+      "correctAnswer": "42",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "Evaluate: 2 + 2 × 3",
+      "answers": ["8", "10", "12", "14"],
+      "correctAnswer": "8",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is the perimeter of a square with side length 5?",
+      "answers": ["10", "15", "20", "25"],
+      "correctAnswer": "20",
+      "enabled": 1
+    },
+    {
+      "subject": "Math",
+      "question": "What is the area of a rectangle with sides 4 and 6?",
+      "answers": ["20", "22", "24", "26"],
+      "correctAnswer": "24",
+      "enabled": 1
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "questions": [
+    {
+      "subject": "English",
+      "question": "What is the past tense of 'go'?",
+      "answers": ["Goed", "Went", "Gone", "Go"],
+      "correctAnswer": "Went",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which of the following is a noun?",
+      "answers": ["Run", "Happy", "Table", "Quickly"],
+      "correctAnswer": "Table",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which punctuation mark ends a question?",
+      "answers": [".", "!", "?", ","],
+      "correctAnswer": "?",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What do we call a word that describes a noun?",
+      "answers": ["Verb", "Adjective", "Adverb", "Pronoun"],
+      "correctAnswer": "Adjective",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What is a synonym for 'big'?",
+      "answers": ["Small", "Tiny", "Large", "Thin"],
+      "correctAnswer": "Large",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which word is an antonym of 'happy'?",
+      "answers": ["Joyful", "Glad", "Sad", "Cheerful"],
+      "correctAnswer": "Sad",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What is the plural form of 'child'?",
+      "answers": ["Childs", "Childes", "Children", "Childrens"],
+      "correctAnswer": "Children",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which of the following is a verb?",
+      "answers": ["Jump", "Blue", "Desk", "Soft"],
+      "correctAnswer": "Jump",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What do you call a word that sounds the same but has different meanings?",
+      "answers": ["Homonym", "Synonym", "Antonym", "Adjective"],
+      "correctAnswer": "Homonym",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which word is an adjective?",
+      "answers": ["Quickly", "Beautiful", "Run", "They"],
+      "correctAnswer": "Beautiful",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which word is a pronoun?",
+      "answers": ["She", "Walk", "Table", "Green"],
+      "correctAnswer": "She",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which sentence is correctly capitalized?",
+      "answers": ["the dog ran fast.", "The Dog ran fast.", "The dog ran fast.", "the Dog ran fast."],
+      "correctAnswer": "The dog ran fast.",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What is the opposite of 'early'?",
+      "answers": ["Soon", "Late", "Before", "First"],
+      "correctAnswer": "Late",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What is the comparative form of 'fast'?",
+      "answers": ["Fastest", "More fast", "Faster", "Most fast"],
+      "correctAnswer": "Faster",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which of the following is an adverb?",
+      "answers": ["Slowly", "Happy", "Apple", "Run"],
+      "correctAnswer": "Slowly",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What punctuation is used to show possession?",
+      "answers": ["Comma", "Apostrophe", "Dash", "Colon"],
+      "correctAnswer": "Apostrophe",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which word is spelled correctly?",
+      "answers": ["Beutiful", "Beautiful", "Beautifull", "Beutifull"],
+      "correctAnswer": "Beautiful",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "In the sentence 'The cat slept,' what is the verb?",
+      "answers": ["The", "Cat", "Slept", "None"],
+      "correctAnswer": "Slept",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What is the opposite of 'strong'?",
+      "answers": ["Weak", "Heavy", "Tough", "Hard"],
+      "correctAnswer": "Weak",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What do you call two words joined together, like 'can't'?",
+      "answers": ["Contraction", "Plural", "Possession", "Adjunction"],
+      "correctAnswer": "Contraction",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which of these is a complete sentence?",
+      "answers": ["Running fast", "Because it rained", "The boy laughed", "While waiting"],
+      "correctAnswer": "The boy laughed",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which word is a preposition?",
+      "answers": ["Under", "Run", "Bright", "They"],
+      "correctAnswer": "Under",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "What is the superlative form of 'good'?",
+      "answers": ["Gooder", "Better", "Best", "Most good"],
+      "correctAnswer": "Best",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which sentence uses the correct plural?",
+      "answers": ["The childs are playing.", "The children are playing.", "The childrens are playing.", "The childes are playing."],
+      "correctAnswer": "The children are playing.",
+      "enabled": 1
+    },
+    {
+      "subject": "English",
+      "question": "Which of the following is a compound word?",
+      "answers": ["Basketball", "Blue", "Teacher", "Notebook"],
+      "correctAnswer": "Basketball",
+      "enabled": 1
+    }
+  ]
+}

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d45f0d9a2b79634c8f8b057d1428b46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypointID: 0
+  waypointID: 6
   interactionDistance: 3
 --- !u!1 &6872500020418761628
 GameObject:

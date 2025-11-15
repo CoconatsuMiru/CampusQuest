@@ -1,0 +1,186 @@
+{
+  "questions": [
+    {
+      "subject": "Science",
+      "question": "What planet is known as the Red Planet?",
+      "answers": ["Venus", "Jupiter", "Mars", "Saturn"],
+      "correctAnswer": "Mars",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What is the chemical symbol for water?",
+      "answers": ["H2O", "CO2", "O2", "H2"],
+      "correctAnswer": "H2O",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What gas do plants release during photosynthesis?",
+      "answers": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+      "correctAnswer": "Oxygen",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What part of the cell contains DNA?",
+      "answers": ["Cytoplasm", "Nucleus", "Membrane", "Mitochondria"],
+      "correctAnswer": "Nucleus",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What planet has rings?",
+      "answers": ["Saturn", "Neptune", "Mars", "Jupiter"],
+      "correctAnswer": "Saturn",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What is the process by which plants make their own food?",
+      "answers": ["Photosynthesis", "Respiration", "Digestion", "Transpiration"],
+      "correctAnswer": "Photosynthesis",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which gas is essential for human respiration?",
+      "answers": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+      "correctAnswer": "Oxygen",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What is the boiling point of water at sea level in Celsius?",
+      "answers": ["90°C", "100°C", "120°C", "80°C"],
+      "correctAnswer": "100°C",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which planet is the largest in our solar system?",
+      "answers": ["Jupiter", "Earth", "Saturn", "Neptune"],
+      "correctAnswer": "Jupiter",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What is the force that keeps us on the ground?",
+      "answers": ["Magnetism", "Friction", "Gravity", "Inertia"],
+      "correctAnswer": "Gravity",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which organ pumps blood throughout the human body?",
+      "answers": ["Brain", "Lungs", "Heart", "Kidneys"],
+      "correctAnswer": "Heart",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which part of the plant absorbs water and nutrients from the soil?",
+      "answers": ["Roots", "Leaves", "Stem", "Flowers"],
+      "correctAnswer": "Roots",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which natural resource is used to produce electricity in solar panels?",
+      "answers": ["Sunlight", "Water", "Wind", "Coal"],
+      "correctAnswer": "Sunlight",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which element is essential for strong bones and teeth?",
+      "answers": ["Iron", "Calcium", "Potassium", "Sodium"],
+      "correctAnswer": "Calcium",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What type of blood cells help fight infections?",
+      "answers": ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+      "correctAnswer": "White blood cells",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which gas is most abundant in Earth's atmosphere?",
+      "answers": ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+      "correctAnswer": "Nitrogen",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What is the smallest unit of life?",
+      "answers": ["Atom", "Molecule", "Cell", "Organ"],
+      "correctAnswer": "Cell",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which planet is closest to the Sun?",
+      "answers": ["Mercury", "Venus", "Earth", "Mars"],
+      "correctAnswer": "Mercury",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What is the center of an atom called?",
+      "answers": ["Electron", "Proton", "Nucleus", "Neutron"],
+      "correctAnswer": "Nucleus",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which process breaks down food in the human body to release energy?",
+      "answers": ["Photosynthesis", "Digestion", "Respiration", "Excretion"],
+      "correctAnswer": "Digestion",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What type of energy comes from moving water?",
+      "answers": ["Wind energy", "Hydropower", "Solar energy", "Geothermal energy"],
+      "correctAnswer": "Hydropower",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which organ is responsible for filtering blood in the human body?",
+      "answers": ["Liver", "Kidneys", "Heart", "Lungs"],
+      "correctAnswer": "Kidneys",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which part of the eye controls how much light enters?",
+      "answers": ["Cornea", "Pupil", "Retina", "Lens"],
+      "correctAnswer": "Pupil",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which type of rock is formed from cooled lava?",
+      "answers": ["Igneous", "Sedimentary", "Metamorphic", "Fossil"],
+      "correctAnswer": "Igneous",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "Which human body system controls movement and coordination?",
+      "answers": ["Circulatory system", "Nervous system", "Respiratory system", "Digestive system"],
+      "correctAnswer": "Nervous system",
+      "enabled": 1
+    },
+    {
+      "subject": "Science",
+      "question": "What is the process of a liquid turning into a gas called?",
+      "answers": ["Condensation", "Evaporation", "Precipitation", "Sublimation"],
+      "correctAnswer": "Evaporation",
+      "enabled": 1
+    }
+  ]
+}
