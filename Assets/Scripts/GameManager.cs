@@ -1,19 +1,22 @@
-    using UnityEngine;
+using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance; // 👈 Allow other scripts to call RefreshUI()
+    public static GameManager Instance;
 
     [Header("UI Elements")]
     public TMP_Text usernameText;
     public TMP_Text levelText;
 
     [Header("EXP Bar")]
-    public Slider expSlider; // 👈 Assign in Inspector
+    public Slider expSlider;
 
-    private void Awake()
+    [Header("Level Up Notification")]
+    public GameObject levelUpNotification; // Drag your TMP Text object here
+
+    void Awake()
     {
         Instance = this;
     }
@@ -21,11 +24,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         RefreshUI();
+
+        // Check queued notification
+        if (PlayerBossStats.Instance != null && PlayerBossStats.Instance.hasPendingLevelUpNotification)
+        {
+            ShowLevelUpNotification();
+            PlayerBossStats.Instance.hasPendingLevelUpNotification = false;
+        }
     }
 
-    /// <summary>
-    /// Refreshes username, level, and EXP slider from the current user data.
-    /// </summary>
     public void RefreshUI()
     {
         if (LocalAuthManager.Instance == null || LocalAuthManager.Instance.currentUser == null)
@@ -40,10 +47,8 @@ public class GameManager : MonoBehaviour
         int level = user.level;
         int exp = user.exp;
 
-        // ✅ Calculate EXP needed for next level
         int expToNext = level * 50;
 
-        // 🖥️ Update UI elements
         if (usernameText != null)
             usernameText.text = username;
 
@@ -57,5 +62,25 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log($"🔄 UI refreshed — {username} (Level {level}, EXP {exp}/{expToNext})");
+    }
+
+    public void ShowLevelUpNotification()
+    {
+        if (levelUpNotification == null)
+        {
+            Debug.LogWarning("⚠ Level up notification not assigned in GameManager!");
+            return;
+        }
+
+        StartCoroutine(ShowNotificationRoutine());
+    }
+
+    private System.Collections.IEnumerator ShowNotificationRoutine()
+    {
+        levelUpNotification.SetActive(true);
+
+        yield return new WaitForSeconds(4f);
+
+        Destroy(levelUpNotification);
     }
 }

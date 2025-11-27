@@ -1,10 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class PlayerBossStats : MonoBehaviour
 {
     public static PlayerBossStats Instance { get; private set; }
     public bool isLoaded { get; private set; } = false;
+
+    // NEW: Queue notification for next scene
+    public bool hasPendingLevelUpNotification = false;
 
     // User identity
     public string username;
@@ -13,7 +17,7 @@ public class PlayerBossStats : MonoBehaviour
     // Core stats
     public int level = 1;
     public int exp = 0;
-    public int expNeededToLevelUp = 50; // ✅ Now a real variable
+    public int expNeededToLevelUp = 50;
     public int skillPoints = 0;
 
     // Subject stats
@@ -39,7 +43,6 @@ public class PlayerBossStats : MonoBehaviour
     {
         LoadFromLocal();
 
-        // Ensure UI reflects loaded data on start
         if (GameManager.Instance != null)
             GameManager.Instance.RefreshUI();
     }
@@ -86,13 +89,11 @@ public class PlayerBossStats : MonoBehaviour
         return fallback;
     }
 
-    // ✅ New method: Updates required EXP dynamically
     private void UpdateExpNeeded()
     {
         expNeededToLevelUp = level * 50;
     }
 
-    // ✅ Central EXP handling
     public void AddExp(int amount)
     {
         if (!isLoaded)
@@ -124,8 +125,12 @@ public class PlayerBossStats : MonoBehaviour
         if (GameManager.Instance != null)
             GameManager.Instance.RefreshUI();
 
+        // Store notification for next scene
         if (leveledUp)
-            Debug.Log("🏆 PlayerBossStats: Level up complete!");
+        {
+            hasPendingLevelUpNotification = true;
+            Debug.Log("🏆 Level-up notification queued!");
+        }
     }
 
     public bool SpendSkillPoints(string subject, int points)
@@ -182,7 +187,6 @@ public class PlayerBossStats : MonoBehaviour
         user.subjects["math"] = stat_math;
         user.subjects["english"] = stat_english;
         user.subjects["history"] = stat_history;
-
         user.subjects["skillPoints"] = skillPoints;
 
         LocalAuthManager.Instance.UpdateUserData();

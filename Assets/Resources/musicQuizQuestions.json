@@ -5,6 +5,7 @@
       "question": "How many notes are in a musical scale?",
       "answers": ["6", "7", "8", "9"],
       "correctAnswer": "7",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -12,6 +13,7 @@
       "question": "Which clef is used for higher-pitched instruments?",
       "answers": ["Bass clef", "Treble clef", "Alto clef", "Tenor clef"],
       "correctAnswer": "Treble clef",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -19,6 +21,7 @@
       "question": "Which instrument has keys, pedals, and strings?",
       "answers": ["Piano", "Guitar", "Harp", "Drum"],
       "correctAnswer": "Piano",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -26,6 +29,7 @@
       "question": "What symbol represents silence in music?",
       "answers": ["Rest", "Note", "Beat", "Chord"],
       "correctAnswer": "Rest",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -33,6 +37,7 @@
       "question": "Who composed the Fifth Symphony?",
       "answers": ["Mozart", "Beethoven", "Bach", "Chopin"],
       "correctAnswer": "Beethoven",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -40,6 +45,7 @@
       "question": "Which instrument is part of the string family?",
       "answers": ["Violin", "Flute", "Trumpet", "Timpani"],
       "correctAnswer": "Violin",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -47,6 +53,7 @@
       "question": "What is the term for gradually getting louder in music?",
       "answers": ["Crescendo", "Diminuendo", "Forte", "Piano"],
       "correctAnswer": "Crescendo",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -54,6 +61,7 @@
       "question": "Which instrument is a percussion instrument?",
       "answers": ["Drum", "Cello", "Clarinet", "Trumpet"],
       "correctAnswer": "Drum",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -61,6 +69,7 @@
       "question": "Which musical notation indicates the pitch and duration of notes?",
       "answers": ["Staff", "Chord", "Rest", "Tempo"],
       "correctAnswer": "Staff",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -68,13 +77,7 @@
       "question": "Who is known as the 'King of Pop'?",
       "answers": ["Michael Jackson", "Elvis Presley", "Prince", "Madonna"],
       "correctAnswer": "Michael Jackson",
-      "enabled": 1
-    },
-    {
-      "subject": "Music",
-      "question": "What is the distance between two notes called?",
-      "answers": ["Interval", "Chord", "Scale", "Key"],
-      "correctAnswer": "Interval",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -82,6 +85,7 @@
       "question": "Which instrument is part of the brass family?",
       "answers": ["Trumpet", "Violin", "Flute", "Trombone"],
       "correctAnswer": "Trumpet",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -89,6 +93,7 @@
       "question": "Which composer wrote 'The Four Seasons'?",
       "answers": ["Vivaldi", "Beethoven", "Mozart", "Bach"],
       "correctAnswer": "Vivaldi",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -96,41 +101,7 @@
       "question": "Which type of scale has 12 notes?",
       "answers": ["Chromatic scale", "Major scale", "Minor scale", "Pentatonic scale"],
       "correctAnswer": "Chromatic scale",
-      "enabled": 1
-    },
-    {
-      "subject": "Music",
-      "question": "Which instrument is played by striking keys?",
-      "answers": ["Piano", "Guitar", "Violin", "Flute"],
-      "correctAnswer": "Piano",
-      "enabled": 1
-    },
-    {
-      "subject": "Music",
-      "question": "Which instrument is played using a bow?",
-      "answers": ["Violin", "Piano", "Flute", "Trumpet"],
-      "correctAnswer": "Violin",
-      "enabled": 1
-    },
-    {
-      "subject": "Music",
-      "question": "What is the symbol '#' in music called?",
-      "answers": ["Sharp", "Flat", "Natural", "Clef"],
-      "correctAnswer": "Sharp",
-      "enabled": 1
-    },
-    {
-      "subject": "Music",
-      "question": "Which tempo is faster?",
-      "answers": ["Allegro", "Adagio", "Lento", "Largo"],
-      "correctAnswer": "Allegro",
-      "enabled": 1
-    },
-    {
-      "subject": "Music",
-      "question": "Which instrument is part of the woodwind family?",
-      "answers": ["Flute", "Trumpet", "Cello", "Timpani"],
-      "correctAnswer": "Flute",
+      "difficulty": "Hard",
       "enabled": 1
     },
     {
@@ -138,6 +109,7 @@
       "question": "What is the term for a group of singers?",
       "answers": ["Choir", "Orchestra", "Band", "Ensemble"],
       "correctAnswer": "Choir",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -145,6 +117,7 @@
       "question": "What is a repeated musical idea called?",
       "answers": ["Theme", "Cadenza", "Cadence", "Arpeggio"],
       "correctAnswer": "Theme",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -152,6 +125,7 @@
       "question": "Which instrument is often used in jazz music?",
       "answers": ["Saxophone", "Tuba", "Viola", "Oboe"],
       "correctAnswer": "Saxophone",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -159,6 +133,7 @@
       "question": "Which composer is known for 'Fur Elise'?",
       "answers": ["Beethoven", "Mozart", "Bach", "Chopin"],
       "correctAnswer": "Beethoven",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -166,6 +141,7 @@
       "question": "Which symbol in music lowers a note by a half step?",
       "answers": ["Flat", "Sharp", "Natural", "Clef"],
       "correctAnswer": "Flat",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -173,6 +149,56 @@
       "question": "Which instrument has six strings?",
       "answers": ["Guitar", "Violin", "Cello", "Harp"],
       "correctAnswer": "Guitar",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+    {
+      "subject": "Gallaga Theatre",
+      "question": "What is the main purpose of Gallaga Theatre at USLS?",
+      "answers": ["Music performances", "Sports events", "Science experiments", "Dining area"],
+      "correctAnswer": "Music performances",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+    {
+      "subject": "Gallaga Theatre",
+      "question": "Which type of events is commonly held at Gallaga Theatre?",
+      "answers": ["Concerts and recitals", "Basketball games", "Math competitions", "Library lectures"],
+      "correctAnswer": "Concerts and recitals",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+  {
+  "subject": "Gallaga Theatre",
+  "question": "What type of events are commonly held at Gallaga Theatre?",
+  "answers": ["Movie screenings", "Stage plays and performances", "Sports events", "Class lectures"],
+  "correctAnswer": "Stage plays and performances",
+  "difficulty": "Easy",
+  "enabled": 1
+},
+
+    {
+      "subject": "Gallaga Theatre",
+      "question": "Gallaga Theatre is located in which campus of USLS?",
+      "answers": ["Main Campus", "High School Campus", "Annex Campus", "Sports Complex"],
+      "correctAnswer": "Main Campus",
+      "difficulty": "Moderate",
+      "enabled": 1
+    },
+    {
+      "subject": "Gallaga Theatre",
+      "question": "What feature is Gallaga Theatre known for?",
+      "answers": ["Acoustic design for music", "Swimming pool", "Large gym area", "Computer labs"],
+      "correctAnswer": "Acoustic design for music",
+      "difficulty": "Moderate",
+      "enabled": 1
+    },
+    {
+      "subject": "Gallaga Theatre",
+      "question": "What type of seating arrangement does Gallaga Theatre have?",
+      "answers": ["Auditorium seating", "Bleachers", "Classroom desks", "Cafeteria tables"],
+      "correctAnswer": "Auditorium seating",
+      "difficulty": "Moderate",
       "enabled": 1
     }
   ]

@@ -11,7 +11,7 @@ public class BossData
 {
     public string bossName;
     public int hp;
-    public string imagePath; // for compatibility, not used
+    public string imagePath;
     public string subject;
     public int expReward;
     public int seen;
@@ -36,7 +36,6 @@ public class BossFightManager : MonoBehaviour
     public enum TierType { Low, Mid, High }
 
     [Header("Boss Tier Settings")]
-    [Tooltip("Select which tier of bosses this scene uses.")]
     public TierType selectedTier = TierType.Low;
 
     [Header("Boss Data Source")]
@@ -200,7 +199,9 @@ public class BossFightManager : MonoBehaviour
             currentBoss.defeated = 1;
             SaveBossData();
 
-            // ✅ Now the reward logic is centralized in PlayerBossStats
+            // ✅ Achievement Integration
+            AchievementManager.Instance.AddMonsterDefeat();
+
             if (PlayerBossStats.Instance != null)
                 PlayerBossStats.Instance.AddExp(currentBoss.expReward);
 

@@ -1,10 +1,10 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class QuizManagerScript : MonoBehaviour
 {
@@ -15,15 +15,17 @@ public class QuizManagerScript : MonoBehaviour
     public Button answerButtonC;
     public Button answerButtonD;
     public TMP_Text scoreText;
+    public TMP_Text rewardText;
     public GameObject correctPanel;
+    public GameObject endQuizPanel;
+    public Button continueButton;
 
     [Header("Extra UI (Question Number & Timer)")]
-    public TMP_Text questionNumberText;  // <-- Drag your “Question #” TMP here
-    public TMP_Text timeLeftText;        // <-- Drag your “Time Left” TMP here
+    public TMP_Text questionNumberText;
+    public TMP_Text timeLeftText;
 
-    [Header("XP & Level UI (optional)")]
-    public TMP_Text levelText;
-    public TMP_Text xpText;
+    [Header("Difficulty UI")]
+    public TMP_Text difficultyText;
 
     [Header("Audio")]
     public AudioSource audioSource;
@@ -41,7 +43,6 @@ public class QuizManagerScript : MonoBehaviour
     private int currentQuestionIndex = 0;
     private const int MaxQuestionCount = 5;
 
-    // Timer variables
     private float timePerQuestion = 30f;
     private float currentTimeLeft;
     private bool isTimerRunning = false;
@@ -50,8 +51,9 @@ public class QuizManagerScript : MonoBehaviour
     {
         LoadQuestions();
         StartQuiz();
-        UpdateXPUI();
-        CooldownManager.Instance.StartCooldown();
+
+        if (continueButton != null)
+            continueButton.onClick.AddListener(OnContinueButtonClicked);
     }
 
     void LoadQuestions()
@@ -74,17 +76,11 @@ public class QuizManagerScript : MonoBehaviour
 
     public void StartQuiz()
     {
-        if (questions.Count > 0)
-        {
-            score = 0;
-            currentQuestionIndex = 0;
-            UpdateScoreUI();
-            ShowQuestion(currentQuestionIndex);
-        }
-        else
-        {
-            Debug.LogError("❌ No questions available.");
-        }
+        score = 0;
+        currentQuestionIndex = 0;
+        UpdateScoreUI();
+        ShowQuestion(currentQuestionIndex);
+        endQuizPanel.SetActive(false);
     }
 
     void ShowQuestion(int index)
@@ -99,6 +95,9 @@ public class QuizManagerScript : MonoBehaviour
         questionText.text = currentQuestion.question;
         selectedCorrectAnswer = currentQuestion.correctAnswer;
 
+        if (difficultyText != null)
+            difficultyText.text = currentQuestion.difficulty.ToUpperInvariant();
+
         List<string> shuffledAnswers = new List<string>(currentQuestion.answers);
         shuffledAnswers = shuffledAnswers.OrderBy(a => Random.value).ToList();
 
@@ -110,11 +109,9 @@ public class QuizManagerScript : MonoBehaviour
         correctPanel.SetActive(false);
         EnableButtons();
 
-        // Update UI for question number
         if (questionNumberText != null)
             questionNumberText.text = $"Question #{index + 1}";
 
-        // Reset and start the timer
         currentTimeLeft = timePerQuestion;
         isTimerRunning = true;
         UpdateTimerUI();
@@ -158,7 +155,7 @@ public class QuizManagerScript : MonoBehaviour
 
     public void OnAnswerButtonClicked(int buttonIndex)
     {
-        if (!isTimerRunning) return; // prevent clicking after timeout
+        if (!isTimerRunning) return;
 
         isTimerRunning = false;
         string selectedAnswer = "";
@@ -177,14 +174,20 @@ public class QuizManagerScript : MonoBehaviour
         {
             score++;
             UpdateScoreUI();
+
+            // ✅ Achievement Integration
+            AchievementManager.Instance.AddCorrectAnswer();
+
+            questionText.text = "✅ Correct!";
             correctPanel.SetActive(true);
-            correctPanel.GetComponentInChildren<TMP_Text>().text = "✅ Correct!";
+            correctPanel.GetComponentInChildren<TMP_Text>().text = "Correct!";
             if (correctSound) audioSource.PlayOneShot(correctSound);
         }
         else
         {
+            questionText.text = "❌ Wrong!";
             correctPanel.SetActive(true);
-            correctPanel.GetComponentInChildren<TMP_Text>().text = "❌ Wrong!";
+            correctPanel.GetComponentInChildren<TMP_Text>().text = "Wrong!";
             if (incorrectSound) audioSource.PlayOneShot(incorrectSound);
 #if UNITY_ANDROID || UNITY_IOS
             Handheld.Vibrate();
@@ -208,42 +211,36 @@ public class QuizManagerScript : MonoBehaviour
     void EndQuiz()
     {
         isTimerRunning = false;
-        correctPanel.SetActive(true);
-        correctPanel.GetComponentInChildren<TMP_Text>().text = $"🎉 Quiz Complete!\nScore: {score}/{MaxQuestionCount}";
         DisableButtons();
+        correctPanel.SetActive(false);
 
-        if (score > 0)
+        endQuizPanel.SetActive(true);
+
+        if (scoreText != null)
         {
-            float boostMultiplier = 1f;
-
-            switch (score)
-            {
-                case 1: boostMultiplier = 1.1f; break;
-                case 2: boostMultiplier = 1.2f; break;
-                case 3: boostMultiplier = 1.3f; break;
-                case 4: boostMultiplier = 1.4f; break;
-                case 5: boostMultiplier = 1.5f; break;
-            }
-
-            float boostDuration = 300f; // 5 minutes
-
-            if (DamageBoostManager.Instance != null)
-            {
-                DamageBoostManager.Instance.ApplyGlobalDamageBoost(boostMultiplier, boostDuration);
-                Debug.Log($"✅ Applied {boostMultiplier}x damage boost for {boostDuration}s (score: {score})");
-            }
-            else
-            {
-                Debug.LogWarning("⚠️ DamageBoostManager not found — boost not applied.");
-            }
+            scoreText.text = $"You answered {score}/{MaxQuestionCount} questions correctly";
         }
 
-        StartCoroutine(WaitAndLoadMainScene(3f));
+        if (rewardText != null)
+        {
+            float rewardMultiplier = 1f;
+            switch (score)
+            {
+                case 1: rewardMultiplier = 1.1f; break;
+                case 2: rewardMultiplier = 1.2f; break;
+                case 3: rewardMultiplier = 1.3f; break;
+                case 4: rewardMultiplier = 1.4f; break;
+                case 5: rewardMultiplier = 1.5f; break;
+            }
+
+            float rewardDuration = 120f;
+            rewardText.text = $"Your reward is {rewardMultiplier}x damage buff for {rewardDuration / 60} minutes.";
+        }
     }
 
-    IEnumerator WaitAndLoadMainScene(float delayTime)
+    public void OnContinueButtonClicked()
     {
-        yield return new WaitForSeconds(delayTime);
+        Debug.Log("Continue button clicked. Returning to main scene...");
         SceneManager.LoadScene("SampleScene");
     }
 
@@ -265,13 +262,8 @@ public class QuizManagerScript : MonoBehaviour
 
     void UpdateScoreUI()
     {
-        scoreText.text = $"Score: {score}";
-    }
-
-    void UpdateXPUI()
-    {
-        if (levelText != null) levelText.text = "Level: --";
-        if (xpText != null) xpText.text = "XP: --";
+        if (scoreText != null)
+            scoreText.text = $"Score: {score}";
     }
 
     [System.Serializable]
@@ -281,6 +273,7 @@ public class QuizManagerScript : MonoBehaviour
         public string[] answers;
         public string correctAnswer;
         public int enabled = 1;
+        public string difficulty;
     }
 
     [System.Serializable]

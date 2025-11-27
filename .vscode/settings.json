@@ -56,6 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CampusQuest-GPSfix2.sln",
+    "dotnet.defaultSolution": "CampusQuest-finalChanges.sln",
     "git.ignoreLimitWarning": true
 }

@@ -5,6 +5,7 @@
       "question": "Who was the first President of the United States?",
       "answers": ["Abraham Lincoln", "George Washington", "John Adams", "Thomas Jefferson"],
       "correctAnswer": "George Washington",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -12,6 +13,7 @@
       "question": "In what year did World War II end?",
       "answers": ["1942", "1945", "1948", "1950"],
       "correctAnswer": "1945",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -19,6 +21,7 @@
       "question": "The pyramids of Giza are located in which country?",
       "answers": ["Egypt", "Mexico", "Greece", "Peru"],
       "correctAnswer": "Egypt",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -26,6 +29,7 @@
       "question": "Who discovered America in 1492?",
       "answers": ["Christopher Columbus", "Marco Polo", "Ferdinand Magellan", "Amerigo Vespucci"],
       "correctAnswer": "Christopher Columbus",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -33,6 +37,7 @@
       "question": "What ancient civilization built the Colosseum?",
       "answers": ["Greek", "Roman", "Mayan", "Egyptian"],
       "correctAnswer": "Roman",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -40,6 +45,7 @@
       "question": "Who was the first Emperor of Rome?",
       "answers": ["Julius Caesar", "Augustus", "Nero", "Caligula"],
       "correctAnswer": "Augustus",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -47,6 +53,7 @@
       "question": "In which year did the American Civil War begin?",
       "answers": ["1860", "1861", "1865", "1870"],
       "correctAnswer": "1861",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -54,6 +61,7 @@
       "question": "Which explorer circumnavigated the globe first?",
       "answers": ["Ferdinand Magellan", "Christopher Columbus", "James Cook", "Marco Polo"],
       "correctAnswer": "Ferdinand Magellan",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -61,6 +69,7 @@
       "question": "Which empire was ruled by Genghis Khan?",
       "answers": ["Mongol Empire", "Ottoman Empire", "Roman Empire", "Persian Empire"],
       "correctAnswer": "Mongol Empire",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -68,6 +77,7 @@
       "question": "What year did the French Revolution begin?",
       "answers": ["1789", "1776", "1804", "1812"],
       "correctAnswer": "1789",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -75,6 +85,7 @@
       "question": "Who was the British Prime Minister during most of World War II?",
       "answers": ["Winston Churchill", "Neville Chamberlain", "Clement Attlee", "Margaret Thatcher"],
       "correctAnswer": "Winston Churchill",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -82,6 +93,7 @@
       "question": "Which civilization built Machu Picchu?",
       "answers": ["Inca", "Aztec", "Mayan", "Olmec"],
       "correctAnswer": "Inca",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -89,6 +101,7 @@
       "question": "The Berlin Wall fell in which year?",
       "answers": ["1987", "1989", "1991", "1993"],
       "correctAnswer": "1989",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -96,6 +109,7 @@
       "question": "Who was the first man to step on the moon?",
       "answers": ["Buzz Aldrin", "Neil Armstrong", "Yuri Gagarin", "Michael Collins"],
       "correctAnswer": "Neil Armstrong",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -103,6 +117,7 @@
       "question": "Which war was fought between the North and South regions of the United States?",
       "answers": ["World War I", "World War II", "American Civil War", "Revolutionary War"],
       "correctAnswer": "American Civil War",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -110,6 +125,7 @@
       "question": "Who was the leader of Nazi Germany during World War II?",
       "answers": ["Adolf Hitler", "Joseph Stalin", "Benito Mussolini", "Winston Churchill"],
       "correctAnswer": "Adolf Hitler",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -117,6 +133,7 @@
       "question": "Which civilization is known for creating cuneiform writing?",
       "answers": ["Sumerians", "Egyptians", "Romans", "Greeks"],
       "correctAnswer": "Sumerians",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -124,6 +141,7 @@
       "question": "The Great Fire of London occurred in which year?",
       "answers": ["1666", "1600", "1707", "1750"],
       "correctAnswer": "1666",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -131,6 +149,7 @@
       "question": "Which U.S. President issued the Emancipation Proclamation?",
       "answers": ["Abraham Lincoln", "George Washington", "Thomas Jefferson", "Theodore Roosevelt"],
       "correctAnswer": "Abraham Lincoln",
+      "difficulty": "Easy",
       "enabled": 1
     },
     {
@@ -138,6 +157,7 @@
       "question": "What was the primary cause of the Cold War?",
       "answers": ["Ideological conflict between the USA and USSR", "Colonial expansion", "Trade disputes", "Religious wars"],
       "correctAnswer": "Ideological conflict between the USA and USSR",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -145,6 +165,7 @@
       "question": "Which ancient civilization built the Parthenon?",
       "answers": ["Greek", "Roman", "Egyptian", "Persian"],
       "correctAnswer": "Greek",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -152,6 +173,7 @@
       "question": "Who was the famous pharaoh known for the Great Pyramid of Giza?",
       "answers": ["Khufu", "Tutankhamun", "Ramses II", "Cleopatra"],
       "correctAnswer": "Khufu",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -159,6 +181,7 @@
       "question": "The Magna Carta was signed in which country?",
       "answers": ["England", "France", "Spain", "Germany"],
       "correctAnswer": "England",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -166,6 +189,7 @@
       "question": "Which empire was led by Alexander the Great?",
       "answers": ["Macedonian Empire", "Roman Empire", "Ottoman Empire", "Persian Empire"],
       "correctAnswer": "Macedonian Empire",
+      "difficulty": "Moderate",
       "enabled": 1
     },
     {
@@ -173,6 +197,79 @@
       "question": "Which revolution led to the independence of India from British rule?",
       "answers": ["Indian Independence Movement", "French Revolution", "American Revolution", "Russian Revolution"],
       "correctAnswer": "Indian Independence Movement",
+      "difficulty": "Moderate",
+      "enabled": 1
+    },
+ 	{
+      "subject": "Balay Kalinungan",
+      "question": "What is the primary purpose of Balay Kalinungan at USLS Bacolod?",
+      "answers": ["Student housing", "Retreat and recollection venue", "Sports training center", "Dining facility"],
+      "correctAnswer": "Retreat and recollection venue",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+    {
+      "subject": "Balay Kalinungan",
+      "question": "Balay Kalinungan is managed by which office of USLS?",
+      "answers": ["Registrar's Office", "Campus Ministry Office", "Dean of Students Office", "Human Resource Office"],
+      "correctAnswer": "Campus Ministry Office",
+      "difficulty": "Moderate",
+      "enabled": 1
+    },
+    {
+      "subject": "Balay Kalinungan",
+      "question": "What type of environment surrounds Balay Kalinungan?",
+      "answers": ["Urban buildings", "Forest-like greenery", "Coastal beach area", "Mountain cliff"],
+      "correctAnswer": "Forest-like greenery",
+      "difficulty": "Moderate",
+      "enabled": 1
+    },
+    {
+      "subject": "Balay Kalinungan",
+      "question": "Which Lasallian value is most emphasized in Balay Kalinungan programs?",
+      "answers": ["Competitiveness", "Faith", "Athleticism", "Technology"],
+      "correctAnswer": "Faith",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+    {
+      "subject": "Balay Kalinungan",
+      "question": "What activity is commonly held inside Balay Kalinungan?",
+      "answers": ["Science experiments", "Meditation and group sharing", "Basketball tournaments", "Debate competitions"],
+      "correctAnswer": "Meditation and group sharing",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+    {
+      "subject": "Balay Kalinungan",
+      "question": "Balay Kalinungan is often used for which type of formation activity?",
+      "answers": ["Sports training", "Spiritual retreats", "Coding workshops", "Cultural performances"],
+      "correctAnswer": "Spiritual retreats",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+    {
+      "subject": "Balay Kalinungan",
+      "question": "Which group in USLS frequently uses Balay Kalinungan?",
+      "answers": ["Student athletes", "College organizations", "Campus Ministry retreat participants", "Library staff"],
+      "correctAnswer": "Campus Ministry retreat participants",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+    {
+      "subject": "Balay Kalinungan",
+      "question": "The name 'Balay Kalinungan' translates to what in English?",
+      "answers": ["House of Peace", "House of Knowledge", "House of Strength", "House of Light"],
+      "correctAnswer": "House of Peace",
+      "difficulty": "Easy",
+      "enabled": 1
+    },
+    {
+      "subject": "Balay Kalinungan",
+      "question": "Which feature is Balay Kalinungan known for?",
+      "answers": ["Quiet and reflective atmosphere", "High-tech computer labs", "Large sports stadium", "Conference halls"],
+      "correctAnswer": "Quiet and reflective atmosphere",
+      "difficulty": "Moderate",
       "enabled": 1
     }
   ]
